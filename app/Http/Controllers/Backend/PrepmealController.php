@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Food;
+use App\Models\Mealtime;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -50,7 +51,18 @@ class PrepmealController extends Controller
      */
     public function show($id)
     {
-        return $id;
+
+        $mealtime = new Mealtime();
+
+        $mealtime->food_id=$id;
+        $mealtime->morning=1;
+        $mealtime->noon=0;
+        $mealtime->afternoon=0;
+        $mealtime->night=0;
+        $mealtime->save();
+        notify()->success('Meal Successfully Added.', 'Added');
+        return redirect()->route('app.meals.index');
+
     }
 
     /**
