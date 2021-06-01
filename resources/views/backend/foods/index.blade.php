@@ -117,7 +117,7 @@
 
 
         {{--        </div>--}}
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="main-card mb-6 card">
                 <div class="table-responsive">
                     <table id="datatable" class="align-middle mb-0 table table-borderless table-striped table-hover">

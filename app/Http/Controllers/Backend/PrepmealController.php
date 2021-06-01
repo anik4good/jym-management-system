@@ -16,8 +16,8 @@ class PrepmealController extends Controller
      */
     public function index()
     {
-        $food = Food::all();
-      return view('backend.meals.index',compact('food'));
+        $foods = Food::all();
+      return view('backend.meals.index',compact('foods'));
     }
 
     /**
@@ -34,11 +34,11 @@ class PrepmealController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function store(Request $request)
     {
-        //
+        return 'done';
     }
 
     /**

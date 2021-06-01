@@ -16,11 +16,14 @@ class CreateFoodTable extends Migration
         Schema::create('food', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
             $table->string('image')->default('default.png');
-            $table->text('body');
-            $table->boolean('status')->default(false);
-
+            $table->string('foodgroup')->default(0.00);
+            $table->double('calories')->default(0.00);
+            $table->double('fat')->default(0.00);
+            $table->double('protein')->default(0.00);
+            $table->double('carbohydrate')->default(0.00);
+            $table->double('sugars')->default(0.00);
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

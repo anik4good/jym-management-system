@@ -3,18 +3,22 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Imports\FoodImport;
+use App\Models\Food;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FoodController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $foods = Food::all();
+        return view('backend.foods.index',compact('foods'));
     }
 
     /**
@@ -35,7 +39,14 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        ini_set('memory_limit', '2048M');
+
+        $file = $request->file('file');
+
+        $SurveySheet = new FoodImport();
+        Excel::import($SurveySheet, $file);
+
     }
 
     /**
