@@ -17,7 +17,7 @@ class FoodController extends Controller
      */
     public function index()
     {
-        $foods = Food::all();
+        $foods = Food::limit(5000)->get();
         return view('backend.foods.index',compact('foods'));
     }
 

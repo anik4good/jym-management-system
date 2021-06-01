@@ -16,8 +16,9 @@ class PrepmealController extends Controller
      */
     public function index()
     {
-        $foods = Food::all();
-      return view('backend.meals.index',compact('foods'));
+        $foods = Food::limit(100)->get();
+        $testfoods = Food::limit(3)->get();
+      return view('backend.meals.index',compact('foods','testfoods'));
     }
 
     /**
