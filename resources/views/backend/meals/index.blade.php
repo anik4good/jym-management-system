@@ -85,7 +85,9 @@
             </div>
         </div>
         <div class="col-md-8">
-            <h3>Morning</h3>
+            <h3>Morning <span class="badge badge-pill badge-primary">491 Calories</span></h3>
+
+
             <div class="main-card mb-6 card">
                 <div class="table-responsive">
                     <table id="datatable-morning"
