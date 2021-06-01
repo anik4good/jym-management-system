@@ -28,7 +28,7 @@ class PrepmealController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -50,7 +50,7 @@ class PrepmealController extends Controller
      */
     public function show($id)
     {
-        //
+        return $id;
     }
 
     /**

@@ -43,6 +43,7 @@
                         </tr>
                         </thead>
                         <tbody>
+{{--                     <form action="{{ route('app.foods.store') }}" method="post" enctype="multipart/form-data">--}}
                         @foreach($foods as $row)
                             <tr>
                                 <td>
@@ -72,14 +73,17 @@
                                     <div class="badge badge-success">{{ $row->calories }}</div>
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-secondary btn-sm" href="{{ route('app.users.show',$row->id) }}"><i
+                                    <a class="btn btn-secondary btn-sm" href="{{ route('app.meals.show',$row->id) }}"><i
                                             class="fas fa-eye"></i>
                                         <span>Add</span>
                                     </a>
                                 </td>
                             </tr>
                         @endforeach
+{{--                        </form>--}}
                         </tbody>
+
+                    <
                     </table>
                 </div>
             </div>
