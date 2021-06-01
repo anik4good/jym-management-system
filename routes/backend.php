@@ -28,6 +28,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::resource('roles', RoleController::class)->except(['show']);
 Route::resource('users', UserController::class);
 
+
+//fitness
+Route::resource('meals', \App\Http\Controllers\Backend\PrepmealController::class);
 // Backups
 Route::resource('backups', BackupController::class)->only(['index', 'store', 'destroy']);
 Route::get('backups/{file_name}', [BackupController::class, 'download'])->name('backups.download');

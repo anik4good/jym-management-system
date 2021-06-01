@@ -101,8 +101,17 @@ class User extends Authenticatable implements HasMedia
     }
 
 
+
+
+
     public function hasPermission($permission): bool
     {
         return $this->role->permissions()->where('slug', $permission)->first() ? true : false;
+    }
+
+
+    public function prepmeals()
+    {
+        return $this->hasMany(Prepmeal::class);
     }
 }

@@ -3957,7 +3957,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			}
 
 			// Support: IE 11+, Edge 15 - 18+
-			// IE 11/Edge don't find elements on a `[name='']` query in some cases.
+			// IE 11/Edge don't find elements on a `[name='']` meals in some cases.
 			// Adding a temporary attribute to the document before the selection works
 			// around the issue.
 			// Interestingly, IE 10 & older don't seem to have the issue.
@@ -9511,7 +9511,7 @@ jQuery.extend( {
 			style = elem.style;
 
 		// Make sure that we're working with the right name. We don't
-		// want to query the value if it is a CSS custom property
+		// want to meals the value if it is a CSS custom property
 		// since they are user-defined.
 		if ( !isCustomProp ) {
 			name = finalPropName( origName );
@@ -11529,7 +11529,7 @@ function buildParams( prefix, obj, traditional, add ) {
 }
 
 // Serialize an array of form elements or a set of
-// key/values into a query string
+// key/values into a meals string
 jQuery.param = function( a, traditional ) {
 	var prefix,
 		s = [],
@@ -14377,7 +14377,7 @@ return jQuery;
    * The base implementation of `_.propertyOf` without support for deep paths.
    *
    * @private
-   * @param {Object} object The object to query.
+   * @param {Object} object The object to meals.
    * @returns {Function} Returns the new accessor function.
    */
   function basePropertyOf(object) {
@@ -14475,7 +14475,7 @@ return jQuery;
    * of key-value pairs for `object` corresponding to the property names of `props`.
    *
    * @private
-   * @param {Object} object The object to query.
+   * @param {Object} object The object to meals.
    * @param {Array} props The property names to get values for.
    * @returns {Object} Returns the key-value pairs.
    */
@@ -14504,7 +14504,7 @@ return jQuery;
    * of `props`.
    *
    * @private
-   * @param {Object} object The object to query.
+   * @param {Object} object The object to meals.
    * @param {Array} props The property names to get values for.
    * @returns {Object} Returns the array of property values.
    */
@@ -14518,7 +14518,7 @@ return jQuery;
    * Checks if a `cache` value for `key` exists.
    *
    * @private
-   * @param {Object} cache The cache to query.
+   * @param {Object} cache The cache to meals.
    * @param {string} key The key of the entry to check.
    * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
    */
@@ -14613,7 +14613,7 @@ return jQuery;
    * Gets the value at `key` of `object`.
    *
    * @private
-   * @param {Object} [object] The object to query.
+   * @param {Object} [object] The object to meals.
    * @param {string} key The key of the property to get.
    * @returns {*} Returns the property value.
    */
@@ -15868,7 +15868,7 @@ return jQuery;
      * Creates an array of the enumerable property names of the array-like `value`.
      *
      * @private
-     * @param {*} value The value to query.
+     * @param {*} value The value to meals.
      * @param {boolean} inherited Specify returning inherited property names.
      * @returns {Array} Returns the array of property names.
      */
@@ -16513,7 +16513,7 @@ return jQuery;
      * The base implementation of `_.get` without support for default values.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {Array|string} path The path of the property to get.
      * @returns {*} Returns the resolved value.
      */
@@ -16535,7 +16535,7 @@ return jQuery;
      * symbols of `object`.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {Function} keysFunc The function to get the keys of `object`.
      * @param {Function} symbolsFunc The function to get the symbols of `object`.
      * @returns {Array} Returns the array of property names and symbols.
@@ -16549,7 +16549,7 @@ return jQuery;
      * The base implementation of `getTag` without fallbacks for buggy environments.
      *
      * @private
-     * @param {*} value The value to query.
+     * @param {*} value The value to meals.
      * @returns {string} Returns the `toStringTag`.
      */
     function baseGetTag(value) {
@@ -16578,7 +16578,7 @@ return jQuery;
      * The base implementation of `_.has` without support for deep paths.
      *
      * @private
-     * @param {Object} [object] The object to query.
+     * @param {Object} [object] The object to meals.
      * @param {Array|string} key The key to check.
      * @returns {boolean} Returns `true` if `key` exists, else `false`.
      */
@@ -16590,7 +16590,7 @@ return jQuery;
      * The base implementation of `_.hasIn` without support for deep paths.
      *
      * @private
-     * @param {Object} [object] The object to query.
+     * @param {Object} [object] The object to meals.
      * @param {Array|string} key The key to check.
      * @returns {boolean} Returns `true` if `key` exists, else `false`.
      */
@@ -16697,7 +16697,7 @@ return jQuery;
      * method arguments.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {Array|string} path The path of the method to invoke.
      * @param {Array} args The arguments to invoke the method with.
      * @returns {*} Returns the result of the invoked method.
@@ -16968,7 +16968,7 @@ return jQuery;
      * The base implementation of `_.keys` which doesn't treat sparse arrays as dense.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the array of property names.
      */
     function baseKeys(object) {
@@ -16988,7 +16988,7 @@ return jQuery;
      * The base implementation of `_.keysIn` which doesn't treat sparse arrays as dense.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the array of property names.
      */
     function baseKeysIn(object) {
@@ -17188,7 +17188,7 @@ return jQuery;
      * The base implementation of `_.nth` which doesn't coerce arguments.
      *
      * @private
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @param {number} n The index of the element to return.
      * @returns {*} Returns the nth element of `array`.
      */
@@ -17823,7 +17823,7 @@ return jQuery;
      * without support for iteratee shorthands.
      *
      * @private
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @param {Function} predicate The function invoked per iteration.
      * @param {boolean} [isDrop] Specify dropping elements instead of taking them.
      * @param {boolean} [fromRight] Specify iterating from right to left.
@@ -17941,7 +17941,7 @@ return jQuery;
      *
      * @private
      * @param {*} value The value to inspect.
-     * @param {Object} [object] The object to query keys on.
+     * @param {Object} [object] The object to meals keys on.
      * @returns {Array} Returns the cast property path array.
      */
     function castPath(value, object) {
@@ -19337,7 +19337,7 @@ return jQuery;
      * Creates an array of own enumerable property names and symbols of `object`.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the array of property names and symbols.
      */
     function getAllKeys(object) {
@@ -19349,7 +19349,7 @@ return jQuery;
      * symbols of `object`.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the array of property names and symbols.
      */
     function getAllKeysIn(object) {
@@ -19360,7 +19360,7 @@ return jQuery;
      * Gets metadata for `func`.
      *
      * @private
-     * @param {Function} func The function to query.
+     * @param {Function} func The function to meals.
      * @returns {*} Returns the metadata for `func`.
      */
     var getData = !metaMap ? noop : function(func) {
@@ -19371,7 +19371,7 @@ return jQuery;
      * Gets the name of `func`.
      *
      * @private
-     * @param {Function} func The function to query.
+     * @param {Function} func The function to meals.
      * @returns {string} Returns the function name.
      */
     function getFuncName(func) {
@@ -19422,7 +19422,7 @@ return jQuery;
      * Gets the data for `map`.
      *
      * @private
-     * @param {Object} map The map to query.
+     * @param {Object} map The map to meals.
      * @param {string} key The reference key.
      * @returns {*} Returns the map data.
      */
@@ -19437,7 +19437,7 @@ return jQuery;
      * Gets the property names, values, and compare flags of `object`.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the match data of `object`.
      */
     function getMatchData(object) {
@@ -19457,7 +19457,7 @@ return jQuery;
      * Gets the native function at `key` of `object`.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {string} key The key of the method to get.
      * @returns {*} Returns the function if it's native, else `undefined`.
      */
@@ -19470,7 +19470,7 @@ return jQuery;
      * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
      *
      * @private
-     * @param {*} value The value to query.
+     * @param {*} value The value to meals.
      * @returns {string} Returns the raw `toStringTag`.
      */
     function getRawTag(value) {
@@ -19497,7 +19497,7 @@ return jQuery;
      * Creates an array of the own enumerable symbols of `object`.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the array of symbols.
      */
     var getSymbols = !nativeGetSymbols ? stubArray : function(object) {
@@ -19514,7 +19514,7 @@ return jQuery;
      * Creates an array of the own and inherited enumerable symbols of `object`.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the array of symbols.
      */
     var getSymbolsIn = !nativeGetSymbols ? stubArray : function(object) {
@@ -19530,7 +19530,7 @@ return jQuery;
      * Gets the `toStringTag` of `value`.
      *
      * @private
-     * @param {*} value The value to query.
+     * @param {*} value The value to meals.
      * @returns {string} Returns the `toStringTag`.
      */
     var getTag = baseGetTag;
@@ -19603,7 +19603,7 @@ return jQuery;
      * Checks if `path` exists on `object`.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {Array|string} path The path to check.
      * @param {Function} hasFunc The function to check properties.
      * @returns {boolean} Returns `true` if `path` exists, else `false`.
@@ -19788,7 +19788,7 @@ return jQuery;
      *
      * @private
      * @param {*} value The value to check.
-     * @param {Object} [object] The object to query keys on.
+     * @param {Object} [object] The object to meals keys on.
      * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
      */
     function isKey(value, object) {
@@ -20002,7 +20002,7 @@ return jQuery;
      * except that it includes inherited enumerable properties.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the array of property names.
      */
     function nativeKeysIn(object) {
@@ -20060,7 +20060,7 @@ return jQuery;
      * Gets the parent value at `path` of `object`.
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {Array} path The path to get the parent value of.
      * @returns {*} Returns the parent value.
      */
@@ -20094,7 +20094,7 @@ return jQuery;
      * Gets the value at `key`, unless `key` is "__proto__" or "constructor".
      *
      * @private
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {string} key The key of the property to get.
      * @returns {*} Returns the property value.
      */
@@ -20518,7 +20518,7 @@ return jQuery;
      * @memberOf _
      * @since 0.5.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @param {number} [n=1] The number of elements to drop.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
      * @returns {Array} Returns the slice of `array`.
@@ -20552,7 +20552,7 @@ return jQuery;
      * @memberOf _
      * @since 3.0.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @param {number} [n=1] The number of elements to drop.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
      * @returns {Array} Returns the slice of `array`.
@@ -20589,7 +20589,7 @@ return jQuery;
      * @memberOf _
      * @since 3.0.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the slice of `array`.
      * @example
@@ -20630,7 +20630,7 @@ return jQuery;
      * @memberOf _
      * @since 3.0.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the slice of `array`.
      * @example
@@ -20902,7 +20902,7 @@ return jQuery;
      * @since 0.1.0
      * @alias first
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @returns {*} Returns the first element of `array`.
      * @example
      *
@@ -20958,7 +20958,7 @@ return jQuery;
      * @memberOf _
      * @since 0.1.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
@@ -21091,7 +21091,7 @@ return jQuery;
      * @memberOf _
      * @since 0.1.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @returns {*} Returns the last element of `array`.
      * @example
      *
@@ -21147,7 +21147,7 @@ return jQuery;
      * @memberOf _
      * @since 4.11.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @param {number} [n=0] The index of the element to return.
      * @returns {*} Returns the nth element of `array`.
      * @example
@@ -21621,7 +21621,7 @@ return jQuery;
      * @memberOf _
      * @since 4.0.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @returns {Array} Returns the slice of `array`.
      * @example
      *
@@ -21640,7 +21640,7 @@ return jQuery;
      * @memberOf _
      * @since 0.1.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @param {number} [n=1] The number of elements to take.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
      * @returns {Array} Returns the slice of `array`.
@@ -21673,7 +21673,7 @@ return jQuery;
      * @memberOf _
      * @since 3.0.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @param {number} [n=1] The number of elements to take.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
      * @returns {Array} Returns the slice of `array`.
@@ -21710,7 +21710,7 @@ return jQuery;
      * @memberOf _
      * @since 3.0.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the slice of `array`.
      * @example
@@ -21751,7 +21751,7 @@ return jQuery;
      * @memberOf _
      * @since 3.0.0
      * @category Array
-     * @param {Array} array The array to query.
+     * @param {Array} array The array to meals.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the slice of `array`.
      * @example
@@ -26598,7 +26598,7 @@ return jQuery;
      * @memberOf _
      * @since 3.7.0
      * @category Object
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {Array|string} path The path of the property to get.
      * @param {*} [defaultValue] The value returned for `undefined` resolved values.
      * @returns {*} Returns the resolved value.
@@ -26627,7 +26627,7 @@ return jQuery;
      * @since 0.1.0
      * @memberOf _
      * @category Object
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {Array|string} path The path to check.
      * @returns {boolean} Returns `true` if `path` exists, else `false`.
      * @example
@@ -26658,7 +26658,7 @@ return jQuery;
      * @memberOf _
      * @since 4.0.0
      * @category Object
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {Array|string} path The path to check.
      * @returns {boolean} Returns `true` if `path` exists, else `false`.
      * @example
@@ -26754,7 +26754,7 @@ return jQuery;
      * @memberOf _
      * @since 4.0.0
      * @category Object
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {Array|string} path The path of the method to invoke.
      * @param {...*} [args] The arguments to invoke the method with.
      * @returns {*} Returns the result of the invoked method.
@@ -26778,7 +26778,7 @@ return jQuery;
      * @since 0.1.0
      * @memberOf _
      * @category Object
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the array of property names.
      * @example
      *
@@ -26808,7 +26808,7 @@ return jQuery;
      * @memberOf _
      * @since 3.0.0
      * @category Object
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the array of property names.
      * @example
      *
@@ -27092,7 +27092,7 @@ return jQuery;
      * @since 0.1.0
      * @memberOf _
      * @category Object
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {Array|string} path The path of the property to resolve.
      * @param {*} [defaultValue] The value returned for `undefined` resolved values.
      * @returns {*} Returns the resolved value.
@@ -27205,7 +27205,7 @@ return jQuery;
      * @since 4.0.0
      * @alias entries
      * @category Object
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the key-value pairs.
      * @example
      *
@@ -27231,7 +27231,7 @@ return jQuery;
      * @since 4.0.0
      * @alias entriesIn
      * @category Object
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the key-value pairs.
      * @example
      *
@@ -27400,7 +27400,7 @@ return jQuery;
      * @since 0.1.0
      * @memberOf _
      * @category Object
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the array of property values.
      * @example
      *
@@ -27431,7 +27431,7 @@ return jQuery;
      * @memberOf _
      * @since 3.0.0
      * @category Object
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Array} Returns the array of property values.
      * @example
      *
@@ -29125,7 +29125,7 @@ return jQuery;
      * @memberOf _
      * @since 3.7.0
      * @category Util
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @param {...*} [args] The arguments to invoke the method with.
      * @returns {Function} Returns the new invoker function.
      * @example
@@ -29386,7 +29386,7 @@ return jQuery;
      * @memberOf _
      * @since 3.0.0
      * @category Util
-     * @param {Object} object The object to query.
+     * @param {Object} object The object to meals.
      * @returns {Function} Returns the new accessor function.
      * @example
      *
@@ -35040,7 +35040,7 @@ S2.define('select2/data/base',[
   };
 
   BaseAdapter.prototype.query = function (params, callback) {
-    throw new Error('The `query` method must be defined in child classes.');
+    throw new Error('The `meals` method must be defined in child classes.');
   };
 
   BaseAdapter.prototype.bind = function (container, $container) {
@@ -36146,7 +36146,7 @@ S2.define('select2/dropdown/infiniteScroll',[
       self.loading = true;
     });
 
-    container.on('query:append', function (params) {
+    container.on('meals:append', function (params) {
       self.lastParams = params;
       self.loading = true;
     });
@@ -36181,7 +36181,7 @@ S2.define('select2/dropdown/infiniteScroll',[
 
     params.page++;
 
-    this.trigger('query:append', params);
+    this.trigger('meals:append', params);
   };
 
   InfiniteScroll.prototype.showLoadingMore = function (_, data) {
@@ -36739,7 +36739,7 @@ S2.define('select2/defaults',[
       }
 
       if (options.query != null) {
-        var Query = require(options.amdBase + 'compat/query');
+        var Query = require(options.amdBase + 'compat/meals');
 
         options.dataAdapter = Utils.Decorate(
           options.dataAdapter,
@@ -37557,7 +37557,7 @@ S2.define('select2/core',[
       });
     });
 
-    this.on('query:append', function (params) {
+    this.on('meals:append', function (params) {
       this.dataAdapter.query(params, function (data) {
         self.trigger('results:append', {
           data: data,
@@ -53694,7 +53694,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -53714,7 +53714,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 
