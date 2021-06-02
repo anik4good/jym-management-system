@@ -40,7 +40,7 @@ class CreateMeals extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function handle()
     {
@@ -98,7 +98,7 @@ class CreateMeals extends Command
 
 //
         $prepmeal = new Prepmeal();
-        $prepmeal->user_id = Auth::id();
+        $prepmeal->user_id = 1;
         $prepmeal->save();
 
 
@@ -120,8 +120,11 @@ class CreateMeals extends Command
             $noon->user_id=1;
             $noon->food_id=$food->id;
             $noon->save();
-
+            $post_id = Prepmeal::where('id',$morning->post_id)->first();
         }
 
+
+        $this->info($post_id->id);
+       return redirect()->route('app.meals.update.time',$post_id->id);
     }
 }
