@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Food;
 use App\Models\Mealtime;
+use App\Models\Morning;
+use App\Models\Noon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class PrepmealController extends Controller
 {
@@ -18,8 +21,9 @@ class PrepmealController extends Controller
     public function index()
     {
         $foods = Food::limit(100)->get();
-        $testfoods = Food::limit(3)->get();
-      return view('backend.meals.index',compact('foods','testfoods'));
+        $morning = Morning::all();
+        $noon = Noon::all();
+      return view('backend.meals.index',compact('foods','morning','noon'));
     }
 
     /**
@@ -29,7 +33,11 @@ class PrepmealController extends Controller
      */
     public function create()
     {
+        // start the backup process
+        Artisan::call('create:meal');
 
+       // notify()->success('Backup Created Successfully.', 'Added');
+       // return redirect()->route('app.meals.index');
     }
 
     /**
@@ -52,8 +60,11 @@ class PrepmealController extends Controller
     public function show($id)
     {
 
-        $mealtime = new Mealtime();
 
+        return   Mealtime::where('food_id',$id)->first();
+
+        $mealtime = new Mealtime();
+         $mealtime->post_id=$prepmeal->id;
         $mealtime->food_id=$id;
         $mealtime->morning=1;
         $mealtime->noon=0;
@@ -61,9 +72,37 @@ class PrepmealController extends Controller
         $mealtime->night=0;
         $mealtime->save();
         notify()->success('Meal Successfully Added.', 'Added');
+
+
         return redirect()->route('app.meals.index');
 
     }
+
+
+    public function show_post($food_id,$post_id,$check){
+
+        $morning = new Morning();
+        $noon = new Noon();
+
+        if ($check=="Morning")
+        {
+            $morning->post_id=$post_id;
+            $morning->user_id=1;
+            $morning->food_id=$food_id;
+            $morning->save();
+        }
+        else if ($check=="Noon")
+        {
+            $noon->post_id=$post_id;
+            $noon->user_id=1;
+            $noon->food_id=$food_id;
+            $noon->save();
+        }
+
+        notify()->success('Meal Successfully Added.', 'Added');
+        return redirect()->route('app.meals.index');
+    }
+
 
     /**
      * Show the form for editing the specified resource.

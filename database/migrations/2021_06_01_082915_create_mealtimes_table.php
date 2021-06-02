@@ -16,6 +16,7 @@ class CreateMealtimesTable extends Migration
         Schema::create('mealtimes', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('food_id');
+            $table->unsignedBigInteger('post_id');
             $table->integer('morning')->default(0);
             $table->integer('noon')->default(0);
             $table->integer('afternoon')->default(0);

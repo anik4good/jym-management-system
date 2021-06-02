@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\MenuBuilderController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\PageController;
+use App\Http\Controllers\Backend\PrepmealController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SettingController;
@@ -33,7 +34,7 @@ Route::resource('users', UserController::class);
 Route::resource('meals', \App\Http\Controllers\Backend\PrepmealController::class);
 Route::resource('foods', \App\Http\Controllers\Backend\FoodController::class);
 
-
+Route::get('meals/{food_id}/{post_id}/{check}',[PrepmealController::class, 'show_post'])->name('meals.show.new');
 // Backups
 Route::resource('backups', BackupController::class)->only(['index', 'store', 'destroy']);
 Route::get('backups/{file_name}', [BackupController::class, 'download'])->name('backups.download');

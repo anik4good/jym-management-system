@@ -45,6 +45,8 @@
                         <tbody>
 {{--                     <form action="{{ route('app.foods.store') }}" method="post" enctype="multipart/form-data">--}}
                         @foreach($foods as $row)
+                            @foreach($morning as $mor)
+                                {{  $mor->post_id  }}
                             <tr>
                                 <td>
                                     <div class="widget-content p-0">
@@ -73,12 +75,18 @@
                                     <div class="badge badge-success">{{ $row->calories }}</div>
                                 </td>
                                 <td class="text-center">
-                                    <a class="btn btn-secondary btn-sm" href="{{ route('app.meals.show',$row->id) }}"><i
+                                    <a class="btn btn-secondary btn-sm" href="{{ route('app.meals.show.new',['food_id'=>$row->id,'post_id'=>$mor->id,'check'=>"Morning"]) }}"><i
                                             class="fas fa-eye"></i>
-                                        <span>Add</span>
+                                        <span>Morning</span>
                                     </a>
+                                    <a class="btn btn-secondary btn-sm" href="{{ route('app.meals.show.new',['food_id'=>$row->id,'post_id'=>$mor->id,'check'=>"Noon"]) }}"><i
+                                            class="fas fa-eye"></i>
+                                        <span>Noon</span>
+                                    </a>
+
                                 </td>
                             </tr>
+                        @endforeach
                         @endforeach
 {{--                        </form>--}}
                         </tbody>
@@ -90,27 +98,32 @@
         </div>
         <div class="col-md-8">
             <h3>Morning <span class="badge badge-pill badge-primary">491 Calories</span></h3>
+            <div class="main-card mb-6 card">
+                <div class="table-responsive">
+                    <table id="datatable-morning"
+                           class="align-middle mb-0 table table-borderless table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th class="text-center">ID</th>
+                            <th>Name</th>
+                            <th class="text-center">image</th>
+                            <th class="text-center">Food Group</th>
+                            <th class="text-center">Calories</th>
+                            <th class="text-center">Fat</th>
+                            <th class="text-center">Protein</th>
+                            <th class="text-center">carbohydrate</th>
+                            <th class="text-center">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
 
 
-            <div class="main-card mb-6 card">
-                <div class="table-responsive">
-                    <table id="datatable-morning"
-                           class="align-middle mb-0 table table-borderless table-striped table-hover">
-                        <thead>
-                        <tr>
-                            <th class="text-center">ID</th>
-                            <th>Name</th>
-                            <th class="text-center">image</th>
-                            <th class="text-center">Food Group</th>
-                            <th class="text-center">Calories</th>
-                            <th class="text-center">Fat</th>
-                            <th class="text-center">Protein</th>
-                            <th class="text-center">carbohydrate</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($testfoods as $row)
+
+
+                        @foreach($morning as $roww)
+                            @php
+                            $row=  \App\Models\Food::where('id',$roww->food_id)->first();
+                            @endphp
                             <tr>
                                 <td>
                                     <div class="widget-content p-0">
@@ -159,7 +172,8 @@
                     </table>
                 </div>
             </div>
-            <h3>Noon</h3>
+
+            <h3>Noon <span class="badge badge-pill badge-primary">491 Calories</span></h3>
             <div class="main-card mb-6 card">
                 <div class="table-responsive">
                     <table id="datatable-morning"
@@ -178,7 +192,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($testfoods as $row)
+
+
+
+
+                        @foreach($noon as $roww)
+                            @php
+                                $row=  \App\Models\Food::where('id',$roww->food_id)->first();
+                            @endphp
                             <tr>
                                 <td>
                                     <div class="widget-content p-0">
@@ -227,142 +248,7 @@
                     </table>
                 </div>
             </div>
-            <h3>Afteroon</h3>
-            <div class="main-card mb-6 card">
-                <div class="table-responsive">
-                    <table id="datatable-morning"
-                           class="align-middle mb-0 table table-borderless table-striped table-hover">
-                        <thead>
-                        <tr>
-                            <th class="text-center">ID</th>
-                            <th>Name</th>
-                            <th class="text-center">image</th>
-                            <th class="text-center">Food Group</th>
-                            <th class="text-center">Calories</th>
-                            <th class="text-center">Fat</th>
-                            <th class="text-center">Protein</th>
-                            <th class="text-center">carbohydrate</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($testfoods as $row)
-                            <tr>
-                                <td>
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">
-                                            <div class="widget-content-left mr-3">
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">{{ $row->id}}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    {{ Str::limit($row->name,10)}}
-                                </td>
-                                <td>
-                                    <div class="widget-content-left">
-                                        <img width="40" class="rounded-circle"
-                                             src="{{ $row->image }}">
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->foodgroup }}</div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->calories }}</div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->fat }}</div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->protein }}</div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->carbohydrate }}</div>
-                                </td>
-                                <td class="text-center">
-                                    <a class="btn btn-secondary btn-sm" href="{{ route('app.users.show',$row->id) }}"><i
-                                            class="fas fa-eye"></i>
-                                        <span>Add</span>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <h3>Night</h3>
-            <div class="main-card mb-6 card">
-                <div class="table-responsive">
-                    <table id="datatable-morning"
-                           class="align-middle mb-0 table table-borderless table-striped table-hover">
-                        <thead>
-                        <tr>
-                            <th class="text-center">ID</th>
-                            <th>Name</th>
-                            <th class="text-center">image</th>
-                            <th class="text-center">Food Group</th>
-                            <th class="text-center">Calories</th>
-                            <th class="text-center">Fat</th>
-                            <th class="text-center">Protein</th>
-                            <th class="text-center">carbohydrate</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($testfoods as $row)
-                            <tr>
-                                <td>
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">
-                                            <div class="widget-content-left mr-3">
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">{{ $row->id}}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    {{ Str::limit($row->name,10)}}
-                                </td>
-                                <td>
-                                    <div class="widget-content-left">
-                                        <img width="40" class="rounded-circle"
-                                             src="{{ $row->image }}">
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->foodgroup }}</div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->calories }}</div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->fat }}</div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->protein }}</div>
-                                </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->carbohydrate }}</div>
-                                </td>
-                                <td class="text-center">
-                                    <a class="btn btn-secondary btn-sm" href="{{ route('app.users.show',$row->id) }}"><i
-                                            class="fas fa-eye"></i>
-                                        <span>Add</span>
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+
         </div>
     </div>
 

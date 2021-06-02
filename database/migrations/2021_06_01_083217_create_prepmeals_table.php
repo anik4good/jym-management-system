@@ -16,11 +16,12 @@ class CreatePrepmealsTable extends Migration
         Schema::create('prepmeals', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->integer('morning');
-            $table->integer('afternoon');
-            $table->integer('evening');
-            $table->integer('night');
-            $table->integer('other');
+            $table->unsignedBigInteger('meal_id')->default(0);
+//            $table->integer('morning');
+//            $table->integer('afternoon');
+//            $table->integer('evening');
+//            $table->integer('night');
+//            $table->integer('other');
             $table->timestamps();
         });
     }
