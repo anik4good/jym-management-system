@@ -76,50 +76,65 @@
                                         <div class="badge badge-success">{{ $row->calories }}</div>
                                     </td>
                                     <td class="text-center">
-{{--                                        <a class="btn btn-secondary btn-sm"--}}
-{{--                                           href="{{ route('app.meals.show.new',['food_id'=>$row->id,'post_id'=>$mor->id,'check'=>"Morning"]) }}"><i--}}
-{{--                                                class="fas fa-eye"></i>--}}
-{{--                                            <span>Morning</span>--}}
-{{--                                        </a>--}}
-                                        <div class="main-card mb-3 card">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Morning</h5>
-                                                <div class="dropdown d-inline-block">
-                                                    <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-primary">Basic
-                                                    </button>
-                                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" style="">
-                                                        <div class="dropdown-menu-header">
-                                                            <div class="dropdown-menu-header-inner bg-success">
-                                                                <div class="menu-header-image opacity-1" style="background-image: url('assets/images/dropdown-header/abstract3.jpg');"></div>
-                                                                <div class="menu-header-content text-left">
-                                                                    <h5 class="menu-header-title">Time</h5>
-                                                                    <h6 class="menu-header-subtitle">Please Select a time slot from below</h6>
-                                                                    <div class="menu-header-btn-pane">
-                                                                        <button class="mr-2 btn btn-dark btn-sm">Time</button>
-                                                                        <button class="btn-icon btn-icon-only btn btn-warning btn-sm">
-                                                                            <i class="pe-7s-config btn-icon-wrapper"> </i>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <a href="{{ route('app.meals.show.new',['food_id'=>$row->id,'post_id'=>$mor->id,'check'=>"Morning",'time'=>"10.00 PM"]) }}" type="button" tabindex="0" class="dropdown-item">10.00 PM</a>
-                                                        <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                                                        <button type="button" tabindex="0" class="dropdown-item">Actions</button>
-                                                        <div tabindex="-1" class="dropdown-divider"></div>
-                                                        <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
-                                                    </div>
-                                                </div>
+
+
+                                        <a class="btn btn-secondary btn-sm"
+                                           href="{{ route('app.meals.show.new',['food_id'=>$row->id,'post_id'=>$mor->id,'check'=>"Morning"]) }}"><i
+                                                class="fas fa-eye"></i>
+                                            <span>Morning</span>
+                                        </a>
+{{--                                        <div class="main-card mb-3 card">--}}
+{{--                                            <div class="card-body">--}}
+{{--                                                <h5 class="card-title">Morning</h5>--}}
+{{--                                                <div class="dropdown d-inline-block">--}}
+{{--                                                    <button type="button" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-primary">Basic--}}
+{{--                                                    </button>--}}
+{{--                                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu" style="">--}}
+{{--                                                        <div class="dropdown-menu-header">--}}
+{{--                                                            <div class="dropdown-menu-header-inner bg-success">--}}
+{{--                                                                <div class="menu-header-image opacity-1" style="background-image: url('assets/images/dropdown-header/abstract3.jpg');"></div>--}}
+{{--                                                                <div class="menu-header-content text-left">--}}
+{{--                                                                    <h5 class="menu-header-title">Time</h5>--}}
+{{--                                                                    <h6 class="menu-header-subtitle">Please Select a time slot from below</h6>--}}
+{{--                                                                    <div class="menu-header-btn-pane">--}}
+{{--                                                                        <button class="mr-2 btn btn-dark btn-sm">Time</button>--}}
+{{--                                                                        <button class="btn-icon btn-icon-only btn btn-warning btn-sm">--}}
+{{--                                                                            <i class="pe-7s-config btn-icon-wrapper"> </i>--}}
+{{--                                                                        </button>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                        <a href="{{ route('app.meals.show.new',['food_id'=>$row->id,'post_id'=>$mor->id,'check'=>"Morning",'time'=>$row->id]) }}"  tabindex="0" class="dropdown-item">10.00 PM</a>--}}
+{{--                                                        <button type="button" tabindex="0" class="dropdown-item">Settings</button>--}}
+{{--                                                        <button type="button" tabindex="0" class="dropdown-item">Actions</button>--}}
+{{--                                                        <div tabindex="-1" class="dropdown-divider"></div>--}}
+{{--                                                        <button type="button" tabindex="0" class="dropdown-item">Dividers</button>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
 
 
 
-                                            </div>
-                                        </div>
+{{--                                            </div>--}}
+{{--                                        </div>--}}
 
                                         <a class="btn btn-secondary btn-sm"
                                            href="{{ route('app.meals.show.new',['food_id'=>$row->id,'post_id'=>$mor->id,'check'=>"Noon"]) }}"><i
                                                 class="fas fa-eye"></i>
                                             <span>Noon</span>
+                                        </a>
+
+                                        <a class="btn btn-secondary btn-sm"
+                                           href="{{ route('app.meals.update.time',['id'=>$mor->id]) }}"><i
+                                                class="fas fa-eye"></i>
+                                            <span>generate invoice</span>
+                                        </a>
+
+
+                                        <a class="btn btn-secondary btn-sm"
+                                           href="{{ route('app.meals.update.time',$mor->id) }}"><i
+                                                class="fas fa-eye"></i>
+                                            <span>generate invoiaaaace</span>
                                         </a>
                                     </td>
                                 </tr>
