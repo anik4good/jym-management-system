@@ -49,36 +49,51 @@ class CreateMeals extends Command
         if (!$calories) {
             $calories = 2000;
         }
-
-        $permeal = $calories / 4;
+        $meals=4;
+        $permeal = $calories / $meals;
         $this->info($permeal);
+        $total_meals =   DB::table('food')->limit(4)->get();
 
+        foreach($total_meals as $total_meal){
+            $foods = Food::inRandomOrder()->get();
+            $total_calories=0;
 
-      //  $foods = DB::table('food')->limit(3)->get();
-       // $foods = Food::where('calories','<=',200.00)->inRandomOrder()->get();
-        $foods = Food::inRandomOrder()->get();
-        $total_calories=0;
-        foreach ($foods as $food)
-        {
-            $foodschecks = Food::all()->random(3);
-            foreach ($foodschecks as $foodscheck)
+            foreach ($foods as $food)
             {
-                $total_calories = $total_calories + $foodscheck->calories;
-                $this->info($total_calories);
-                if (($total_calories >= 400 && $total_calories <= 500))
+                $found = 0;
+                $foodschecks = Food::all()->random(3);
+                foreach ($foodschecks as $foodscheck)
                 {
-                    $this->info('found');
+                    $total_calories = $total_calories + $foodscheck->calories;
+
+                    if (($total_calories >= 400 && $total_calories <= 500))
+                    {
+                        $this->info('found');
+                        $found = 1;
+                        break;
+                    }
+                    else
+                    {
+                        $total_calories=0;
+                    }
+                }
+
+                if ($found==1)
+                {
                     break;
                 }
-            }
 
 //            if (($total_calories >= 400 && $total_calories <= 500))
 //            {
 //                $this->info('found');
 //                break;
 //            }
+            }
+            $this->info($total_calories);
+
         }
-        $this->info($total_calories);
+
+
 
 
 //
