@@ -125,13 +125,6 @@
                                         </a>
 
                                         <a class="btn btn-secondary btn-sm"
-                                           href="{{ route('app.meals.update.time',['id'=>$mor->id]) }}"><i
-                                                class="fas fa-eye"></i>
-                                            <span>generate invoice</span>
-                                        </a>
-
-
-                                        <a class="btn btn-secondary btn-sm"
                                            href="{{ route('app.meals.update.time',$mor->id) }}"><i
                                                 class="fas fa-eye"></i>
                                             <span>generate invoiaaaace</span>

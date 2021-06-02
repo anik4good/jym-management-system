@@ -107,8 +107,9 @@ class PrepmealController extends Controller
 
     public function updatetime($id)
     {
-        //$morning = Morning::where('post_id',$id)->get();
-        return $id;
+        $morning = Morning::where('post_id',$id)->get();
+        $noon = Noon::where('post_id',$id)->get();
+      return view('backend.meals.time',compact('morning','noon'));
     }
 
     /**
