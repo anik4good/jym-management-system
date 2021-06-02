@@ -34,7 +34,10 @@ Route::resource('users', UserController::class);
 Route::resource('meals', \App\Http\Controllers\Backend\PrepmealController::class);
 Route::resource('foods', \App\Http\Controllers\Backend\FoodController::class);
 
-Route::get('meals/{food_id}/{post_id}/{check}',[PrepmealController::class, 'show_post'])->name('meals.show.new');
+Route::get('meals/{food_id}/{post_id}/{check}/{time}',[PrepmealController::class, 'show_post'])->name('meals.show.new');
+Route::post('meals/{id}',[PrepmealController::class, 'updatetime'])->name('meals.update.time');
+
+
 // Backups
 Route::resource('backups', BackupController::class)->only(['index', 'store', 'destroy']);
 Route::get('backups/{file_name}', [BackupController::class, 'download'])->name('backups.download');

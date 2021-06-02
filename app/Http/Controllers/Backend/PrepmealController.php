@@ -79,7 +79,9 @@ class PrepmealController extends Controller
     }
 
 
-    public function show_post($food_id,$post_id,$check){
+    public function show_post($food_id,$post_id,$check,$time){
+
+        return$time;
 
         $morning = new Morning();
         $noon = new Noon();
@@ -103,6 +105,11 @@ class PrepmealController extends Controller
         return redirect()->route('app.meals.index');
     }
 
+    public function updatetime(Request $request,$id)
+    {
+        return Request::all;
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -124,7 +131,7 @@ class PrepmealController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return  $request;
     }
 
     /**
