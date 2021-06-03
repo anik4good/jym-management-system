@@ -18,7 +18,7 @@ class CreateMeals extends Command
      *
      * @var string
      */
-    protected $signature = 'create:meal {--calories= : calories limit}\';';
+    protected $signature = 'create:meal {--calories= : calories limit} {--user_id= : User id for client}';
 
     /**
      * The console command description.
@@ -44,87 +44,121 @@ class CreateMeals extends Command
      */
     public function handle()
     {
-//        $calories = $this->option('calories');
-//
-//        if (!$calories) {
-//            $calories = 2000;
-//        }
-//        $meals=4;
-//        $permeal = $calories / $meals;
-//        $this->info($permeal);
-//        $total_meals =   DB::table('food')->limit(4)->get();
-//
-//        foreach($total_meals as $total_meal){
-//            $foods = Food::inRandomOrder()->get();
-//            $total_calories=0;
-//
-//            foreach ($foods as $food)
+        $calories = $this->option('calories');
+        $user_id = $this->option('user_id');
+        $this->info('calories: ' . $calories);
+        $this->info('user_id: ' . $user_id);
+
+
+        if (!$calories) {
+            $calories = 2000;
+        }
+        if (!$user_id) {
+            $user_id = 1;
+        }
+
+        $meals = 3;
+        $calories_limit = $calories / $meals;
+        $calories_start = $calories_limit - 100;
+        $this->info('permeal: ' . $calories_limit);
+        $total_meals = DB::table('food')->limit(4)->get();
+
+        foreach ($total_meals as $total_meal) {
+            $foods = Food::inRandomOrder()->get();
+            $count = Food::inRandomOrder()->count();
+            $this->info('Total food checking: ' . $count);
+            $total_calories = 0;
+            $total_food_id = "";
+            $found = 0;
+            $loop = 0;
+            foreach ($foods as $food) {
+
+                $foodschecks = Food::all()->random(3);
+                $total_foods = [];
+                foreach ($foodschecks as $foodscheck) {
+                   // $this->info('food_id: ' . $foodscheck->id);
+                   // $this->info('food_calories: ' . $foodscheck->calories);
+
+                    $total_calories = $total_calories + $foodscheck->calories;
+                    $total_food_id = $total_food_id . "+" . $foodscheck->id;
+                    $loop = $loop+1;
+                  //  $this->info('total_food_id: ' . $total_food_id);
+                  //  $this->info('total_calories: ' . $total_calories);
+//                    $total_food = [];
+//                    $this->info('food_id: '.$total_food['id']);
+                    if (($total_calories > $calories_start && $total_calories < $calories_limit)) {
+                        $found = 1;
+                        $loop = $loop-1;
+                        $this->info('food found: '.$loop);
+                        $this->info('food_name: ' . $foodscheck->name);
+                        $this->info('food_id first : ' . $foodscheck->id);
+                        $this->info('food_calories first: ' . $foodscheck->calories);
+                        $this->info('total_calories: ' . $total_calories);
+                        $found_another_id = $total_calories - $foodscheck->calories;
+
+                        $query= Food::where('calories',$found_another_id)->first();
+                        $this->info('food_id first : '.$query->name);
+//                        $this->info('food_id Second : ' . $found_another_id);
+
+//                        $total_food['id'] = $foodscheck->id;
+//                        $total_foods[]=$total_food;
+
+                        break;
+                    } else {
+                        $total_calories = $foodscheck->calories;
+                        $total_food_id = "+" . $foodscheck->id . "+";
+                        $loop = $loop+1;
+//                        $total_food['id'] = $foodscheck->id;
+//                        $total_foods[]=$total_food;
+                    }
+
+                }
+
+
+                if ($found == 1) {
+                    break;
+                }
+
+//            if (($total_calories >= 400 && $total_calories <= 500))
 //            {
-//                $found = 0;
-//                $foodschecks = Food::all()->random(3);
-//                foreach ($foodschecks as $foodscheck)
-//                {
-//                    $total_calories = $total_calories + $foodscheck->calories;
-//
-//                    if (($total_calories >= 400 && $total_calories <= 500))
-//                    {
-//                        $this->info('found');
-//                        $found = 1;
-//                        break;
-//                    }
-//                    else
-//                    {
-//                        $total_calories=0;
-//                    }
-//                }
-//
-//                if ($found==1)
-//                {
-//                    break;
-//                }
-//
-////            if (($total_calories >= 400 && $total_calories <= 500))
-////            {
-////                $this->info('found');
-////                break;
-////            }
+//                $this->info('found');
+//                break;
 //            }
-//            $this->info($total_calories);
-//
-//        }
+            }
+            $this->info($total_calories);
 
-
-
-
-//
-        $prepmeal = new Prepmeal();
-        $prepmeal->user_id = 1;
-        $prepmeal->save();
-
-
-
-
-
-        $morning = new Morning();
-        $noon = new Noon();
-
-        $foods =   DB::table('food')->limit(4)->get();
-        foreach ($foods as $food)
-        {
-            $morning->post_id=$prepmeal->id;
-            $morning->user_id=1;
-            $morning->food_id=$food->id;
-            $morning->save();
-            //
-            $noon->post_id=$prepmeal->id;
-            $noon->user_id=1;
-            $noon->food_id=$food->id;
-            $noon->save();
-            $post_id = Prepmeal::where('id',$morning->post_id)->first();
         }
 
 
-        $this->info($post_id->id);
-       return redirect()->route('app.meals.update.time',$post_id->id);
+//
+//        $prepmeal = new Prepmeal();
+//        $prepmeal->user_id = 1;
+//        $prepmeal->save();
+//
+//
+//
+//
+//
+//        $morning = new Morning();
+//        $noon = new Noon();
+//
+//        $foods =   DB::table('food')->limit(4)->get();
+//        foreach ($foods as $food)
+//        {
+//            $morning->post_id=$prepmeal->id;
+//            $morning->user_id=1;
+//            $morning->food_id=$food->id;
+//            $morning->save();
+//            //
+//            $noon->post_id=$prepmeal->id;
+//            $noon->user_id=1;
+//            $noon->food_id=$food->id;
+//            $noon->save();
+//            $post_id = Prepmeal::where('id',$morning->post_id)->first();
+//        }
+//
+//
+//        $this->info($post_id->id);
+//       return redirect()->route('app.meals.update.time',$post_id->id);
     }
 }
