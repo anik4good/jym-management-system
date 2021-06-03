@@ -57,23 +57,25 @@ class CreateMeals extends Command
             $user_id = 1;
         }
 
-        $meals = 3;
+        $meals = 4;
         $calories_limit = $calories / $meals;
         $calories_start = $calories_limit - 100;
         $this->info('permeal: ' . $calories_limit);
-        $total_meals = DB::table('food')->limit(4)->get();
-
+        $total_meals = DB::table('food')->limit($meals)->get();
+        $loop = 0;
         foreach ($total_meals as $total_meal) {
             $foods = Food::inRandomOrder()->get();
             $count = Food::inRandomOrder()->count();
+            $loop = $loop+1;
             $this->info('Total food checking: ' . $count);
+            $this->info('Count: ' . $count);
             $total_calories = 0;
             $total_food_id = "";
             $found = 0;
-            $loop = 0;
+            $loop = $loop+1;
             foreach ($foods as $food) {
 
-                $foodschecks = Food::all()->random(3);
+                $foodschecks = Food::all()->random(200);
                 $total_foods = [];
                 foreach ($foodschecks as $foodscheck) {
                    // $this->info('food_id: ' . $foodscheck->id);
@@ -81,25 +83,27 @@ class CreateMeals extends Command
 
                     $total_calories = $total_calories + $foodscheck->calories;
                     $total_food_id = $total_food_id . "+" . $foodscheck->id;
-                    $loop = $loop+1;
+//                    $loop = $loop+1;
                   //  $this->info('total_food_id: ' . $total_food_id);
                   //  $this->info('total_calories: ' . $total_calories);
 //                    $total_food = [];
 //                    $this->info('food_id: '.$total_food['id']);
                     if (($total_calories > $calories_start && $total_calories < $calories_limit)) {
+                        $this->info('-------------------Meal create Started--------------------------------------');
                         $found = 1;
-                        $loop = $loop-1;
+//                        $loop = $loop-1;
                         $this->info('food found: '.$loop);
-                        $this->info('food_name: ' . $foodscheck->name);
                         $this->info('food_id first : ' . $foodscheck->id);
+                        $this->info('food_name: ' . $foodscheck->name);
                         $this->info('food_calories first: ' . $foodscheck->calories);
                         $this->info('total_calories: ' . $total_calories);
                         $found_another_id = $total_calories - $foodscheck->calories;
 
                         $query= Food::where('calories',$found_another_id)->first();
-                        $this->info('food_id first : '.$query->name);
-//                        $this->info('food_id Second : ' . $found_another_id);
-
+                        $this->info('food_id Second : '.$query->id);
+                        $this->info('food_name Second : ' . $query->name);
+                        $this->info('food_calories Second : ' . $query->calories);
+                        $this->info('---------------------Meal create End------------------------------------');
 //                        $total_food['id'] = $foodscheck->id;
 //                        $total_foods[]=$total_food;
 
@@ -107,7 +111,7 @@ class CreateMeals extends Command
                     } else {
                         $total_calories = $foodscheck->calories;
                         $total_food_id = "+" . $foodscheck->id . "+";
-                        $loop = $loop+1;
+//                        $loop = $loop+1;
 //                        $total_food['id'] = $foodscheck->id;
 //                        $total_foods[]=$total_food;
                     }
@@ -125,7 +129,7 @@ class CreateMeals extends Command
 //                break;
 //            }
             }
-            $this->info($total_calories);
+           // $this->info($total_calories);
 
         }
 
