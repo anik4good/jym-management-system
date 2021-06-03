@@ -88,6 +88,8 @@ class CreateMeals extends Command
             foreach ($foods as $food) {
 
                 $foodschecks = Food::inRandomOrder()->get();
+                $count1 = Food::inRandomOrder()->count();
+                $this->info('Total food checking after loop: ' . $count1);
                 $total_foods = [];
                 foreach ($foodschecks as $foodscheck) {
                     // $this->info('food_id: ' . $foodscheck->id);

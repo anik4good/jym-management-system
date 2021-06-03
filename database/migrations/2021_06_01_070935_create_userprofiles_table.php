@@ -29,6 +29,14 @@ class CreateUserprofilesTable extends Migration
             $table->string('bloodsugar')->nullable();
             $table->string('foodhabit')->nullable();
             $table->string('targetfitness')->nullable();
+
+            $table->string('bmi')->nullable();
+            $table->string('ponderalindex')->nullable();
+            $table->string('bodyfat')->nullable();
+            $table->string('bmr')->nullable();
+            $table->string('bsa')->nullable();
+
+
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
