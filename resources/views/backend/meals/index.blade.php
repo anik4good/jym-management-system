@@ -141,7 +141,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <h3>Morning <span class="badge badge-pill badge-primary">491 Calories</span></h3>
+            <h3>Morning <span class="badge badge-pill badge-primary">{{$morning_calories}} Calories</span></h3>
             <div class="main-card mb-6 card">
                 <div class="table-responsive">
                     <table id="datatable-morning"
@@ -218,7 +218,7 @@
                     </table>
                 </div>
             </div>
-            <h3>Noon <span class="badge badge-pill badge-primary">491 Calories</span></h3>
+            <h3>Noon <span class="badge badge-pill badge-primary">{{$noon_calories}} Calories</span></h3>
             <div class="main-card mb-6 card">
                 <div class="table-responsive">
                     <table id="datatable-morning"

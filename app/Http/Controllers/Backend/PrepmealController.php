@@ -9,6 +9,7 @@ use App\Models\Morning;
 use App\Models\Noon;
 use App\Models\Prepmeal;
 use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -41,7 +42,24 @@ class PrepmealController extends Controller
         $morning = Morning::where('post_id',$id)->get();
         $noon = Noon::where('post_id',$id)->get();
 
-        return view('backend.meals.index',compact('foods','morning','noon'));
+        foreach ($morning as $row)
+        {
+            $morning_calories = DB::table('food')
+                ->where('id',$row->food_id)->sum('calories');
+        }
+
+        foreach ($noon as $row)
+        {
+            $noon_calories = DB::table('food')
+                ->where('id',$row->food_id)->sum('calories');
+        }
+
+
+       // $morning_calories= Morning::where('post_id',$id)->sum('calories');
+
+        return view('backend.meals.index',compact('foods','morning','noon','morning_calories','noon_calories'));
+
+
     }
     /**
      * Show the form for creating a new resource.
