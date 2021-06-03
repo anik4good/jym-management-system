@@ -68,6 +68,9 @@ class PrepmealController extends Controller
      */
     public function create()
     {
+
+        $data = User::with('prepmails')->get();
+        dd($data);
         // start the backup process
         $prepmeal = new Prepmeal();
         $prepmeal->user_id = 1;

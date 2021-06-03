@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Prepmeal extends Model
 {
     use HasFactory;
+
+
 }
