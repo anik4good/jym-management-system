@@ -64,24 +64,12 @@ class PrepmealController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
      */
     public function create()
     {
 
-        $data = User::with('prepmails')->get();
-        dd($data);
-        // start the backup process
-        $prepmeal = new Prepmeal();
-        $prepmeal->user_id = 1;
-        $prepmeal->save();
-        Artisan::call('create:meal --calories=2000 --meals=3 --user_id=1 --user_meal_id='.$prepmeal->id);
-        //$this->index($prepmeal->id);
-         return redirect()->route('app.meals.update.time',$prepmeal->id);
-        //return redirect()->route('app.meals.index');
-
-       // notify()->success('Backup Created Successfully.', 'Added');
-       // return redirect()->route('app.meals.index');
+        return view('backend.meals.create',);
     }
 
     /**
@@ -92,7 +80,21 @@ class PrepmealController extends Controller
      */
     public function store(Request $request)
     {
-        return 'done';
+
+       
+        //        $data = User::with('prepmails')->get();
+//        dd($data);
+        // start the backup process
+        $prepmeal = new Prepmeal();
+        $prepmeal->user_id = 1;
+        $prepmeal->save();
+        Artisan::call('create:meal --calories='.$request->calories.' --meals='.$request->meals.' --user_id=1 --user_meal_id='.$prepmeal->id);
+        //$this->index($prepmeal->id);
+        return redirect()->route('app.meals.update.time',$prepmeal->id);
+        //return redirect()->route('app.meals.index');
+
+        // notify()->success('Backup Created Successfully.', 'Added');
+        // return redirect()->route('app.meals.index');
     }
 
     /**
