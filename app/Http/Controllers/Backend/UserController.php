@@ -7,16 +7,13 @@ use App\Http\Requests\Users\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\Userprofile;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\View\View
-     */
+
     public function index()
     {
         Gate::authorize('app.users.index');
@@ -24,11 +21,7 @@ class UserController extends Controller
         return view('backend.users.index',compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         Gate::authorize('app.users.create');
@@ -36,12 +29,7 @@ class UserController extends Controller
         return view('backend.users.form', compact('roles'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
     public function store(StoreUserRequest $request)
     {
         $user = User::create([
@@ -59,39 +47,26 @@ class UserController extends Controller
         return redirect()->route('app.users.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(User $user)
     {
         return view('backend.users.show',compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(User $user)
     {
         Gate::authorize('app.users.edit');
+        $user = User::with('userprofile')->where('id', $user->id)->first();
         $roles = Role::all();
+
         return view('backend.users.form', compact('roles','user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateUserRequest $request
-     * @param User $user
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(UpdateUserRequest $request, User $user)
     {
+        $userprofile = Userprofile::where('user_id',$user->id)->first();
         $user->update([
             'role_id' => $request->role,
             'name' => $request->name,
@@ -103,17 +78,43 @@ class UserController extends Controller
         if ($request->hasFile('avatar')) {
             $user->addMedia($request->avatar)->toMediaCollection('avatar');
         }
+
+
+
+        //get data
+        $weight = $request->weight;
+        $height = $request->height;
+
+        //bmi done
+        $bmi = bmi($weight,$height);
+        $bmi2 = bmi_weight($bmi);
+
+        // Body Fat (BMI method)
+        $bodyfat = body_fat($userprofile->age,$bmi);
+        //Ponderal Index in KG done
+        $pi = pindex($weight,$height);
+//        Basal Metabolic Rate (BMR)
+        $bmr = bmr($weight,$height,$userprofile->age);
+//        Body Surface Area:(Mosteller formula:)
+        $bsa = bsa($weight,$height,$userprofile->age);
+
+        $userprofile->update([
+            'user_id' => $user->id,
+            'weight' => $weight,
+            'height' => $height,
+            'bmi' => $bmi,
+            'ponderalindex' => $pi,
+            'bodyfat' => $bodyfat,
+            'bmr' => $bmr,
+            'bsa' => $bsa,
+        ]);
+
+
         notify()->success('User Successfully Updated.', 'Updated');
         return redirect()->route('app.users.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param User $user
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
-     */
+
     public function destroy(User $user)
     {
         Gate::authorize('app.users.destroy');

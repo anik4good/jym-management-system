@@ -109,5 +109,15 @@ if (!function_exists('bmi')) {
 
     }
 
+//        Body Surface Area:(Mosteller formula:)
+    function bsa($weight, $height)
+    {
+//        Body Surface Area:(Mosteller formula:)
+        $bsa =  0.016667 * pow($weight, 0.5) *pow($height, 0.5);
+
+        return $bsa;
+
+    }
+
 
 }

@@ -61,6 +61,16 @@
                                                  label="Confirm Password"
                                                  name="password_confirmation"
                                                  placeholder="******" />
+
+                                <x-forms.textbox type="text"
+                                                 label="weight"
+                                                 name="weight"
+                                                 value="{{ $user->userprofile->weight ?? ''  }}" />
+
+                                <x-forms.textbox type="text"
+                                                 label="Height"
+                                                 name="height"
+                                                 value="{{ $user->userprofile->height ?? ''  }}" />
                             </div>
                             <!-- /.card-body -->
                         </div>

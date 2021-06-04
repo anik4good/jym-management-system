@@ -48,10 +48,12 @@ class UserProfileController extends Controller
         echo '<br>';
         echo 'bmi status: '.$bmi2;
         echo '<br>';
+
         // Body Fat (BMI method)
         $bodyfat = body_fat($age,$bmi);
         echo ' bodyfat:'.$bodyfat;
         echo '<br>';
+
         //Ponderal Index in KG done
         $pi = pindex($weight,$height);
         echo ' Ponderal Index:'.$pi;
@@ -61,6 +63,16 @@ class UserProfileController extends Controller
      $bmr = bmr($weight,$height,$age);
         echo ' BMR:'.$bmr.' Calories/day';
         echo '<br>';
+
+//        Body Surface Area:(Mosteller formula:)
+        $bsa = bsa($weight,$height,$age);
+        echo ' BSA:'.$bsa.'m2';
+        echo '<br>';
+
+
+
+
+
     }
 
 

@@ -116,4 +116,10 @@ class User extends Authenticatable implements HasMedia
         return $this->hasOne(Prepmeal::class, 'user_id', 'id');
     }
 
+
+    public function userprofile()
+    {
+        return $this->hasOne(Userprofile::class, 'user_id', 'id');
+    }
+
 }

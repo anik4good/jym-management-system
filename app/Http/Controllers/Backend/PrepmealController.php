@@ -15,11 +15,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class PrepmealController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return string
-     */
+
 //    public function index()
 //    {
 //        $foods = Food::limit(100)->get();
@@ -39,48 +35,43 @@ class PrepmealController extends Controller
     public function index2($id)
     {
         $foods = Food::limit(100)->get();
-        $morning = Morning::where('post_id',$id)->get();
-        $noon = Noon::where('post_id',$id)->get();
+        $morning = Morning::where('post_id', $id)->get();
+        $noon = Noon::where('post_id', $id)->get();
 
-        foreach ($morning as $row)
-        {
+        foreach ($morning as $row) {
             $morning_calories = DB::table('food')
-                ->where('id',$row->food_id)->sum('calories');
+                ->where('id', $row->food_id)->sum('calories');
         }
 
-        foreach ($noon as $row)
-        {
+        foreach ($noon as $row) {
             $noon_calories = DB::table('food')
-                ->where('id',$row->food_id)->sum('calories');
+                ->where('id', $row->food_id)->sum('calories');
         }
 
-
-       // $morning_calories= Morning::where('post_id',$id)->sum('calories');
-
-        return view('backend.meals.index',compact('foods','morning','noon','morning_calories','noon_calories'));
+        // $morning_calories= Morning::where('post_id',$id)->sum('calories');
+        return view('backend.meals.index', compact('foods', 'morning', 'noon', 'morning_calories', 'noon_calories'));
 
 
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse
-     */
-    public function create()
-    {
 
+
+    public function create($id)
+    {
         return view('backend.meals.create',);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string
-     */
-    public function store(Request $request)
+
+    public function createmeal($id)
     {
 
+        $user = User::with('userprofile')->where('id', $id)->first();
+        return view('backend.meals.create', compact('user'));
+    }
+
+
+
+    public function store(Request $request)
+    {
 
         //        $data = User::with('prepmails')->get();
 //        dd($data);
@@ -88,21 +79,46 @@ class PrepmealController extends Controller
         $prepmeal = new Prepmeal();
         $prepmeal->user_id = 1;
         $prepmeal->save();
-        Artisan::call('create:meal --calories='.$request->calories.' --meals='.$request->meals.' --user_id=1 --user_meal_id='.$prepmeal->id);
+        Artisan::call('create:meal --calories=' . $request->calories . ' --meals=' . $request->meals . ' --user_id=1 --user_meal_id=' . $prepmeal->id);
         //$this->index($prepmeal->id);
-        return redirect()->route('app.meals.update.time',$prepmeal->id);
+        return redirect()->route('app.meals.update.time', $prepmeal->id);
         //return redirect()->route('app.meals.index');
 
         // notify()->success('Backup Created Successfully.', 'Added');
         // return redirect()->route('app.meals.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    public function updatetime($id)
+    {
+        $morning = Morning::where('post_id', $id)->get();
+        $noon = Noon::where('post_id', $id)->get();
+        return view('backend.meals.time', compact('morning', 'noon'));
+    }
+
+    public function show_post($food_id, $post_id, $check)
+    {
+
+        $morning = new Morning();
+        $noon = new Noon();
+
+        if ($check == "Morning") {
+            $morning->post_id = $post_id;
+            $morning->user_id = 1;
+            $morning->food_id = $food_id;
+            $morning->save();
+        } else if ($check == "Noon") {
+            $noon->post_id = $post_id;
+            $noon->user_id = 1;
+            $noon->food_id = $food_id;
+            $noon->save();
+        }
+
+        notify()->success('Meal Successfully Added.', 'Added');
+        return redirect()->route('app.meals.index2');
+    }
+
+
 //    public function show($id)
 //    {
 //
@@ -124,69 +140,17 @@ class PrepmealController extends Controller
 //
 //    }
 
-
-    public function show_post($food_id,$post_id,$check){
-
-     //   return $time;
-
-        $morning = new Morning();
-        $noon = new Noon();
-
-        if ($check=="Morning")
-        {
-            $morning->post_id=$post_id;
-            $morning->user_id=1;
-            $morning->food_id=$food_id;
-            $morning->save();
-        }
-        else if ($check=="Noon")
-        {
-            $noon->post_id=$post_id;
-            $noon->user_id=1;
-            $noon->food_id=$food_id;
-            $noon->save();
-        }
-
-        notify()->success('Meal Successfully Added.', 'Added');
-        return redirect()->route('app.meals.index');
-    }
-
-    public function updatetime($id)
-    {
-        $morning = Morning::where('post_id',$id)->get();
-        $noon = Noon::where('post_id',$id)->get();
-      return view('backend.meals.time',compact('morning','noon'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        return  $request;
+        return $request;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //

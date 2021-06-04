@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
 
             <div class="row justify-content-center">
                 <div class="col-12">
@@ -46,6 +46,34 @@
                                         <input id="calories" type="text" class="form-control @error('calories') is-invalid @enderror" name="calories" required>
 
                                         @error('calories')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="protein" class="col-md-4 col-form-label text-md-right">{{ __('Total Protein') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="protein" type="text" class="form-control @error('protein') is-invalid @enderror" name="protein" required>
+
+                                        @error('protein')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="fat" class="col-md-4 col-form-label text-md-right">{{ __('Total Fat') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="fat" type="text" class="form-control @error('fat') is-invalid @enderror" name="fat" required>
+
+                                        @error('fat')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -84,6 +112,166 @@
                 </div>
             </div>
         </div>
+
+
+
+        <div class="col-md-4">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="main-card mb-12 card">
+                        <div class="card-header">User Information</div>
+                        <div class="card-body">
+
+                                <div class="card-shadow-primary profile-responsive card-border mb-3 card">
+                                    <div class="dropdown-menu-header">
+                                        <div class="dropdown-menu-header-inner bg-danger">
+                                            <div class="menu-header-image" style="background-image: url('{{asset('/public/assets/backend/images/dropdown-header/abstract1.jpg')}}')">
+
+                                            </div>
+                                            <div class="menu-header-content btn-pane-right">
+                                                <div class="avatar-icon-wrapper mr-2 avatar-icon-xl">
+                                                    <div class="avatar-icon">
+                                                        <img src="{{ isset($user) ? $user->getFirstMediaUrl('avatar','thumb') : ''  }}" class="rounded-circle" alt="avatar">
+
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h5 class="menu-header-title">{{$user->name}}</h5>
+                                                    <h6 class="menu-header-subtitle">Sales Manager</h6>
+                                                </div>
+                                                <div class="menu-header-btn-pane">
+                                                    <a href="{{ route('app.users.show',$user->id) }}" class="mb-2 mr-2 btn-transition btn btn-outline-warning" >View Profile</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <div class="widget-content p-0">
+                                                <div class="widget-content-wrapper">
+                                                    <div class="widget-content-left mr-3">
+                                                        <div class="icon-wrapper m-0">
+                                                            <div class="progress-circle-wrapper">
+                                                                <div class="circle-progress d-inline-block circle-progress-success">
+                                                                    <span class="widget-numbers widget-numbers-sm text-primary">BMI</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content-left">
+                                                        <div class="widget-heading">BMI Status</div>
+                                                        <div class="widget-subheading bold text-primary">Normal</div>
+                                                    </div>
+                                                    <div class="widget-content-right">
+                                                        <div class="widget-numbers widget-numbers-sm text-primary"><span>{{$user->userprofile->bmi}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="widget-content p-0">
+                                                <div class="widget-content-wrapper">
+                                                    <div class="widget-content-left mr-3">
+                                                        <div class="icon-wrapper m-0">
+                                                            <div class="progress-circle-wrapper">
+                                                                <div class="circle-progress d-inline-block circle-progress-success">
+                                                                    <span class="widget-numbers widget-numbers-sm text-primary">PI</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content-left">
+                                                        <div class="widget-heading">Ponderal Index Status</div>
+                                                        <div class="widget-subheading bold text-primary">Normal</div>
+                                                    </div>
+                                                    <div class="widget-content-right">
+                                                        <div class="widget-numbers widget-numbers-sm text-danger"><span>{{$user->userprofile->ponderalindex}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="widget-content p-0">
+                                                <div class="widget-content-wrapper">
+                                                    <div class="widget-content-left mr-3">
+                                                        <div class="icon-wrapper m-0">
+                                                            <div class="progress-circle-wrapper">
+                                                                <div class="circle-progress d-inline-block circle-progress-success">
+                                                                    <span class="widget-numbers widget-numbers-sm text-primary">BFAT</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content-left">
+                                                        <div class="widget-heading">Body fat Status</div>
+                                                        <div class="widget-subheading bold text-primary">Normal</div>
+                                                    </div>
+                                                    <div class="widget-content-right">
+                                                        <div class="widget-numbers widget-numbers-sm text-primary"><span>{{$user->userprofile->bodyfat}}%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="widget-content p-0">
+                                                <div class="widget-content-wrapper">
+                                                    <div class="widget-content-left mr-3">
+                                                        <div class="icon-wrapper m-0">
+                                                            <div class="progress-circle-wrapper">
+                                                                <div class="circle-progress d-inline-block circle-progress-success">
+                                                                    <span class="widget-numbers widget-numbers-sm text-primary">BMR</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content-left">
+                                                        <div class="widget-heading">BMR Status</div>
+                                                        <div class="widget-subheading bold text-primary">Normal</div>
+                                                    </div>
+                                                    <div class="widget-content-right">
+                                                        <div class="widget-numbers widget-numbers-sm text-warning"><span>{{$user->userprofile->bmr}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="widget-content p-0">
+                                                <div class="widget-content-wrapper">
+                                                    <div class="widget-content-left mr-3">
+                                                        <div class="icon-wrapper m-0">
+                                                            <div class="progress-circle-wrapper">
+                                                                <div class="circle-progress d-inline-block circle-progress-success">
+                                                                    <span class="widget-numbers widget-numbers-sm text-primary">BSA</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="widget-content-left">
+                                                        <div class="widget-heading">BSA Status</div>
+                                                        <div class="widget-subheading bold text-primary">Normal</div>
+                                                    </div>
+                                                    <div class="widget-content-right">
+                                                        <div class="widget-numbers widget-numbers-sm text-danger"><span>{{$user->userprofile->bsa}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 @endsection
