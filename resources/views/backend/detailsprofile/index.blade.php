@@ -31,6 +31,13 @@
                             <label for="height" class="col-md-4 col-form-label text-md-right">{{ __('height') }}</label>
 
                             <div class="col-md-1">
+                                <input id="age" type="text" class="form-control @error('age') is-invalid @enderror"
+                                       name="age" value=""  placeholder="age"
+                                       autocomplete="age" autofocus>
+
+                            </div>
+
+                            <div class="col-md-1">
                                 <input id="height" type="text" class="form-control @error('height') is-invalid @enderror"
                                        name="height" value=""  placeholder="height"
                                        autocomplete="height" autofocus>

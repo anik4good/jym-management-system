@@ -35,13 +35,32 @@ class UserProfileController extends Controller
      */
     public function store(Request $request)
     {
+        //get data
+        $age = $request->age;
+        $weight = $request->weight;
+        $height = $request->height;
+        $waist = $request->waist;
+
         //bmi done
-        $mass = $request->weight;
-        $height = $request->height / 100;
-        $bmi = bmi($mass,$height);
+        $bmi = bmi($weight,$height);
+        $bmi2 = bmi_weight($bmi);
+        echo 'bmi: '.$bmi;
+        echo '<br>';
+        echo 'bmi status: '.$bmi2;
+        echo '<br>';
+        // Body Fat (BMI method)
+        $bodyfat = body_fat($age,$bmi);
+        echo ' bodyfat:'.$bodyfat;
+        echo '<br>';
+        //Ponderal Index in KG done
+        $pi = pindex($weight,$height);
+        echo ' Ponderal Index:'.$pi;
+        echo '<br>';
 
-
-
+//        Basal Metabolic Rate (BMR)
+     $bmr = bmr($weight,$height,$age);
+        echo ' BMR:'.$bmr.' Calories/day';
+        echo '<br>';
     }
 
 
