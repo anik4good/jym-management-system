@@ -120,4 +120,24 @@ if (!function_exists('bmi')) {
     }
 
 
+    function sum($post_id,$table)
+    {
+        $data = [];
+        $calories = 0;
+        $fat = 0;
+        foreach ($table as $row) {
+            $calories = $calories +  DB::table('food')
+                    ->where('id', $row->food_id)->sum('calories');
+
+            $fat = $fat +  DB::table('food')
+                    ->where('id', $row->food_id)->sum('fat');
+
+            $data['calories'] =$calories;
+            $data['fat'] =$fat;
+
+        }
+     return $data;
+    }
+
+
 }

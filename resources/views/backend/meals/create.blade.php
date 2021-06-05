@@ -53,33 +53,33 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="protein" class="col-md-4 col-form-label text-md-right">{{ __('Total Protein') }}</label>
+{{--                                <div class="form-group row">--}}
+{{--                                    <label for="protein" class="col-md-4 col-form-label text-md-right">{{ __('Total Protein') }}</label>--}}
 
-                                    <div class="col-md-6">
-                                        <input id="protein" type="text" class="form-control @error('protein') is-invalid @enderror" name="protein" required>
+{{--                                    <div class="col-md-6">--}}
+{{--                                        <input id="protein" type="text" class="form-control @error('protein') is-invalid @enderror" name="protein" required>--}}
 
-                                        @error('protein')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                </div>
+{{--                                        @error('protein')--}}
+{{--                                        <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
-                                <div class="form-group row">
-                                    <label for="fat" class="col-md-4 col-form-label text-md-right">{{ __('Total Fat') }}</label>
+{{--                                <div class="form-group row">--}}
+{{--                                    <label for="fat" class="col-md-4 col-form-label text-md-right">{{ __('Total Fat') }}</label>--}}
 
-                                    <div class="col-md-6">
-                                        <input id="fat" type="text" class="form-control @error('fat') is-invalid @enderror" name="fat" required>
+{{--                                    <div class="col-md-6">--}}
+{{--                                        <input id="fat" type="text" class="form-control @error('fat') is-invalid @enderror" name="fat" required>--}}
 
-                                        @error('fat')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                </div>
+{{--                                        @error('fat')--}}
+{{--                                        <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
 
 

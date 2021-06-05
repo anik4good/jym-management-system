@@ -34,22 +34,17 @@ class PrepmealController extends Controller
 
     public function index2($id)
     {
+
+        $post_id = $id;
         $foods = Food::limit(100)->get();
-        $morning = Morning::where('post_id', $id)->get();
-        $noon = Noon::where('post_id', $id)->get();
+        $morning = Morning::where('post_id', $post_id)->get();
+        $noon = Noon::where('post_id', $post_id)->get();
 
-        foreach ($morning as $row) {
-            $morning_calories = DB::table('food')
-                ->where('id', $row->food_id)->sum('calories');
-        }
-
-        foreach ($noon as $row) {
-            $noon_calories = DB::table('food')
-                ->where('id', $row->food_id)->sum('calories');
-        }
+        $morning_all = sum($post_id, $morning);
+        $noon_all = sum($post_id, $noon);
 
         // $morning_calories= Morning::where('post_id',$id)->sum('calories');
-        return view('backend.meals.index', compact('foods', 'morning', 'noon', 'morning_calories', 'noon_calories'));
+        return view('backend.meals.index', compact('foods', 'morning', 'noon', 'morning_all', 'noon_all', 'post_id'));
 
 
     }
@@ -69,7 +64,6 @@ class PrepmealController extends Controller
     }
 
 
-
     public function store(Request $request)
     {
 
@@ -81,7 +75,7 @@ class PrepmealController extends Controller
         $prepmeal->save();
         Artisan::call('create:meal --calories=' . $request->calories . ' --meals=' . $request->meals . ' --user_id=1 --user_meal_id=' . $prepmeal->id);
         //$this->index($prepmeal->id);
-        return redirect()->route('app.meals.update.time', $prepmeal->id);
+        return redirect()->route('app.meals.show.single', $prepmeal->id);
         //return redirect()->route('app.meals.index');
 
         // notify()->success('Backup Created Successfully.', 'Added');
@@ -89,11 +83,21 @@ class PrepmealController extends Controller
     }
 
 
-    public function updatetime($id)
+    public function updatemealtime(Request $request)
     {
-        $morning = Morning::where('post_id', $id)->get();
-        $noon = Noon::where('post_id', $id)->get();
-        return view('backend.meals.time', compact('morning', 'noon'));
+
+
+        $time = date('h:i a ', strtotime($request->time));
+
+        $mornings = Morning::where('post_id', $request->post_id)->get();
+        foreach ($mornings as $morning) {
+            $morning->update([
+                'time' => $time,
+            ]);
+        }
+
+        notify()->success('Time Successfully Added.', 'Added');
+        return redirect()->route('app.meals.show.single', $request->post_id);
     }
 
     public function show_post($food_id, $post_id, $check)
@@ -113,9 +117,8 @@ class PrepmealController extends Controller
             $noon->food_id = $food_id;
             $noon->save();
         }
-
         notify()->success('Meal Successfully Added.', 'Added');
-        return redirect()->route('app.meals.index2');
+        return redirect()->route('app.meals.show.single', $post_id);
     }
 
 
@@ -153,6 +156,9 @@ class PrepmealController extends Controller
 
     public function destroy($id)
     {
-        //
+        $morning = Morning::where('id', $id)->first();
+        $morning->delete();
+        notify()->success("Meal Successfully Deleted", "Deleted");
+        return back();
     }
 }

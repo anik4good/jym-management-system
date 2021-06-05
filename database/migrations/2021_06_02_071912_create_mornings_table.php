@@ -18,6 +18,7 @@ class CreateMorningsTable extends Migration
             $table->unsignedBigInteger('post_id')->default(0);
             $table->unsignedBigInteger('user_id')->default(0);
             $table->unsignedBigInteger('food_id')->default(0);
+            $table->string('time')->default('');
             $table->timestamps();
         });
     }

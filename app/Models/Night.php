@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Night extends Model
 {
     use HasFactory;
+    protected $guarded = [''];
     public function foods()
     {
         return $this->hasMany(Food::class);

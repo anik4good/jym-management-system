@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Userprofile;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -35,5 +36,29 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'status' => true
         ]);
+
+
+        // Create user Profile Male
+        Userprofile::updateOrCreate([
+            'user_id' => 1,
+            'gender' => 'Male',
+            'height' => '160',
+            'weight' => '62',
+            'age' => '25',
+            'necksize' => '35',
+            'waist' => '34',
+        ]);
+
+        // Create user Profile Female
+        Userprofile::updateOrCreate([
+            'user_id' => 2,
+            'gender' => 'Female',
+            'height' => '150',
+            'weight' => '56',
+            'age' => '22',
+            'necksize' => '35',
+            'waist' => '34',
+        ]);
+
     }
 }

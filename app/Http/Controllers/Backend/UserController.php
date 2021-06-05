@@ -121,5 +121,6 @@ class UserController extends Controller
         $user->delete();
         notify()->success("User Successfully Deleted", "Deleted");
         return back();
+
     }
 }
