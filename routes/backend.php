@@ -35,7 +35,8 @@ Route::resource('meals', \App\Http\Controllers\Backend\PrepmealController::class
 Route::resource('foods', \App\Http\Controllers\Backend\FoodController::class);
 
 Route::get('user/{id}/createmeal',[PrepmealController::class, 'createmeal'])->name('meals.createmeal');
-Route::get('meals/{id}/show',[PrepmealController::class, 'index2'])->name('meals.show.single');
+Route::get('meals/{id}/generate',[PrepmealController::class, 'index2'])->name('meals.show.single');
+Route::get('diets/{id}/show',[PrepmealController::class, 'diet_single'])->name('diet.show.single');
 Route::get('meals/{food_id}/{post_id}/{check}',[PrepmealController::class, 'show_post'])->name('meals.show.new');
 
 Route::post('meals/updatetime/{id}',[PrepmealController::class, 'updatemealtime'])->name('meals.update.time');

@@ -513,8 +513,8 @@
                                         <div class="widget-content p-0">
                                             <div class="widget-content-wrapper">
 
-                                                <button class="mb-2 mr-2 btn-transition btn btn-outline-primary btn-lg btn-block">Generate Food
-                                                </button>
+                                                <a class="mb-2 mr-2 btn-transition btn btn-outline-primary btn-lg btn-block" href="{{ route('app.diet.show.single',$post_id) }}">Generate Food
+                                                </a>
                                             </div>
                                         </div>
                                     </li>

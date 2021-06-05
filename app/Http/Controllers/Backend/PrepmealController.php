@@ -31,6 +31,22 @@ class PrepmealController extends Controller
 //
 //        return view('backend.meals.index',compact('foods','morning','noon'));
 //    }
+    public function diet_single($id)
+    {
+
+        $post_id = $id;
+        $foods = Food::limit(100)->get();
+        $morning = Morning::where('post_id', $post_id)->get();
+        $noon = Noon::where('post_id', $post_id)->get();
+
+        $morning_all = sum($post_id, $morning);
+        $noon_all = sum($post_id, $noon);
+
+        // $morning_calories= Morning::where('post_id',$id)->sum('calories');
+        return view('backend.meals.diet', compact('foods', 'morning', 'noon', 'morning_all', 'noon_all', 'post_id'));
+
+
+    }
 
     public function index2($id)
     {
