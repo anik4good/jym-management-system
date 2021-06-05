@@ -127,7 +127,14 @@ class CreateMeals extends Command
 
                             DB::table('noons')->insert(['post_id' => $user_meal_id, 'user_id' => $user_id, 'food_id' => $foodscheck->id,]);
                             DB::table('noons')->insert(['post_id' => $user_meal_id, 'user_id' => $user_id, 'food_id' => $query->id,]);
-                            $this->info('morning done : ');
+                            $this->info('noon done : ');
+                        }
+
+                        else if ($loop == 6) {
+
+                            DB::table('nights')->insert(['post_id' => $user_meal_id, 'user_id' => $user_id, 'food_id' => $foodscheck->id,]);
+                            DB::table('nights')->insert(['post_id' => $user_meal_id, 'user_id' => $user_id, 'food_id' => $query->id,]);
+                            $this->info('nights done : ');
                         }
 
 

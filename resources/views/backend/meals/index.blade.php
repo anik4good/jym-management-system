@@ -84,11 +84,13 @@
                                             class="fas fa-eye"></i>
                                         <span>Noon</span>
                                     </a>
+
                                     <a class="btn btn-secondary btn-sm"
-                                       href="{{ route('app.meals.update.time',$row->id) }}"><i
+                                       href="{{ route('app.meals.show.new',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"night"]) }}"><i
                                             class="fas fa-eye"></i>
-                                        <span>generate invoiaaaace</span>
+                                        <span>Night</span>
                                     </a>
+
                                 </td>
                             </tr>
 
@@ -102,6 +104,120 @@
         </div>
     </div>
     <hr>
+    <div class="row">
+    <div class="main-card mb-3 card">
+        <div class="no-gutters row">
+            <div class="col-md-4">
+                <div class="pt-0 pb-0 card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Total Calories</div>
+                                            <div class="widget-subheading">Normal</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-success">{{ $morning_all['calories'] + $noon_all['calories'] + $night_all['calories'] }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Total Fat</div>
+                                            <div class="widget-subheading badge-dangerc">Danger</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-success">{{$morning_all['fat'] + $noon_all['fat'] + $night_all['fat']}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pt-0 pb-0 card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Followers</div>
+                                            <div class="widget-subheading">People Interested</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-danger">45,9%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Products Sold</div>
+                                            <div class="widget-subheading">Total revenue streams</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-warning">$3M</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="pt-0 pb-0 card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Total Orders</div>
+                                            <div class="widget-subheading">Last year expenses</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-success">1896</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-outer">
+                                    <div class="widget-content-wrapper">
+                                        <div class="widget-content-left">
+                                            <div class="widget-heading">Clients</div>
+                                            <div class="widget-subheading">Total Clients Profit</div>
+                                        </div>
+                                        <div class="widget-content-right">
+                                            <div class="widget-numbers text-primary">$12.6k</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <div class="row">
         <div class="col-md-4">
             <div class="main-card mb-3 card">
@@ -219,7 +335,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
 
             <div class="main-card mb-3 card">
                 <div class="card-body"><h5 class="card-title">Noon {{$noon_all['calories']}}</h5>
@@ -336,10 +452,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
 
             <div class="main-card mb-3 card">
-                <div class="card-body"><h5 class="card-title">Night {{$noon_all['calories']}}</h5>
+                <div class="card-body"><h5 class="card-title">Night {{$night_all['calories']}}</h5>
 
                     <form method="POST"
                           action="{{  route('app.meals.update.time',$post_id)  }}"
@@ -368,7 +484,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($noon as $roww)
+                        @foreach($night as $roww)
                             @php
                                 $row=  \App\Models\Food::where('id',$roww->food_id)->first();
                             @endphp
@@ -453,6 +569,7 @@
                 </div>
             </div>
         </div>
+
         <div class="col-md-2">
             <div class="row justify-content-center">
                 <div class="col-12">

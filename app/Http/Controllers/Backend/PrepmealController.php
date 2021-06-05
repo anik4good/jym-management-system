@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Food;
 use App\Models\Mealtime;
 use App\Models\Morning;
+use App\Models\Night;
 use App\Models\Noon;
 use App\Models\Prepmeal;
 use App\Models\User;
@@ -55,12 +56,16 @@ class PrepmealController extends Controller
         $foods = Food::limit(100)->get();
         $morning = Morning::where('post_id', $post_id)->get();
         $noon = Noon::where('post_id', $post_id)->get();
+        $night = Night::where('post_id', $post_id)->get();
 
         $morning_all = sum($post_id, $morning);
         $noon_all = sum($post_id, $noon);
+        $night_all = sum($post_id, $night);
+
+
 
         // $morning_calories= Morning::where('post_id',$id)->sum('calories');
-        return view('backend.meals.index', compact('foods', 'morning', 'noon', 'morning_all', 'noon_all', 'post_id'));
+        return view('backend.meals.index', compact('foods', 'morning', 'noon','night', 'morning_all', 'noon_all', 'night_all', 'post_id'));
 
 
     }
@@ -121,6 +126,7 @@ class PrepmealController extends Controller
 
         $morning = new Morning();
         $noon = new Noon();
+        $night = new Night();
 
         if ($check == "Morning") {
             $morning->post_id = $post_id;
@@ -132,6 +138,13 @@ class PrepmealController extends Controller
             $noon->user_id = 1;
             $noon->food_id = $food_id;
             $noon->save();
+        }
+
+        else if ($check == "night") {
+            $night->post_id = $post_id;
+            $night->user_id = 1;
+            $night->food_id = $food_id;
+            $night->save();
         }
         notify()->success('Meal Successfully Added.', 'Added');
         return redirect()->route('app.meals.show.single', $post_id);
