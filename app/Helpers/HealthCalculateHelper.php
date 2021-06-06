@@ -125,6 +125,10 @@ if (!function_exists('bmi')) {
         $data = [];
         $calories = 0;
         $fat = 0;
+        $protein = 0;
+        $carbohydrate = 0;
+        $sugars = 0;
+
         foreach ($table as $row) {
             $calories = $calories +  DB::table('food')
                     ->where('id', $row->food_id)->sum('calories');
@@ -132,8 +136,22 @@ if (!function_exists('bmi')) {
             $fat = $fat +  DB::table('food')
                     ->where('id', $row->food_id)->sum('fat');
 
-            $data['calories'] =$calories;
+            $protein = $protein +  DB::table('food')
+                    ->where('id', $row->food_id)->sum('protein');
+
+            $carbohydrate = $carbohydrate +  DB::table('food')
+                    ->where('id', $row->food_id)->sum('carbohydrate');
+
+            $sugars = $sugars +  DB::table('food')
+                    ->where('id', $row->food_id)->sum('sugars');
+
+
+
+            $data['calories'] = $calories;
             $data['fat'] =$fat;
+            $data['protein'] = $protein;
+            $data['carbohydrate'] = $carbohydrate;
+            $data['sugars'] =$sugars;
 
         }
      return $data;

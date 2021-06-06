@@ -97,7 +97,7 @@
                         @endforeach
                         {{--                        </form>--}}
                         </tbody>
-                        <
+
                     </table>
                 </div>
             </div>
@@ -229,6 +229,7 @@
                         @csrf
                         @method('POST')
                         <input type="hidden" name="post_id" value="{{$post_id}}">
+                        <input type="hidden" name="period" value="morning">
                         <input type="time" name="time" id="">
                         <button type="submit" class="btn btn-success btn-sm">
                             <i class="fas fa-ticket-alt"></i>
@@ -264,7 +265,7 @@
                                     </td>
                                     <td>
                                         @if ($row->id)
-                                            <span class="">{{ $row->name }}</span>
+                                            <span class="">{{ Str::limit($row->name) }}</span>
                                         @else
                                             <div class="badge badge-danger">Inactive</div>
                                         @endif
@@ -336,7 +337,6 @@
             </div>
         </div>
         <div class="col-md-4">
-
             <div class="main-card mb-3 card">
                 <div class="card-body"><h5 class="card-title">Noon {{$noon_all['calories']}}</h5>
 
@@ -346,6 +346,7 @@
                         @csrf
                         @method('POST')
                         <input type="hidden" name="post_id" value="{{$post_id}}">
+                        <input type="hidden" name="period" value="noon">
                         <input type="time" name="time" id="">
                         <button type="submit" class="btn btn-success btn-sm">
                             <i class="fas fa-ticket-alt"></i>
@@ -453,7 +454,6 @@
             </div>
         </div>
         <div class="col-md-4">
-
             <div class="main-card mb-3 card">
                 <div class="card-body"><h5 class="card-title">Night {{$night_all['calories']}}</h5>
 
@@ -464,6 +464,7 @@
                         @method('POST')
                         <input type="hidden" name="post_id" value="{{$post_id}}">
                         <input type="time" name="time" id="">
+                        <input type="hidden" name="period" value="night">
                         <button type="submit" class="btn btn-success btn-sm">
                             <i class="fas fa-ticket-alt"></i>
                             <span></span>

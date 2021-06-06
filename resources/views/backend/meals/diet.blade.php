@@ -34,36 +34,12 @@
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">Total Calories</div>
-{{--                        <div class="widget-subheading">Last year expenses</div>--}}
+                        {{--                        <div class="widget-subheading">Last year expenses</div>--}}
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>{{$morning_all['calories'] + $noon_all['calories']}}</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-xl-2 col-md-2">
-            <div class="card mb-3 widget-content bg-arielle-smile">
-                <div class="widget-content-wrapper text-white">
-                    <div class="widget-content-left">
-                        <div class="widget-heading">Clients</div>
-                        <div class="widget-subheading">Total Clients Profit</div>
-                    </div>
-                    <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>$ 568</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-2 col-xl-2 col-md-2">
-            <div class="card mb-3 widget-content bg-premium-dark">
-                <div class="widget-content-wrapper text-white">
-                    <div class="widget-content-left">
-                        <div class="widget-heading">Products Sold</div>
-                        <div class="widget-subheading">Total revenue streams</div>
-                    </div>
-                    <div class="widget-content-right">
-                        <div class="widget-numbers text-warning"><span>$14M</span></div>
+                        <div class="widget-numbers text-white">
+                            <span>{{$morning_all['calories'] + $noon_all['calories']  + $night_all['calories']}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,24 +49,53 @@
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">Total Fat</div>
-                        <div class="widget-subheading">People Interested</div>
+                        <div class="widget-subheading"></div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-dark"><span>{{$morning_all['fat'] + $noon_all['fat']}}%</span></div>
+                        <div class="widget-numbers text-dark"><span>{{$morning_all['fat'] + $noon_all['fat']  + $night_all['fat']}}%</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        <div class="col-lg-2 col-xl-2 col-md-2">
+            <div class="card mb-3 widget-content bg-arielle-smile">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Total Protein</div>
+                        <div class="widget-subheading"></div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span>{{$morning_all['protein'] + $noon_all['protein'] + $night_all['protein']}}g</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-xl-2 col-md-2">
+            <div class="card mb-3 widget-content bg-premium-dark">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Total Carbs</div>
+                        <div class="widget-subheading"></div>
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-warning"><span>{{$morning_all['carbohydrate'] + $noon_all['carbohydrate']  + $night_all['carbohydrate']}}g</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="col-lg-2 col-xl-2 col-md-2">
             <div class="card mb-3 widget-content">
                 <div class="widget-content-wrapper">
                     <div class="widget-content-left">
-                        <div class="widget-heading">Total Orders</div>
-                        <div class="widget-subheading">Last year expenses</div>
+                        <div class="widget-heading">Total Sugars</div>
+                        <div class="widget-subheading"></div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-success"><span>1896</span></div>
+                        <div class="widget-numbers text-success"><span>{{$morning_all['sugars'] + $noon_all['sugars']  + $night_all['sugars']}}g</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -105,7 +110,7 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Total Orders</div>
-                                            <div class="widget-subheading">Last year expenses</div>
+                                            <div class="widget-subheading"></div>
                                         </div>
                                         <div class="widget-content-right">
                                             <div class="widget-numbers text-success">1896</div>
@@ -120,7 +125,7 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Clients</div>
-                                            <div class="widget-subheading">Total Clients Profit</div>
+                                            <div class="widget-subheading"></div>
                                         </div>
                                         <div class="widget-content-right">
                                             <div class="widget-numbers text-primary">$12.6k</div>
@@ -135,7 +140,7 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Followers</div>
-                                            <div class="widget-subheading">People Interested</div>
+                                            <div class="widget-subheading"></div>
                                         </div>
                                         <div class="widget-content-right">
                                             <div class="widget-numbers text-danger">45,9%</div>
@@ -150,7 +155,7 @@
                                     <div class="widget-content-wrapper">
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Products Sold</div>
-                                            <div class="widget-subheading">Total revenue streams</div>
+                                            <div class="widget-subheading"></div>
                                         </div>
                                         <div class="widget-content-right">
                                             <div class="widget-numbers text-warning">$3M</div>
@@ -170,7 +175,6 @@
         <div class="col-md-4">
             <div class="main-card mb-3 card">
                 <div class="card-body"><h5 class="card-title">Morning {{$morning_all['calories']}}</h5>
-
                     <table class="mb-0 table table-responsive">
                         <thead>
                         <tr>
@@ -230,16 +234,13 @@
                                         <div class="badge badge-danger">Inactive</div>
                                     @endif
                                 </td>
-
                             </tr>
                         </tbody>
                         @endforeach
                     </table>
-
                 </div>
             </div>
         </div>
-
     </div>
 
 @endsection
