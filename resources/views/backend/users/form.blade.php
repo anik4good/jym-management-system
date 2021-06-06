@@ -63,6 +63,11 @@
                                                  placeholder="******" />
 
                                 <x-forms.textbox type="text"
+                                                 label="age"
+                                                 name="age"
+                                                 value="{{ $user->userprofile->age ?? ''  }}" />
+
+                                <x-forms.textbox type="text"
                                                  label="weight"
                                                  name="weight"
                                                  value="{{ $user->userprofile->weight ?? ''  }}" />
@@ -89,9 +94,13 @@
                                     @endforeach
                                 </x-forms.select>
 
-                                <x-forms.dropify label="Avatar (Only Image are allowed)"
-                                                 name="avatar"
-                                                 value="{{ isset($user) ? $user->getFirstMediaUrl('avatar','thumb') : ''  }}"/>
+{{--                                <x-forms.dropify label="Avatar (Only Image are allowed)"--}}
+{{--                                                 name="avatar"--}}
+{{--                                                 value="{{ isset($user) ? $user->getFirstMediaUrl('avatar','thumb') : ''  }}"/>--}}
+
+                                <input type="file" name="avatar" id="avatar"
+                                       class="dropify @error('avatar') is-invalid @enderror"
+                                       data-default-file="{{ Auth::user()->getFirstMediaUrl('avatar','thumb') ?? '' }}">
 
                                 <x-forms.checkbox label="Status"
                                                   name="status"

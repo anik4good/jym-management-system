@@ -23,6 +23,7 @@ class PermissionSeeder extends Seeder
             'slug' => 'app.dashboard',
         ]);
 
+
         // Settings
         $moduleAppSettings = Module::updateOrCreate(['name' => 'Settings']);
         Permission::updateOrCreate([

@@ -17,24 +17,24 @@ class CreateUserprofilesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('gender')->nullable();
-            $table->string('height')->nullable();
-            $table->string('weight')->nullable();
+            $table->double('height')->nullable();
+            $table->double('weight')->nullable();
             $table->string('age')->nullable();
             $table->string('necksize')->nullable();
             $table->string('dietrestrictions')->nullable();
             $table->string('waist')->nullable();
             $table->string('bodyshape')->nullable();
             $table->string('lifestylehabit')->nullable();
-            $table->string('bloodpresure')->nullable();
-            $table->string('bloodsugar')->nullable();
+            $table->double('bloodpresure',15,2)->nullable();
+            $table->double('bloodsugar',15,2)->nullable();
             $table->string('foodhabit')->nullable();
             $table->string('targetfitness')->nullable();
 
-            $table->string('bmi')->nullable();
-            $table->string('ponderalindex')->nullable();
-            $table->string('bodyfat')->nullable();
-            $table->string('bmr')->nullable();
-            $table->string('bsa')->nullable();
+            $table->double('bmi',15,2)->nullable();
+            $table->double('ponderalindex',15,2)->nullable();
+            $table->double('bodyfat',15,2)->nullable();
+            $table->double('bmr',15,2)->nullable();
+            $table->double('bsa',15,2)->nullable();
 
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

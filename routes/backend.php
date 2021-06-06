@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+
 // Roles and Users
 Route::resource('roles', RoleController::class)->except(['show']);
 Route::resource('users', UserController::class);

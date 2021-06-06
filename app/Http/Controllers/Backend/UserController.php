@@ -32,12 +32,45 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
+
         $user = User::create([
             'role_id' => $request->role,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'status' => $request->filled('status'),
+        ]);
+
+
+
+        //get data
+        $weight = $request->weight;
+        $height = $request->height;
+        $age = $request->age;
+
+        //bmi done
+        $bmi = bmi($weight,$height);
+        $bmi2 = bmi_weight($bmi);
+
+        // Body Fat (BMI method)
+        $bodyfat = body_fat($request->age,$bmi);
+        //Ponderal Index in KG done
+        $pi = pindex($weight,$height);
+//        Basal Metabolic Rate (BMR)
+        $bmr = bmr($weight,$height,$request->age);
+//        Body Surface Area:(Mosteller formula:)
+        $bsa = bsa($weight,$height,$request->age);
+
+        $userprofile=Userprofile::create([
+            'user_id' => $user->id,
+            'weight' => $weight,
+            'height' => $height,
+            'age' => $age,
+            'bmi' => $bmi,
+            'ponderalindex' => $pi,
+            'bodyfat' => $bodyfat,
+            'bmr' => $bmr,
+            'bsa' => $bsa,
         ]);
         // upload images
         if ($request->hasFile('avatar')) {
@@ -84,6 +117,7 @@ class UserController extends Controller
         //get data
         $weight = $request->weight;
         $height = $request->height;
+        $age = $request->age;
 
         //bmi done
         $bmi = bmi($weight,$height);
@@ -102,6 +136,7 @@ class UserController extends Controller
             'user_id' => $user->id,
             'weight' => $weight,
             'height' => $height,
+            'age' => $age,
             'bmi' => $bmi,
             'ponderalindex' => $pi,
             'bodyfat' => $bodyfat,

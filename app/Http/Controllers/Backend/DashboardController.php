@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -19,6 +20,15 @@ class DashboardController extends Controller
         $data['pagesCount'] = Page::count();
         $data['menusCount'] = Menu::count();
         $data['users'] = User::orderBy('last_login_at','desc')->take(10)->get();
-        return view('backend.dashboard', $data);
+        $role = Auth::user()->role->slug;
+
+        if (Auth::user()->role->slug =='user')
+        {
+            $user = User::with('userprofile')->where('id',Auth::id())->first();
+            return view('backend.dashboard', compact('user','role'));
+        }
+
+        return view('backend.dashboard', $data,compact('role'));
     }
+
 }
