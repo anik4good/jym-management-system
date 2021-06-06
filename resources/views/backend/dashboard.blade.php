@@ -17,6 +17,65 @@
 
     @if($role==='user')
         <div class="row">
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card mb-3 widget-content">
+                    <div class="widget-content-outer">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="widget-heading">Name</div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-success">{{ $user->name }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-xl-3">
+                <div class="card mb-3 widget-content">
+                    <div class="widget-content-outer">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="widget-heading">Current Age</div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-success">{{ $user->userprofile->age }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="card mb-3 widget-content">
+                    <div class="widget-content-outer">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="widget-heading">Current Height</div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-success">{{ $user->userprofile->height }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="card mb-3 widget-content">
+                    <div class="widget-content-outer">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="widget-heading">Current Weight</div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-success">{{ $user->userprofile->weight }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-6 col-xl-3">
                 <div class="card mb-3 widget-content">
                     <div class="widget-content-outer">
@@ -31,9 +90,20 @@
                     </div>
                 </div>
             </div>
-
-
-
+            <div class="col-md-6 col-xl-3">
+                <div class="card mb-3 widget-content">
+                    <div class="widget-content-outer">
+                        <div class="widget-content-wrapper">
+                            <div class="widget-content-left">
+                                <div class="widget-heading">Current BloodPressure</div>
+                            </div>
+                            <div class="widget-content-right">
+                                <div class="widget-numbers text-success">80-120</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         {{--    <div class="row">--}}
         {{--        <div class="col-md-12">--}}
@@ -185,7 +255,8 @@
                                                     <div class="widget-heading">{{ $user->name }}</div>
                                                     <div class="widget-subheading opacity-7">
                                                         @if ($user->role)
-                                                            <span class="badge badge-info">{{ $user->role->name }}</span>
+                                                            <span
+                                                                class="badge badge-info">{{ $user->role->name }}</span>
                                                         @else
                                                             <span class="badge badge-danger">No role found :(</span>
                                                         @endif
@@ -197,7 +268,8 @@
                                     <td class="text-center">{{ $user->email }}</td>
                                     <td class="text-center">{{ $user->last_login_at }}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-info btn-sm" href="{{ route('app.users.show',$user->id) }}"><i
+                                        <a class="btn btn-info btn-sm"
+                                           href="{{ route('app.users.show',$user->id) }}"><i
                                                 class="fas fa-eye"></i>
                                             <span>Details</span>
                                         </a>
