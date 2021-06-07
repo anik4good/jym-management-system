@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\User;
+use Carbon\Carbon;
+
 if (!function_exists('bmi')) {
 
     /**
@@ -158,4 +161,16 @@ if (!function_exists('bmi')) {
     }
 
 
+
+
+    function user_this_month(){
+        $today = Carbon::now();
+        return User::whereBetween('created_at', [$today->startOfMonth()->startOfDay()->format('Y-m-d H:i:s'), $today->endOfMonth()->endOfDay()->format('Y-m-d H:i:s')])->count();
+    }
+
+    function user_last_month(){
+        $start = Carbon::now()->subMonth()->startOfMonth()->startOfMonth()->startOfDay()->format('Y-m-d H:i:s');
+        $end = Carbon::now()->subMonth()->startOfMonth()->endOfMonth()->endOfDay()->format('Y-m-d H:i:s');
+        return User::whereBetween('created_at', [$start, $end])->count();
+    }
 }

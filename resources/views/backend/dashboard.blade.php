@@ -17,7 +17,6 @@
 
     @if($role==='user')
         <div class="row">
-
             <div class="col-md-6 col-xl-3">
                 <div class="card mb-3 widget-content">
                     <div class="widget-content-outer">
@@ -32,8 +31,6 @@
                     </div>
                 </div>
             </div>
-
-
             <div class="col-md-6 col-xl-3">
                 <div class="card mb-3 widget-content">
                     <div class="widget-content-outer">
@@ -170,7 +167,7 @@
                     <div class="widget-content-outer">
                         <div class="widget-content-wrapper">
                             <div class="widget-content-left">
-                                <div class="widget-heading">Total Users</div>
+                                <div class="widget-heading">Total Clients</div>
                             </div>
                             <div class="widget-content-right">
                                 <div class="widget-numbers text-success">{{ $usersCount }}</div>
@@ -184,10 +181,10 @@
                     <div class="widget-content-outer">
                         <div class="widget-content-wrapper">
                             <div class="widget-content-left">
-                                <div class="widget-heading">Roles</div>
+                                <div class="widget-heading">Total Diets</div>
                             </div>
                             <div class="widget-content-right">
-                                <div class="widget-numbers text-warning">{{ $rolesCount }}</div>
+                                <div class="widget-numbers text-warning">{{ count($diets) }}</div>
                             </div>
                         </div>
                     </div>
@@ -198,10 +195,10 @@
                     <div class="widget-content-outer">
                         <div class="widget-content-wrapper">
                             <div class="widget-content-left">
-                                <div class="widget-heading">Total Pages</div>
+                                <div class="widget-heading">Total Clients This Month</div>
                             </div>
                             <div class="widget-content-right">
-                                <div class="widget-numbers text-danger">{{ $pagesCount }}</div>
+                                <div class="widget-numbers text-danger">{{  $users_this_month }}</div>
                             </div>
                         </div>
                     </div>
@@ -212,10 +209,10 @@
                     <div class="widget-content-outer">
                         <div class="widget-content-wrapper">
                             <div class="widget-content-left">
-                                <div class="widget-heading">Menus</div>
+                                <div class="widget-heading">Total Clients last Month</div>
                             </div>
                             <div class="widget-content-right">
-                                <div class="widget-numbers text-info">{{ $menusCount }}</div>
+                                <div class="widget-numbers text-danger">{{  $users_last_month }}</div>
                             </div>
                         </div>
                     </div>
@@ -223,6 +220,56 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-header">Diets</div>
+                    <div class="table-responsive">
+                        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Diet ID</th>
+                                <th class="text-center">Assign to Client</th>
+                                <th class="text-center">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($diets as $key=>$diet)
+                                <tr>
+                                    <td class="text-center text-muted">{{ $key + 1 }}</td>
+                                    <td class="text-center">
+                                        {{--                                            <div class="widget-content-wrapper">--}}
+                                        {{--                                                <div class="widget-content-left mr-3">--}}
+                                        {{--                                                    <div class="widget-content-left">--}}
+                                        {{--                                                        <img width="40" class="rounded-circle"--}}
+                                        {{--                                                             src="{{ $user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar','thumb') : config('app.placeholder').'160' }}"--}}
+                                        {{--                                                             alt="User Avatar">--}}
+                                        {{--                                                    </div>--}}
+                                        {{--                                                </div>--}}
+                                        {{--                                    <td class="text-center">  @if ($diet->id)--}}
+                                        {{--                                            <span--}}
+                                        {{--                                                class="badge badge-info">{{ $diet->user_id }}</span>--}}
+                                        {{--                                        @else--}}
+                                        {{--                                            <span class="badge badge-danger">No role found :(</span>--}}
+                                        {{--                                        @endif</td>--}}
+
+                                        {{ $diet->id }}
+                                    </td>
+                                    <td class="text-center">{{ $diet->user->name }}</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-info btn-sm"
+                                           href="{{ route('app.diet.show.single',$diet->id) }}"><i
+                                                class="fas fa-eye"></i>
+                                            <span>Details</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
                     <div class="card-header">Last Logged In Users</div>

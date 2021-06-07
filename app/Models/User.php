@@ -113,7 +113,7 @@ class User extends Authenticatable implements HasMedia
 
     public function prepmails()
     {
-        return $this->hasOne(Prepmeal::class, 'user_id', 'id');
+        return $this->hasMany(Prepmeal::class, 'user_id', 'id');
     }
 
 
