@@ -17,7 +17,7 @@
             </div>
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
-                    <a href="{{ route('app.meals.create') }}" class="btn-shadow btn btn-info">
+                    <a href="{{ route('app.diets.create') }}" class="btn-shadow btn btn-info">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fas fa-plus-circle fa-w-20"></i>
                         </span>
@@ -75,18 +75,18 @@
                                 </td>
                                 <td class="text-center">
                                     <a class="btn btn-secondary btn-sm"
-                                       href="{{ route('app.meals.show.new',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"Morning"]) }}"><i
+                                       href="{{ route('app.diets.show.new',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"Morning"]) }}"><i
                                             class="fas fa-eye"></i>
                                         <span>Morning</span>
                                     </a>
                                     <a class="btn btn-secondary btn-sm"
-                                       href="{{ route('app.meals.show.new',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"Noon"]) }}"><i
+                                       href="{{ route('app.diets.show.new',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"Noon"]) }}"><i
                                             class="fas fa-eye"></i>
                                         <span>Noon</span>
                                     </a>
 
                                     <a class="btn btn-secondary btn-sm"
-                                       href="{{ route('app.meals.show.new',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"night"]) }}"><i
+                                       href="{{ route('app.diets.show.new',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"night"]) }}"><i
                                             class="fas fa-eye"></i>
                                         <span>Night</span>
                                     </a>
@@ -224,7 +224,7 @@
                 <div class="card-body"><h5 class="card-title">Morning {{$morning_all['calories']}}</h5>
 
                     <form method="POST"
-                          action="{{  route('app.meals.update.time',$post_id)  }}"
+                          action="{{  route('app.diets.update.time',$post_id)  }}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('POST')
@@ -322,8 +322,9 @@
                                             <span></span>
                                         </button>
                                         <form id="delete-form-{{ $row->id }}"
-                                              action="{{ route('app.meals.destroy',$roww->id) }}" method="POST"
-                                              style="display: none;">
+                                              action="{{ route('app.diets.destroy',$roww->id) }}" method="POST"
+                                              style="display: none;"
+                                        >
                                             @csrf()
                                             @method('DELETE')
                                         </form>
@@ -341,7 +342,7 @@
                 <div class="card-body"><h5 class="card-title">Noon {{$noon_all['calories']}}</h5>
 
                     <form method="POST"
-                          action="{{  route('app.meals.update.time',$post_id)  }}"
+                          action="{{  route('app.diets.update.time',$post_id)  }}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('POST')
@@ -439,7 +440,7 @@
                                         <span></span>
                                     </button>
                                     <form id="delete-form-{{ $row->id }}"
-                                          action="{{ route('app.meals.destroy',$roww->id) }}" method="POST"
+                                          action="{{ route('app.diets.destroy.noon',$roww->id) }}" method="POST"
                                           style="display: none;">
                                         @csrf()
                                         @method('DELETE')
@@ -458,7 +459,7 @@
                 <div class="card-body"><h5 class="card-title">Night {{$night_all['calories']}}</h5>
 
                     <form method="POST"
-                          action="{{  route('app.meals.update.time',$post_id)  }}"
+                          action="{{  route('app.diets.update.time',$post_id)  }}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('POST')
@@ -556,7 +557,7 @@
                                         <span></span>
                                     </button>
                                     <form id="delete-form-{{ $row->id }}"
-                                          action="{{ route('app.meals.destroy',$roww->id) }}" method="POST"
+                                          action="{{ route('app.diets.destroy.night',$roww->id) }}" method="POST"
                                           style="display: none;">
                                         @csrf()
                                         @method('DELETE')

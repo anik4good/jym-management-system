@@ -13,7 +13,7 @@
             </div>
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
-                    <a href="{{ route('app.meals.createmeal',$user->id) }}" class="btn-shadow btn btn-success">
+                    <a href="{{ route('app.diets.createmeal',$user->id) }}" class="btn-shadow btn btn-success">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fas fa-edit fa-w-20"></i>
                         </span>

@@ -5,7 +5,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\MenuBuilderController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\PageController;
-use App\Http\Controllers\Backend\PrepmealController;
+use App\Http\Controllers\Backend\DietController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SettingController;
@@ -32,15 +32,27 @@ Route::resource('users', UserController::class);
 
 
 //fitness
-Route::resource('meals', \App\Http\Controllers\Backend\PrepmealController::class);
+
 Route::resource('foods', \App\Http\Controllers\Backend\FoodController::class);
 
-Route::get('user/{id}/createmeal',[PrepmealController::class, 'createmeal'])->name('meals.createmeal');
-Route::get('meals/{id}/generate',[PrepmealController::class, 'index2'])->name('meals.show.single');
-Route::get('diets/{id}/show',[PrepmealController::class, 'diet_single'])->name('diet.show.single');
-Route::get('meals/{food_id}/{post_id}/{check}',[PrepmealController::class, 'show_post'])->name('meals.show.new');
+//diet
+Route::resource('diets', \App\Http\Controllers\Backend\DietController::class);
+Route::get('user/{id}/creatediet',[DietController::class, 'creatediet'])->name('diets.createmeal');
+Route::get('diets/{id}/generate',[DietController::class, 'show'])->name('diet.generator.show.single');
+Route::get('diets/{id}/show',[DietController::class, 'diet_single'])->name('diet.show.single');
 
-Route::post('meals/updatetime/{id}',[PrepmealController::class, 'updatemealtime'])->name('meals.update.time');
+//add foods to periods eg. morning/noon/night
+Route::get('diets/{food_id}/{post_id}/{check}',[DietController::class, 'show_post'])->name('diets.show.new');
+//update  Period time eg. 10AM/2PM
+Route::post('diets/updatetime/{id}',[DietController::class, 'updatemealtime'])->name('diets.update.time');
+
+//delete period
+Route::delete('diets/noon/{id}/destroy', [DietController::class, 'destroy_noon'])->name('diets.destroy.noon');
+
+Route::delete('diets/night/{id}/destroy', [DietController::class, 'destroy_night'])->name('diets.destroy.night');
+
+
+
 
 
 //user profile

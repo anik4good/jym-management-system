@@ -17,11 +17,11 @@
             </div>
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
-                    <a href="{{ route('app.meals.create') }}" class="btn-shadow btn btn-info">
+                    <a href="{{ route('app.diets.create') }}" class="btn-shadow btn btn-info">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fas fa-plus-circle fa-w-20"></i>
                         </span>
-                        {{ __('Create Meals') }}
+                        {{ __('Generate Diet') }}
                     </a>
                 </div>
             </div>
@@ -33,11 +33,25 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="main-card mb-3 card">
-                        <div class="card-header">Generate Meals</div>
+                        <div class="card-header">Generate Diet</div>
 
                         <div class="card-body">
-                            <form method="POST" action="{{ route('app.meals.store') }}" >
+                            <form method="POST" action="{{ route('app.diets.store') }}" >
                                 @csrf
+
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Enter Diet Name') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" required>
+
+                                        @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <div class="form-group row">
                                     <label for="calories" class="col-md-4 col-form-label text-md-right">{{ __('Enter Total Calories') }}</label>
@@ -53,50 +67,20 @@
                                     </div>
                                 </div>
 
-{{--                                <div class="form-group row">--}}
-{{--                                    <label for="protein" class="col-md-4 col-form-label text-md-right">{{ __('Total Protein') }}</label>--}}
-
-{{--                                    <div class="col-md-6">--}}
-{{--                                        <input id="protein" type="text" class="form-control @error('protein') is-invalid @enderror" name="protein" required>--}}
-
-{{--                                        @error('protein')--}}
-{{--                                        <span class="invalid-feedback" role="alert">--}}
-{{--                                        <strong>{{ $message }}</strong>--}}
-{{--                                    </span>--}}
-{{--                                        @enderror--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="form-group row">--}}
-{{--                                    <label for="fat" class="col-md-4 col-form-label text-md-right">{{ __('Total Fat') }}</label>--}}
-
-{{--                                    <div class="col-md-6">--}}
-{{--                                        <input id="fat" type="text" class="form-control @error('fat') is-invalid @enderror" name="fat" required>--}}
-
-{{--                                        @error('fat')--}}
-{{--                                        <span class="invalid-feedback" role="alert">--}}
-{{--                                        <strong>{{ $message }}</strong>--}}
-{{--                                    </span>--}}
-{{--                                        @enderror--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
 
                                 <div class="form-group row">
                                     <label for="meals" class="col-md-4 col-form-label text-md-right">{{ __('Total Meals') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="meals" type="number" class="form-control @error('meals') is-invalid @enderror" name="meals" required >
+                                        <input id="meals" type="number"  class="form-control @error('diets') is-invalid @enderror" name="meals" required >
 
-                                        @error('meals')
+                                        @error('diets')
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                         @enderror
                                     </div>
                                 </div>
-
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">

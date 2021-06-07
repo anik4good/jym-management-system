@@ -40,7 +40,7 @@ class Page extends Model implements HasMedia
     }
 
     /**
-     * Scope a meals to only include active pages.
+     * Scope a diets to only include active pages.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @return \Illuminate\Database\Eloquent\Builder

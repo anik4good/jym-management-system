@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Menu;
 use App\Models\Page;
-use App\Models\Prepmeal;
+use App\Models\Diet;
 use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
@@ -29,8 +29,8 @@ class DashboardController extends Controller
 
 
         $role = Auth::user()->role->slug;
-        $diets = Prepmeal::all();
-        $total_diets = Prepmeal::all()->count();
+        $diets = Diet::all();
+        $total_diets = Diet::all()->count();
 
 
         if (Auth::user()->role->slug == 'user') {

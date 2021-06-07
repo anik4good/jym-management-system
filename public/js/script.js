@@ -14,6 +14,7 @@ function deleteData(id) {
     })
 }
 
+
 function updatetime() {
     Swal.fire({
         title: 'Are you sure?',

@@ -6,7 +6,7 @@ use App\Models\Food;
 use App\Models\Mealtime;
 use App\Models\Morning;
 use App\Models\Noon;
-use App\Models\Prepmeal;
+use App\Models\Diet;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -51,7 +51,7 @@ class CreateMeals extends Command
 
         $this->info('calories: ' . $calories);
         $this->info('user_id: ' . $user_id);
-        $this->info('meals: ' . $meals);
+        $this->info('diets: ' . $meals);
         $this->info('user_meal_id: ' . $user_meal_id);
 
 
@@ -170,7 +170,7 @@ class CreateMeals extends Command
 
 
 //
-//        $prepmeal = new Prepmeal();
+//        $prepmeal = new Diet();
 //        $prepmeal->user_id = 1;
 //        $prepmeal->save();
 //
@@ -193,11 +193,11 @@ class CreateMeals extends Command
 //            $noon->user_id=1;
 //            $noon->food_id=$food->id;
 //            $noon->save();
-//            $post_id = Prepmeal::where('id',$morning->post_id)->first();
+//            $post_id = Diet::where('id',$morning->post_id)->first();
 //        }
 //
 //
 //        $this->info($post_id->id);
-//       return redirect()->route('app.meals.update.time',$post_id->id);
+//       return redirect()->route('app.diets.update.time',$post_id->id);
     }
 }

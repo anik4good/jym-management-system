@@ -80,7 +80,7 @@
                                     <td class="text-center">{{ $user->created_at->diffForHumans() }}</td>
                                     <td class="text-center">
 
-                                        <a class="btn btn-success btn-sm" href="{{ route('app.meals.createmeal',$user->id) }}"><i
+                                        <a class="btn btn-success btn-sm" href="{{ route('app.diets.createmeal',$user->id) }}"><i
                                                 class="fas fa-eye"></i>
                                             <span>Generate Meal</span>
                                         </a>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePrepmealsTable extends Migration
+class CreateDietsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreatePrepmealsTable extends Migration
      */
     public function up()
     {
-        Schema::create('prepmeals', function (Blueprint $table) {
+        Schema::create('diets', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('meal_id')->default(0);
+            $table->string('name');
 //            $table->integer('morning');
 //            $table->integer('afternoon');
 //            $table->integer('evening');
@@ -33,6 +33,6 @@ class CreatePrepmealsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prepmeals');
+        Schema::dropIfExists('diets');
     }
 }
