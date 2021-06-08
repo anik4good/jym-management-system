@@ -8,19 +8,39 @@ use App\Models\Food;
 use Illuminate\Filesystem\Cache;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Yajra\DataTables\DataTables;
 
 class FoodController extends Controller
 {
 
     public function index()
     {
-         $foods = Food::getAllFoods();
+        // $foods = Food::getAllFoods();
 //        $foods = Cache()->remember('food-all', 60 * 60 * 24, function () {
 //            return Food::all();
 //        });
-        return view('backend.foods.index', compact('foods'));
+
+
+        //return view('backend.foods.index', compact('foods'));
+
+        return view('backend.foods.food');
     }
 
+
+    public function getFoods(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Food::latest()->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+    }
 
     public function create()
     {

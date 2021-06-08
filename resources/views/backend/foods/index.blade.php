@@ -28,95 +28,7 @@
         </div>
     </div>
     <div class="row">
-        {{--        <div class="col-md-6">--}}
-        {{--            <div class="main-card mb-6 card">--}}
-        {{--                <div class="table-responsive">--}}
-        {{--                    <table id="datatable" class="align-middle mb-0 table table-borderless table-striped table-hover">--}}
-        {{--                        <thead>--}}
-        {{--                        <tr>--}}
-        {{--                            <th class="text-center">#</th>--}}
-        {{--                            <th>Name</th>--}}
-        {{--                            <th class="text-center">Morning</th>--}}
-        {{--                            <th class="text-center">Noon</th>--}}
-        {{--                            <th class="text-center">Afternoon</th>--}}
-        {{--                            <th class="text-center">Night</th>--}}
-        {{--                            <th class="text-center">Actions</th>--}}
-        {{--                        </tr>--}}
-        {{--                        </thead>--}}
-        {{--                        <tbody>--}}
-        {{--                            @foreach($food as $key=>$user)--}}
-        {{--                                <tr>--}}
-        {{--                                    <td class="text-center text-muted">#{{ $key + 1 }}</td>--}}
-        {{--                                    <td>--}}
-        {{--                                        <div class="widget-content p-0">--}}
-        {{--                                            <div class="widget-content-wrapper">--}}
-        {{--                                                <div class="widget-content-left mr-3">--}}
-        {{--                                                    <div class="widget-content-left">--}}
-        {{--                                                        <img width="40" class="rounded-circle"--}}
-        {{--                                                             src="{{ $user->getFirstMediaUrl('avatar') != null ? $user->getFirstMediaUrl('avatar','thumb') : config('app.placeholder').'160' }}" alt="User Avatar">--}}
-        {{--                                                    </div>--}}
-        {{--                                                </div>--}}
-        {{--                                                <div class="widget-content-left flex2">--}}
-        {{--                                                    <div class="widget-heading">{{ $user->name }}</div>--}}
-        {{--                                                    <div class="widget-subheading opacity-7">--}}
-        {{--                                                        @if ($user->role)--}}
-        {{--                                                            <span class="badge badge-info">{{ $user->role->name }}</span>--}}
-        {{--                                                        @else--}}
-        {{--                                                            <span class="badge badge-danger">No role found :(</span>--}}
-        {{--                                                        @endif--}}
-        {{--                                                    </div>--}}
-        {{--                                                </div>--}}
-        {{--                                            </div>--}}
-        {{--                                        </div>--}}
-        {{--                                    </td>--}}
-        {{--                                    @php--}}
-        {{--                                    $data = \App\Models\Mealtime::where('food_id',$user->id)->first();--}}
-        {{--                                    @endphp--}}
-        {{--                                    <td class="text-center">--}}
-        {{--                                        @if ($data->morning==1)--}}
-        {{--                                            <div class="badge badge-success">{{ $data->morning }}</div>--}}
-        {{--                                        @else--}}
-        {{--                                            <div class="badge badge-danger">Inactive</div>--}}
-        {{--                                        @endif--}}
-        {{--                                    </td>--}}
-        {{--                                    <td class="text-center">--}}
-        {{--                                        @if ($data->noon==1)--}}
-        {{--                                            <div class="badge badge-success">{{ $data->noon }}</div>--}}
-        {{--                                        @else--}}
-        {{--                                            <div class="badge badge-danger">Inactive</div>--}}
-        {{--                                        @endif--}}
-        {{--                                    </td>--}}
-        {{--                                    <td class="text-center">--}}
-        {{--                                        @if ($data->afternoon==1)--}}
-        {{--                                            <div class="badge badge-success">{{ $data->afternoon }}</div>--}}
-        {{--                                        @else--}}
-        {{--                                            <div class="badge badge-danger">Inactive</div>--}}
-        {{--                                        @endif--}}
-        {{--                                    </td>--}}
-        {{--                                    <td class="text-center">--}}
-        {{--                                        @if ($data->night==1)--}}
-        {{--                                            <div class="badge badge-success">{{ $data->night }}</div>--}}
-        {{--                                        @else--}}
-        {{--                                            <div class="badge badge-danger">Inactive</div>--}}
-        {{--                                        @endif--}}
-        {{--                                    </td>--}}
 
-
-        {{--                                    <td class="text-center">--}}
-        {{--                                        <a class="btn btn-secondary btn-sm" href="{{ route('app.users.show',$user->id) }}"><i--}}
-        {{--                                                class="fas fa-eye"></i>--}}
-        {{--                                            <span>Add</span>--}}
-        {{--                                        </a>--}}
-        {{--                                    </td>--}}
-        {{--                                </tr>--}}
-        {{--                            @endforeach--}}
-        {{--                        </tbody>--}}
-        {{--                    </table>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-
-
-        {{--        </div>--}}
         <div class="col-md-12">
             <div class="main-card mb-6 card">
                 <div class="table-responsive">
@@ -219,5 +131,6 @@
                 "pagingType": "full_numbers"
             } );
         });
+
     </script>
 @endpush

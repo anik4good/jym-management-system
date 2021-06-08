@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\BackupController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\FoodController;
 use App\Http\Controllers\Backend\MenuBuilderController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\PageController;
@@ -33,8 +34,8 @@ Route::resource('users', UserController::class);
 
 //fitness
 
-Route::resource('foods', \App\Http\Controllers\Backend\FoodController::class);
-
+Route::resource('foods', FoodController::class);
+Route::get('foods/list/', [FoodController::class, 'getFoods'])->name('food.list');
 //diet
 Route::resource('diets', \App\Http\Controllers\Backend\DietController::class);
 Route::get('user/{id}/creatediet',[DietController::class, 'creatediet'])->name('diets.createmeal');
