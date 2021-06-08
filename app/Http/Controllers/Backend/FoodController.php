@@ -15,15 +15,15 @@ class FoodController extends Controller
 
     public function index()
     {
-        // $foods = Food::getAllFoods();
+         $foods = Food::getAllFoods();
 //        $foods = Cache()->remember('food-all', 60 * 60 * 24, function () {
 //            return Food::all();
 //        });
 
 
-        //return view('backend.foods.index', compact('foods'));
+        return view('backend.foods.index', compact('foods'));
 
-        return view('backend.foods.food');
+        //return view('backend.foods.food');
     }
 
 

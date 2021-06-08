@@ -37,19 +37,18 @@ Route::resource('users', UserController::class);
 Route::resource('foods', FoodController::class);
 Route::get('foods/list/', [FoodController::class, 'getFoods'])->name('food.list');
 //diet
-Route::resource('diets', \App\Http\Controllers\Backend\DietController::class);
+Route::resource('diets', DietController::class);
 Route::get('user/{id}/creatediet',[DietController::class, 'creatediet'])->name('diets.createmeal');
 Route::get('diets/{id}/generate',[DietController::class, 'show'])->name('diet.generator.show.single');
 Route::get('diets/{id}/show',[DietController::class, 'diet_single'])->name('diet.show.single');
+
+
 
 //add foods to periods eg. morning/noon/night
 Route::get('diets/{food_id}/{post_id}/{check}',[DietController::class, 'show_post'])->name('diets.show.new');
 //update  Period time eg. 10AM/2PM
 Route::post('diets/updatetime/{id}',[DietController::class, 'updatemealtime'])->name('diets.update.time');
-
-//delete period
 Route::delete('diets/noon/{id}/destroy', [DietController::class, 'destroy_noon'])->name('diets.destroy.noon');
-
 Route::delete('diets/night/{id}/destroy', [DietController::class, 'destroy_night'])->name('diets.destroy.night');
 
 

@@ -17,21 +17,12 @@ use Illuminate\Support\Facades\Artisan;
 class DietController extends Controller
 {
 
-//    public function index()
-//    {
-//        $foods = Food::limit(100)->get();
-//        $morning = Morning::all();
-//        $noon = Noon::all();
-//      return view('backend.diets.index',compact('foods','morning','noon'));
-//    }
-//    public function index($id)
-//    {
-//        $foods = Food::limit(100)->get();
-//        $morning = Morning::where('post_id',$id)->get();
-//        $noon = Noon::where('post_id',$id)->get();
-//
-//        return view('backend.diets.index',compact('foods','morning','noon'));
-//    }
+    public function index()
+    {
+        $diets = Diet::all();
+      return view('backend.diets.index',compact('diets'));
+    }
+
 
     public function creatediet($id)
     {

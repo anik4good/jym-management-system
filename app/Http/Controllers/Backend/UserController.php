@@ -72,6 +72,7 @@ class UserController extends Controller
             'bmr' => $bmr,
             'bsa' => $bsa,
         ]);
+
         // upload images
         if ($request->hasFile('avatar')) {
             $user->addMedia($request->avatar)->toMediaCollection('avatar');
