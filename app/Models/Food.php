@@ -18,8 +18,8 @@ class Food extends Model
 
     public static function getAllFoods()
     {
-        return Cache::rememberForever('food.all', function() {
-            return self::latest('id')->get();
+        return Cache()->remember('food-all', 60 * 60 * 24, function () {
+            return Food::all();
         });
     }
 
@@ -30,20 +30,20 @@ class Food extends Model
         Cache::forget('food.all');
     }
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::updated(function () {
-            self::flushCache();
-        });
-
-        static::created(function() {
-            self::flushCache();
-        });
-
-        static::deleted(function() {
-            self::flushCache();
-        });
-    }
+//    protected static function boot()
+//    {
+//        parent::boot();
+//
+//        static::updated(function () {
+//            self::flushCache();
+//        });
+//
+//        static::created(function() {
+//            self::flushCache();
+//        });
+//
+//        static::deleted(function() {
+//            self::flushCache();
+//        });
+//    }
 }
