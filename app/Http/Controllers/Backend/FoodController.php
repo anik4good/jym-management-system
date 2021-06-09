@@ -16,7 +16,7 @@ class FoodController extends Controller
 
     public function index()
     {
-        Gate::authorize('app.foods.index');
+       // Gate::authorize('app.foods.index');
          $foods = Food::getAllFoods();
 //        $foods = Cache()->remember('food-all', 60 * 60 * 24, function () {
 //            return Food::all();
