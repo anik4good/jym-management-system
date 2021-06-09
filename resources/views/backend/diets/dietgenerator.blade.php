@@ -75,18 +75,18 @@
                                 </td>
                                 <td class="text-center">
                                     <a class="btn btn-secondary btn-sm"
-                                       href="{{ route('app.diets.show.new',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"Morning"]) }}"><i
+                                       href="{{ route('app.diets.add.food',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"Morning"]) }}"><i
                                             class="fas fa-eye"></i>
                                         <span>Morning</span>
                                     </a>
                                     <a class="btn btn-secondary btn-sm"
-                                       href="{{ route('app.diets.show.new',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"Noon"]) }}"><i
+                                       href="{{ route('app.diets.add.food',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"Noon"]) }}"><i
                                             class="fas fa-eye"></i>
                                         <span>Noon</span>
                                     </a>
 
                                     <a class="btn btn-secondary btn-sm"
-                                       href="{{ route('app.diets.show.new',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"night"]) }}"><i
+                                       href="{{ route('app.diets.add.food',['food_id'=>$row->id,'post_id'=>$post_id,'check'=>"night"]) }}"><i
                                             class="fas fa-eye"></i>
                                         <span>Night</span>
                                     </a>

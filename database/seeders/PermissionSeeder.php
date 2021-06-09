@@ -24,6 +24,49 @@ class PermissionSeeder extends Seeder
         ]);
 
 
+        // Foods
+        $moduleAppSettings = Module::updateOrCreate(['name' => 'Foods']);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSettings->id,
+            'name' => 'Access Foods',
+            'slug' => 'app.foods.index',
+        ]);
+
+
+        // Diets
+        $moduleAppSettings = Module::updateOrCreate(['name' => 'Diets']);
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSettings->id,
+            'name' => 'Access Diets',
+            'slug' => 'app.diets.index',
+        ]);
+
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSettings->id,
+            'name' => 'Show Diets',
+            'slug' => 'app.diet.show.single',
+        ]);
+
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSettings->id,
+            'name' => 'Create Diets',
+            'slug' => 'app.diets.createmeal',
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSettings->id,
+            'name' => 'Edit Diets',
+            'slug' => 'app.diet.generator.show.single',
+        ]);
+
+        Permission::updateOrCreate([
+            'module_id' => $moduleAppSettings->id,
+            'name' => 'Create Diets Pdf',
+            'slug' => 'app.diets.createpdf',
+        ]);
+
         // Settings
         $moduleAppSettings = Module::updateOrCreate(['name' => 'Settings']);
         Permission::updateOrCreate([

@@ -45,7 +45,7 @@ Route::get('diets/{id}/show',[DietController::class, 'diet_single'])->name('diet
 Route::get('diets/{id}/createpdf',[DietController::class, 'create_diet_reports'])->name('diets.createpdf');
 
 //add foods to periods eg. morning/noon/night
-Route::get('diets/{food_id}/{post_id}/{check}',[DietController::class, 'show_post'])->name('diets.show.new');
+Route::get('diets/{food_id}/{post_id}/{check}',[DietController::class, 'add_foods'])->name('diets.add.food');
 //update  Period time eg. 10AM/2PM
 Route::post('diets/updatetime/{id}',[DietController::class, 'updatemealtime'])->name('diets.update.time');
 Route::delete('diets/noon/{id}/destroy', [DietController::class, 'destroy_noon'])->name('diets.destroy.noon');
@@ -104,5 +104,7 @@ Route::group(['as' => 'settings.', 'prefix' => 'settings'], function () {
 
     Route::get('socialite', [SettingController::class, 'socialite'])->name('socialite.index');
     Route::patch('socialite', [SettingController::class, 'updateSocialiteSettings'])->name('socialite.update');
+
+    Route::get('clear/cache', [SettingController::class, 'clear_cache'])->name('cache.clear');
 
 });

@@ -105,10 +105,7 @@ class SettingController extends Controller
         return back();
     }
 
-    /**
-     * Show Socialite Settings Page
-     * @return \Illuminate\View\View
-     */
+
     public function socialite()
     {
         return view('backend.settings.socialite');
@@ -135,5 +132,13 @@ class SettingController extends Controller
 
         notify()->success('Settings Successfully Updated.','Success');
         return back();
+    }
+
+
+    public function clear_cache()
+    {
+        Artisan::call('cache:clear');
+        notify()->success('Cache Successfully Cleared.','Success');
+        return redirect()->back();
     }
 }

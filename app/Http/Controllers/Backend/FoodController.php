@@ -16,7 +16,7 @@ class FoodController extends Controller
 
     public function index()
     {
-       // Gate::authorize('app.foods.index');
+        Gate::authorize('app.foods.index');
          $foods = Food::getAllFoods();
 //        $foods = Cache()->remember('food-all', 60 * 60 * 24, function () {
 //            return Food::all();
@@ -46,8 +46,12 @@ class FoodController extends Controller
 
     public function create()
     {
-        //
+        return view('backend.foods.form');
     }
+
+
+
+
 
 
     public function store(Request $request)
@@ -59,7 +63,7 @@ class FoodController extends Controller
 
         $SurveySheet = new FoodImport();
         Excel::import($SurveySheet, $file);
-        return redirect()->back();
+        return redirect()->route('app.foods.index');
 
     }
 

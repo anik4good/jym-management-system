@@ -15,12 +15,14 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class DietController extends Controller
 {
 
     public function index()
     {
+        Gate::authorize('app.diets.index');
         $diets = Diet::all();
         if (Auth::user()->role->slug == 'user') {
             $diets = Diet::where('user_id', Auth::id())->get();
@@ -31,7 +33,7 @@ class DietController extends Controller
 
     public function creatediet($id)
     {
-
+        Gate::authorize('app.diets.createmeal');
         $user = User::with('userprofile')->where('id', $id)->first();
         return view('backend.diets.create', compact('user'));
     }
@@ -39,6 +41,7 @@ class DietController extends Controller
 
     public function store(Request $request)
     {
+
 
         $prepmeal = new Diet();
         $prepmeal->user_id = $request->user_id;
@@ -49,10 +52,12 @@ class DietController extends Controller
 
     }
 
+
+    //diet generator for single diets
     public function show($id)
     {
 
-
+        Gate::authorize('app.diet.generator.show.single');
         $post_id = $id;
         $foods = Food::limit(100)->get();
         $morning = Morning::where('post_id', $post_id)->get();
@@ -69,7 +74,9 @@ class DietController extends Controller
 
     }
 
-    public function show_post($food_id, $post_id, $check)
+
+    //Add foods into diets periods
+    public function add_foods($food_id, $post_id, $check)
     {
 
         $morning = new Morning();
@@ -127,11 +134,21 @@ class DietController extends Controller
         return redirect()->route('app.diet.generator.show.single', $request->post_id);
     }
 
+
+    //show single diet any user can see
     public function diet_single($id)
     {
 
+        Gate::authorize('app.diet.show.single');
+
         $post_id = $id;
         $diet = Diet::where('id', $post_id)->first();
+
+        if (Auth::user()->role->slug=='user' && $diet->user_id!=Auth::id())
+        {
+            notify()->success('No permission to view this link.', 'Added');
+            return redirect()->back();
+        }
         $morning = Morning::where('post_id', $post_id)->get();
         $noon = Noon::where('post_id', $post_id)->get();
         $night = Night::where('post_id', $post_id)->get();
@@ -149,6 +166,8 @@ class DietController extends Controller
 
     public function create_diet_reports($id)
     {
+
+        Gate::authorize('app.diets.createpdf');
         $post_id = $id;
         $diets = Diet::where('id', $post_id)->first();
         $foods = Food::limit(100)->get();

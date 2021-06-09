@@ -17,7 +17,7 @@
             </div>
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
-                    <a href="#import_food" data-toggle="modal" class="btn-shadow btn btn-info">
+                    <a href="{{ route('app.foods.create') }}"  class="btn-shadow btn btn-info">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fas fa-plus-circle fa-w-20"></i>
                         </span>
@@ -140,29 +140,8 @@
 {{--            </div>--}}
 {{--        </div>--}}
 {{--        <!-- END MODAL -->--}}
+        <hr>
 
-
-        <div class="col-md-4">
-            <h3>Import Survey</h3>
-            <form action="{{ route('app.foods.store') }}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="card-body">
-                    <div class="fileinput fileinput-new margin-bottom-10" data-provides="fileinput">
-                        <label>Select File (xls, xlsx)</label>
-                        <div class="input-group input-large">
-                            <div class="custom-file">
-                                <input type="file" id="contactsFile" name="file" class="custom-file-input"
-                                       required accept=".xls,.xlsx,.csv">
-                                <label class="custom-file-label" for="customFile">Choose file</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Import</button>
-                </div>
-            </form>
-        </div>
     </div>
 @endsection
 

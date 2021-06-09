@@ -50,6 +50,13 @@
                         Visit Site
                     </a>
                 </li>
+
+                <li class="dropdown nav-item">
+                    <a href="{{ route('app.settings.cache.clear') }}" class="nav-link">
+                        <i class="nav-link-icon pe-7s-shuffle"></i>
+                        Clear Cache
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="app-header-right">
