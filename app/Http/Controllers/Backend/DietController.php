@@ -10,6 +10,7 @@ use App\Models\Night;
 use App\Models\Noon;
 use App\Models\Diet;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
@@ -149,10 +150,22 @@ class DietController extends Controller
 
     public function create_diet_reports($id)
     {
+        $post_id = $id;
+        $diets = Diet::where('id', $post_id)->first();
+        $foods = Food::limit(100)->get();
+        $morning = Morning::where('post_id', $post_id)->get();
+        $noon = Noon::where('post_id', $post_id)->get();
+        $night = Night::where('post_id', $post_id)->get();
+        $morning_all = sum($post_id, $morning);
+        $noon_all = sum($post_id, $noon);
+        $night_all = sum($post_id, $night);
+        ini_set('memory_limit', '2048M');
+       $pdf = PDF::loadView('backend.reports.index',compact('morning','diets'));
 
-        return $id;
-        $user = User::with('userprofile')->where('id', $id)->first();
-        return view('backend.diets.create', compact('user'));
+        return $pdf->download($diets->name.'.pdf');
+
+
+    //    return view('backend.reports.index',compact('diets', 'morning', 'noon', 'night', 'morning_all', 'noon_all', 'night_all', 'post_id'));
     }
 
 

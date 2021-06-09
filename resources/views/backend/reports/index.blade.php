@@ -1,46 +1,366 @@
-@extends('layouts.backend.app')
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <title>Hello, world!</title>
+    <style>
+        #invoice {
+            padding: 30px;
+        }
 
-@section('title','Users')
+        .invoice {
+            position: relative;
+            background-color: #FFF;
+            min-height: 680px;
+            padding: 15px
+        }
 
-@push('css')
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-@endpush
+        .invoice header {
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #3989c6
+        }
 
-@section('content')
-    <div class="app-page-title">
-        <div class="page-title-wrapper">
-            <div class="page-title-heading">
-                <div class="page-title-icon">
-                    <i class="pe-7s-users icon-gradient bg-mean-fruit">
-                    </i>
+        .invoice .company-details {
+            text-align: right
+        }
+
+        .invoice .company-details .name {
+            margin-top: 0;
+            margin-bottom: 0
+        }
+
+        .invoice .contacts {
+            margin-bottom: 20px
+        }
+
+        .invoice .invoice-to {
+            text-align: left
+        }
+
+        .invoice .invoice-to .to {
+            margin-top: 0;
+            margin-bottom: 0
+        }
+
+        .invoice .invoice-details {
+            text-align: right
+        }
+
+        .invoice .invoice-details .invoice-id {
+            margin-top: 0;
+            color: #3989c6
+        }
+
+        .invoice main {
+            padding-bottom: 50px
+        }
+
+        .invoice main .thanks {
+            margin-top: -100px;
+            font-size: 2em;
+            margin-bottom: 50px
+        }
+
+        .invoice main .notices {
+            padding-left: 6px;
+            border-left: 6px solid #3989c6
+        }
+
+        .invoice main .notices .notice {
+            font-size: 1.2em
+        }
+
+        .invoice table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-bottom: 20px
+        }
+
+        .invoice table td, .invoice table th {
+            padding: 15px;
+            background: #eee;
+            border-bottom: 1px solid #fff
+        }
+
+        .invoice table th {
+            white-space: nowrap;
+            font-weight: 400;
+            font-size: 16px
+        }
+
+        .invoice table td h3 {
+            margin: 0;
+            font-weight: 400;
+            color: #3989c6;
+            font-size: 1.2em
+        }
+
+        .invoice table .qty, .invoice table .total, .invoice table .unit {
+            text-align: right;
+            font-size: 1.2em
+        }
+
+        .invoice table .no {
+            color: #fff;
+            font-size: 1.6em;
+            background: #3989c6
+        }
+
+        .invoice table .unit {
+            background: #ddd
+        }
+
+        .invoice table .total {
+            background: #3989c6;
+            color: #fff
+        }
+
+        .invoice table tbody tr:last-child td {
+            border: none
+        }
+
+        .invoice table tfoot td {
+            background: 0 0;
+            border-bottom: none;
+            white-space: nowrap;
+            text-align: right;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border-top: 1px solid #aaa
+        }
+
+        .invoice table tfoot tr:first-child td {
+            border-top: none
+        }
+
+        .invoice table tfoot tr:last-child td {
+            color: #3989c6;
+            font-size: 1.4em;
+            border-top: 1px solid #3989c6
+        }
+
+        .invoice table tfoot tr td:first-child {
+            border: none
+        }
+
+        .invoice footer {
+            width: 100%;
+            text-align: center;
+            color: #777;
+            border-top: 1px solid #aaa;
+            padding: 8px 0
+        }
+
+        @media print {
+            .invoice {
+                font-size: 11px !important;
+                overflow: hidden !important
+            }
+
+            .invoice footer {
+                position: absolute;
+                bottom: 10px;
+                page-break-after: always
+            }
+
+            .invoice > div:last-child {
+                page-break-before: always
+            }
+        }
+    </style>
+</head>
+<body>
+<!--Author      : @arboshiki-->
+<div id="invoice">
+    <div class="toolbar hidden-print">
+        <hr>
+    </div>
+    <div class="invoice overflow-auto">
+        <div style="min-width: 600px">
+            <header>
+                <div class="row">
+                    <div class="col">
+                        <a target="_blank" href="https://lobianijs.com">
+                            <img
+                                src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png"
+                                data-holder-rendered="true"/>
+                        </a>
+                    </div>
+                    <div class="col company-details">
+                        <h2 class="name">
+                            <a target="_blank" href="https://lobianijs.com">
+                                Arboshiki
+                            </a>
+                        </h2>
+                        <div>455 Foggy Heights, AZ 85004, US</div>
+                        <div>(123) 456-789</div>
+                        <div>company@example.com</div>
+                    </div>
                 </div>
-                <div>{{ __('All Diets') }}</div>
-            </div>
-            <div class="page-title-actions">
-                <div class="d-inline-block dropdown">
-                    <a href="{{ route('app.users.index') }}" class="btn-shadow btn btn-info">
-                        <span class="btn-icon-wrapper pr-2 opacity-7">
-                            <i class="fas fa-plus-circle fa-w-20"></i>
-                        </span>
-                        {{ __('Create Diet') }}
-                    </a>
+            </header>
+            <main>
+                <div class="text-gray-light align-content-center">CLIENT INFROMATION:</div>
+                <hr>
+                <div class="row contacts">
+
+                    <div class="col invoice-to">
+                        <h5 class="invoice-id">Basic</h5>
+                        <hr>
+                        <div class="address">Name: {{$diets->user->name}}}}</div>
+                        <div class="address">Age: {{$diets->user->userprofile->age}}</div>
+                        <div class="address">Sex: {{$diets->user->userprofile->gender}}</div>
+                        <div class="address">Dietary restrictions: {{$diets->user->userprofile->age}}</div>
+                        <div class="address">Allergy indication: {{$diets->user->userprofile->gender}}</div>
+                        <div class="address">Exercise: {{$diets->user->userprofile->gender}}</div>
+                        <div class="address">Gym access: {{$diets->user->userprofile->gender}}</div>
+                        <div class="address">Medicine: {{$diets->user->userprofile->gender}}</div>
+                    </div>
+                    <div class="col invoice-details">
+                        <h5 class="invoice-id">Advanced</h5>
+                        <hr>
+                        <div class="address">Health condition: {{$diets->user->userprofile->gender}}</div>
+                        <div class="address">Blood pressure: {{$diets->user->userprofile->gender}}</div>
+                        <div class="address">Diabetes: {{$diets->user->userprofile->gender}}</div>
+                        <div class="address">Current BMI: {{$diets->user->userprofile->bmi}}</div>
+                        <div class="address">Current Ponderal Index Status: {{$diets->user->userprofile->ponderalindex}}</div>
+                        <div class="address">Current Body fat Status: {{$diets->user->userprofile->bodyfat}}</div>
+                        <div class="address">Current BMR status: {{$diets->user->userprofile->bmr}}</div>
+                        <div class="address">Current BSA status: {{$diets->user->userprofile->bsa}}</div>
+
+                    </div>
                 </div>
-            </div>
+                <hr>
+                <div class="row contacts">
+                    <div class="col invoice-to">
+                        <h2 class="to">Morning</h2>
+                    </div>
+                    <div class="col invoice-details">
+                        <div class="date">Time: </div>
+                    </div>
+                </div>
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th class="text-left">Food name</th>
+                        <th class="text-right">SERVING</th>
+                        <th class="text-right">Calories</th>
+                        <th class="text-right">Protein</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($morning as $roww)
+                        @php
+                            $row=  \App\Models\Food::where('id',$roww->food_id)->first();
+                        @endphp
+                    <tr>
+                        <td class="no">04</td>
+                        <td class="text-left"><h3>
+                              {{$row->name}}
+                        </td>
+                        <td class="unit">$0.00</td>
+                        <td class="qty">100</td>
+                        <td class="total">$0.00</td>
+                    </tr>
+                    @endforeach
+                    <tr>
+                        <td class="no">Total</td>
+                        <td class="text-left"><h3>
+
+                        </td>
+                        <td class="unit">$0.00</td>
+                        <td class="qty">100</td>
+                        <td class="total">$0.00</td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
+                <div class="notices">
+                    <div>Additional:</div>
+                    <div class="notice">Black Tea, no sugar @ 11:30</div>
+                </div>
+                <hr>
+
+
+
+
+
+
+                <div class="row contacts">
+                    <div class="col invoice-to">
+                        <h2 class="to">Morning</h2>
+                    </div>
+                    <div class="col invoice-details">
+                        <div class="date">Due Date: 30/10/2018</div>
+                    </div>
+                </div>
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th class="text-left">DESCRIPTION</th>
+                        <th class="text-right">HOUR PRICE</th>
+                        <th class="text-right">HOURS</th>
+                        <th class="text-right">TOTAL</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="no">04</td>
+                        <td class="text-left"><h3>
+                                <a target="_blank" href="https://www.youtube.com/channel/UC_UMEcP_kF0z4E6KbxCpV1w">
+                                    Youtube channel
+                                </a>
+                            </h3>
+                            <a target="_blank" href="https://www.youtube.com/channel/UC_UMEcP_kF0z4E6KbxCpV1w">
+                                Useful videos
+                            </a>
+                            to improve your Javascript skills. Subscribe and stay tuned :)
+                        </td>
+                        <td class="unit">$0.00</td>
+                        <td class="qty">100</td>
+                        <td class="total">$0.00</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="2">SUBTOTAL</td>
+                        <td>$5,200.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="2">TAX 25%</td>
+                        <td>$1,300.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"></td>
+                        <td colspan="2">GRAND TOTAL</td>
+                        <td>$6,500.00</td>
+                    </tr>
+                    </tfoot>
+                </table>
+                <div class="thanks">Thank you!</div>
+                <div class="notices">
+                    <div>NOTICE:</div>
+                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                </div>
+            </main>
+            <footer>
+                Invoice was created on a computer and is valid without the signature and seal.
+            </footer>
         </div>
+        <!--DO NOT DELETE THIS div. IT is responsible for showing footer always at the bottom-->
+        <div></div>
     </div>
-    <div class="row">
-
-
-    </div>
-@endsection
-
-@push('js')
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Datatable
-            $("#datatable").DataTable();
-        });
-    </script>
-@endpush
+</div>
+</body>
+</html>
