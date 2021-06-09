@@ -42,7 +42,7 @@ Route::get('user/{id}/creatediet',[DietController::class, 'creatediet'])->name('
 Route::get('diets/{id}/generate',[DietController::class, 'show'])->name('diet.generator.show.single');
 Route::get('diets/{id}/show',[DietController::class, 'diet_single'])->name('diet.show.single');
 
-
+Route::get('diets/{id}/createpdf',[DietController::class, 'create_diet_reports'])->name('diets.createpdf');
 
 //add foods to periods eg. morning/noon/night
 Route::get('diets/{food_id}/{post_id}/{check}',[DietController::class, 'show_post'])->name('diets.show.new');

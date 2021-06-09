@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Food;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Diet;
@@ -26,6 +27,7 @@ class DashboardController extends Controller
         $data['users'] = User::orderBy('last_login_at', 'desc')->take(10)->get();
         $data['users_this_month'] = user_this_month();
         $data['users_last_month'] =user_last_month();
+        $data['total_foods'] = Food::count();
 
 
         $role = Auth::user()->role->slug;

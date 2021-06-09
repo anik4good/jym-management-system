@@ -7,6 +7,7 @@ use App\Imports\FoodImport;
 use App\Models\Food;
 use Illuminate\Filesystem\Cache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\DataTables;
 
@@ -15,6 +16,7 @@ class FoodController extends Controller
 
     public function index()
     {
+        Gate::authorize('app.foods.index');
          $foods = Food::getAllFoods();
 //        $foods = Cache()->remember('food-all', 60 * 60 * 24, function () {
 //            return Food::all();

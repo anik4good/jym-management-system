@@ -13,6 +13,7 @@ use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 
 class DietController extends Controller
 {
@@ -20,6 +21,9 @@ class DietController extends Controller
     public function index()
     {
         $diets = Diet::all();
+        if (Auth::user()->role->slug == 'user') {
+            $diets = Diet::where('user_id', Auth::id())->get();
+        }
       return view('backend.diets.index',compact('diets'));
     }
 
@@ -36,10 +40,10 @@ class DietController extends Controller
     {
 
         $prepmeal = new Diet();
-        $prepmeal->user_id = 1;
+        $prepmeal->user_id = $request->user_id;
         $prepmeal->name = $request->name;
         $prepmeal->save();
-        Artisan::call('create:meal --calories=' . $request->calories . ' --meals=' . $request->meals . ' --user_id=1 --user_meal_id=' . $prepmeal->id);
+        Artisan::call('create:meal --calories=' . $request->calories . ' --meals=' . $request->meals . ' --user_id=' . $request->user_id.' --user_meal_id=' . $prepmeal->id);
         return redirect()->route('app.diet.generator.show.single', $prepmeal->id);
 
     }
@@ -126,7 +130,7 @@ class DietController extends Controller
     {
 
         $post_id = $id;
-        $foods = Food::limit(100)->get();
+        $diet = Diet::where('id', $post_id)->first();
         $morning = Morning::where('post_id', $post_id)->get();
         $noon = Noon::where('post_id', $post_id)->get();
         $night = Night::where('post_id', $post_id)->get();
@@ -136,14 +140,20 @@ class DietController extends Controller
         $night_all = sum($post_id, $night);
 
         // $morning_calories= Morning::where('post_id',$id)->sum('calories');
-        return view('backend.diets.show', compact('foods', 'morning', 'noon', 'night', 'morning_all', 'noon_all', 'night_all', 'post_id'));
+        return view('backend.diets.show', compact('diet', 'morning', 'noon', 'night', 'morning_all', 'noon_all', 'night_all', 'post_id'));
 
 
     }
 
 
 
+    public function create_diet_reports($id)
+    {
 
+        return $id;
+        $user = User::with('userprofile')->where('id', $id)->first();
+        return view('backend.diets.create', compact('user'));
+    }
 
 
 
