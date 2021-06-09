@@ -122,7 +122,6 @@ if (!function_exists('bmi')) {
 
     }
 
-
     function sum($post_id,$table)
     {
         $data = [];

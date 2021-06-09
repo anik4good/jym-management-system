@@ -4,6 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <title>Hello, world!</title>
@@ -188,14 +190,14 @@
                     <div class="col">
                         <a target="_blank" href="https://lobianijs.com">
                             <img
-                                src="http://lobianijs.com/lobiadmin/version/1.0/ajax/img/logo/lobiadmin-logo-text-64.png"
+                                src="https://www.amifit.net/wp/wp-content/uploads/2021/02/cropped-output-onlinepngtools-1-147x149.png"
                                 data-holder-rendered="true"/>
                         </a>
                     </div>
                     <div class="col company-details">
                         <h2 class="name">
                             <a target="_blank" href="https://lobianijs.com">
-                                Arboshiki
+                                Ami Fit
                             </a>
                         </h2>
                         <div>455 Foggy Heights, AZ 85004, US</div>
@@ -208,11 +210,10 @@
                 <div class="text-gray-light align-content-center">CLIENT INFROMATION:</div>
                 <hr>
                 <div class="row contacts">
-
                     <div class="col invoice-to">
                         <h5 class="invoice-id">Basic</h5>
                         <hr>
-                        <div class="address">Name: {{$diets->user->name}}}}</div>
+                        <div class="address">Name: {{$diets->user->name}}</div>
                         <div class="address">Age: {{$diets->user->userprofile->age}}</div>
                         <div class="address">Sex: {{$diets->user->userprofile->gender}}</div>
                         <div class="address">Dietary restrictions: {{$diets->user->userprofile->age}}</div>
@@ -236,48 +237,61 @@
                     </div>
                 </div>
                 <hr>
+                <div class="notices">
+                    <div>Diet Name:</div>
+                    <div class="notice">{{$diets->name}}</div>
+                </div>
+                <hr>
                 <div class="row contacts">
                     <div class="col invoice-to">
                         <h2 class="to">Morning</h2>
                     </div>
                     <div class="col invoice-details">
-                        <div class="date">Time: </div>
+                        <div class="date">Time: {{$morning_time}}</div>
                     </div>
                 </div>
                 <table border="0" cellspacing="0" cellpadding="0">
                     <thead>
                     <tr>
-                        <th>#</th>
+                        <th class="text-left">#</th>
                         <th class="text-left">Food name</th>
                         <th class="text-right">SERVING</th>
                         <th class="text-right">Calories</th>
+                        <th class="text-right">Fat</th>
                         <th class="text-right">Protein</th>
+                        <th class="text-right">Carbohydrates</th>
 
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($morning as $roww)
+                    @foreach($morning as $key=>$roww)
                         @php
                             $row=  \App\Models\Food::where('id',$roww->food_id)->first();
                         @endphp
                     <tr>
-                        <td class="no">04</td>
+                        <td class="text-left">{{$key+1}}</td>
                         <td class="text-left"><h3>
                               {{$row->name}}
                         </td>
-                        <td class="unit">$0.00</td>
-                        <td class="qty">100</td>
-                        <td class="total">$0.00</td>
+                        <td class="qty">{{$row->calories}}</td>
+                        <td class="qty">{{$row->calories}}</td>
+                        <td class="qty">{{$row->fat}}</td>
+                        <td class="qty">{{$row->protein}}</td>
+                        <td class="qty">{{$row->carbohydrate}}</td>
                     </tr>
                     @endforeach
                     <tr>
                         <td class="no">Total</td>
-                        <td class="text-left"><h3>
+                        <td class="text-left">
 
                         </td>
-                        <td class="unit">$0.00</td>
-                        <td class="qty">100</td>
-                        <td class="total">$0.00</td>
+                        <td class="text-left">
+
+                        </td>
+                        <td class="total">{{$morning_all['calories']}}</td>
+                        <td class="total">{{$morning_all['fat']}}</td>
+                        <td class="total">{{$morning_all['protein']}}</td>
+                        <td class="total">{{$morning_all['carbohydrate']}}</td>
                     </tr>
 
                     </tbody>

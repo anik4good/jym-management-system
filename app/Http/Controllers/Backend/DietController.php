@@ -25,7 +25,7 @@ class DietController extends Controller
         if (Auth::user()->role->slug == 'user') {
             $diets = Diet::where('user_id', Auth::id())->get();
         }
-      return view('backend.diets.index',compact('diets'));
+        return view('backend.diets.index', compact('diets'));
     }
 
 
@@ -44,7 +44,7 @@ class DietController extends Controller
         $prepmeal->user_id = $request->user_id;
         $prepmeal->name = $request->name;
         $prepmeal->save();
-        Artisan::call('create:meal --calories=' . $request->calories . ' --meals=' . $request->meals . ' --user_id=' . $request->user_id.' --user_meal_id=' . $prepmeal->id);
+        Artisan::call('create:meal --calories=' . $request->calories . ' --meals=' . $request->meals . ' --user_id=' . $request->user_id . ' --user_meal_id=' . $prepmeal->id);
         return redirect()->route('app.diet.generator.show.single', $prepmeal->id);
 
     }
@@ -102,7 +102,7 @@ class DietController extends Controller
         if ($request->period == 'morning') {
             $data = Morning::where('post_id', $request->post_id)->get();
             foreach ($data as $row) {
-                $data->update([
+                $row->update([
                     'time' => $time,
                 ]);
             }
@@ -147,7 +147,6 @@ class DietController extends Controller
     }
 
 
-
     public function create_diet_reports($id)
     {
         $post_id = $id;
@@ -159,13 +158,15 @@ class DietController extends Controller
         $morning_all = sum($post_id, $morning);
         $noon_all = sum($post_id, $noon);
         $night_all = sum($post_id, $night);
+
+        $morning_time = Morning::where('post_id', $post_id)->pluck('time')->first();
         ini_set('memory_limit', '2048M');
-       $pdf = PDF::loadView('backend.reports.index',compact('morning','diets'));
+        //    $pdf = PDF::loadView('backend.reports.index',compact('morning','diets'));
 
-        return $pdf->download($diets->name.'.pdf');
+        //  return $pdf->download($diets->name.'.pdf');
 
 
-    //    return view('backend.reports.index',compact('diets', 'morning', 'noon', 'night', 'morning_all', 'noon_all', 'night_all', 'post_id'));
+        return view('backend.reports.index', compact('diets', 'morning', 'noon', 'night', 'morning_all', 'noon_all', 'night_all', 'post_id', 'morning_time'));
     }
 
 
