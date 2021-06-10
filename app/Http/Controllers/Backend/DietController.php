@@ -59,10 +59,32 @@ class DietController extends Controller
 
         Gate::authorize('app.diet.generator.show.single');
         $post_id = $id;
-        $foods = Food::limit(100)->get();
-        $morning = Morning::where('post_id', $post_id)->get();
-        $noon = Noon::where('post_id', $post_id)->get();
-        $night = Night::where('post_id', $post_id)->get();
+
+        $foods = Food::getAllFoods();
+
+       // $morning = Morning::where('post_id', $post_id)->get();
+       // $noon = Noon::where('post_id', $post_id)->get();
+       // $night = Night::where('post_id', $post_id)->get();
+
+         $morning = Morning::where('post_id', $post_id)->get();
+        $noon = DB::table('noons')->where('post_id', $post_id)->get();
+        $night = DB::table('nights')->where('post_id', $post_id)->get();
+
+//        $morning = Cache()->remember('morning-all', 60 * 60 * 24, function () use ($post_id) {
+//            return   DB::table('mornings')->where('post_id', $post_id)->get();
+//        });
+//
+//        $noon = Cache()->remember('noon-all', 60 * 60 * 24, function () use ($post_id) {
+//            return   DB::table('noons')->where('post_id', $post_id)->get();
+//        });
+//
+//        $night = Cache()->remember('night-all', 60 * 60 * 24, function () use ($post_id) {
+//            return   DB::table('nights')->where('post_id', $post_id)->get();
+//        });
+
+   //     $morning = Morning::getAllmorning($post_id);
+
+
         $morning_all = sum($post_id, $morning);
         $noon_all = sum($post_id, $noon);
         $night_all = sum($post_id, $night);

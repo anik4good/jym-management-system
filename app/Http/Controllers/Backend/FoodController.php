@@ -7,6 +7,7 @@ use App\Imports\FoodImport;
 use App\Models\Food;
 use Illuminate\Filesystem\Cache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\DataTables;
@@ -17,12 +18,17 @@ class FoodController extends Controller
     public function index()
     {
         Gate::authorize('app.foods.index');
-         $foods = Food::getAllFoods();
+         //$foods = Food::getAllFoods();
+      // $foods =   DB::table('food')->get();
+        $foods = Food::paginate(10);
+
 //        $foods = Cache()->remember('food-all', 60 * 60 * 24, function () {
 //            return Food::all();
 //        });
 
-
+//        $foods = Cache()->remember('food-all', 60 * 60 * 24, function () {
+//            return DB::table('food')->get();
+//        });
         return view('backend.foods.index', compact('foods'));
 
         //return view('backend.foods.food');
