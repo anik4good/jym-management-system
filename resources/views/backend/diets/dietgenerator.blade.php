@@ -99,6 +99,8 @@
                         </tbody>
 
                     </table>
+
+{{--                    {{$foods->links()}}--}}
                 </div>
             </div>
         </div>

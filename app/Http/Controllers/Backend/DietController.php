@@ -61,6 +61,7 @@ class DietController extends Controller
         $post_id = $id;
 
         $foods = Food::getAllFoods();
+       // $foods = Food::paginate(10);
 
        // $morning = Morning::where('post_id', $post_id)->get();
        // $noon = Noon::where('post_id', $post_id)->get();

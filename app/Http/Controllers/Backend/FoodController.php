@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Imports\FoodImport;
 use App\Models\Food;
+use App\User;
+use Carbon\Carbon;
 use Illuminate\Filesystem\Cache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Maatwebsite\Excel\Facades\Excel;
@@ -15,23 +18,27 @@ use Yajra\DataTables\DataTables;
 class FoodController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         Gate::authorize('app.foods.index');
          //$foods = Food::getAllFoods();
       // $foods =   DB::table('food')->get();
-        $foods = Food::paginate(10);
+     //   $foods = Food::paginate(10);
 
-//        $foods = Cache()->remember('food-all', 60 * 60 * 24, function () {
-//            return Food::all();
-//        });
 
-//        $foods = Cache()->remember('food-all', 60 * 60 * 24, function () {
-//            return DB::table('food')->get();
-//        });
-        return view('backend.foods.index', compact('foods'));
 
-        //return view('backend.foods.food');
+        $foods = Food::where(function ($q) use ($request) {
+            if ($request->id) {
+                $q->where('name', 'LIKE', "%$request->name%");
+            }
+            })
+
+            ->paginate(10);
+
+
+        return view('backend.foods.index', compact('foods','request'));
+
+
     }
 
 
@@ -97,4 +104,6 @@ class FoodController extends Controller
     {
         //
     }
+
+
 }

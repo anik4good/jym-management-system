@@ -36,6 +36,8 @@ Route::resource('users', UserController::class);
 
 Route::resource('foods', FoodController::class);
 Route::get('foods/list/', [FoodController::class, 'getFoods'])->name('food.list');
+
+Route::get('foods/search', [FoodController::class, 'search'])->name('food.search');
 //diet
 Route::resource('diets', DietController::class);
 Route::get('user/{id}/creatediet',[DietController::class, 'creatediet'])->name('diets.createmeal');
