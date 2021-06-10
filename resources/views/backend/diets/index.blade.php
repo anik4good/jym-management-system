@@ -80,9 +80,15 @@
                                 </td>
                                 <td class="text-center">
                                     <a class="btn btn-info btn-sm"
+                                       href="{{ route('app.diet.generator.show.single','diet_id='.$diet->id) }}"><i
+                                            class="fas fa-edit"></i>
+                                        <span>Edit</span>
+                                    </a>
+
+                                    <a class="btn btn-success  btn-sm"
                                        href="{{ route('app.diet.show.single',$diet->id) }}"><i
                                             class="fas fa-eye"></i>
-                                        <span>Details</span>
+                                        <span>View</span>
                                     </a>
                                 </td>
                             </tr>

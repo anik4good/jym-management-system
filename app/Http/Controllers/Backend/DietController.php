@@ -48,19 +48,36 @@ class DietController extends Controller
         $prepmeal->name = $request->name;
         $prepmeal->save();
         Artisan::call('create:meal --calories=' . $request->calories . ' --meals=' . $request->meals . ' --user_id=' . $request->user_id . ' --user_meal_id=' . $prepmeal->id);
-        return redirect()->route('app.diet.generator.show.single', $prepmeal->id);
+        return redirect()->route('app.diet.generator.show.single','diet_id='.$prepmeal->id);
 
     }
 
 
     //diet generator for single diets
-    public function show($id)
+    public function show(Request $request)
     {
 
-        Gate::authorize('app.diet.generator.show.single');
-        $post_id = $id;
 
-        $foods = Food::getAllFoods();
+
+        Gate::authorize('app.diet.generator.show.single');
+
+        $post_id = $request->diet_id;
+        $table = new Food();
+
+        $foods = $table->where(function ($q) use ($request) {
+            if ($request->data) {
+                //  $q->where('$request->data', 'LIKE', "%$request->data%");
+                $q->whereBetween($request->data, [$request->start, $request->end])->orderby($request->data);
+            }
+            else {
+                //nothing
+            }
+        })->paginate(10);
+
+
+        $foods->withPath('?diet_id='.$post_id.'&data='.$request->data.'&start='.$request->start.'&end='.$request->end.'');
+
+        $column = $table->getTableColumns();
        // $foods = Food::paginate(10);
 
        // $morning = Morning::where('post_id', $post_id)->get();
@@ -92,38 +109,45 @@ class DietController extends Controller
 
 
         // $morning_calories= Morning::where('post_id',$id)->sum('calories');
-        return view('backend.diets.dietgenerator', compact('foods', 'morning', 'noon', 'night', 'morning_all', 'noon_all', 'night_all', 'post_id'));
+        return view('backend.diets.dietgenerator', compact('foods', 'morning', 'noon', 'night', 'morning_all', 'noon_all', 'night_all', 'post_id','column'));
 
 
     }
 
 
+
     //Add foods into diets periods
-    public function add_foods($food_id, $post_id, $check)
+    public function add_foods(Request $request)
     {
 
         $morning = new Morning();
         $noon = new Noon();
         $night = new Night();
 
-        if ($check == "Morning") {
-            $morning->post_id = $post_id;
+        if ($request->check == "Morning") {
+            $morning->post_id = $request->post_id;
             $morning->user_id = 1;
-            $morning->food_id = $food_id;
+            $morning->food_id = $request->food_id;
             $morning->save();
-        } else if ($check == "Noon") {
-            $noon->post_id = $post_id;
-            $noon->user_id = 1;
-            $noon->food_id = $food_id;
-            $noon->save();
-        } else if ($check == "night") {
-            $night->post_id = $post_id;
-            $night->user_id = 1;
-            $night->food_id = $food_id;
-            $night->save();
+            notify()->success('Food Successfully Added into Morning.', 'Added');
         }
-        notify()->success('Meal Successfully Added.', 'Added');
-        return redirect()->route('app.diet.generator.show.single', $post_id);
+
+        else if ($request->check == "noon") {
+            $noon->post_id = $request->post_id;
+            $noon->user_id = 1;
+            $noon->food_id = $request->food_id;
+            $noon->save();
+            notify()->success('Food Successfully Added into Noon.', 'Added');
+        }
+        else if ($request->check == "night") {
+            $night->post_id = $request->post_id;
+            $night->user_id = 1;
+            $night->food_id = $request->food_id;
+            $night->save();
+            notify()->success('Food Successfully Added into Night.', 'Added');
+        }
+
+        return redirect()->route('app.diet.generator.show.single','diet_id='.$request->post_id);
     }
 
     public function updatemealtime(Request $request)

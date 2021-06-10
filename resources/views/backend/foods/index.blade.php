@@ -17,7 +17,7 @@
             </div>
             <div class="page-title-actions">
                 <div class="d-inline-block dropdown">
-                    <a href="{{ route('app.foods.create') }}"  class="btn-shadow btn btn-info">
+                    <a href="{{ route('app.foods.create') }}" class="btn-shadow btn btn-info">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fas fa-plus-circle fa-w-20"></i>
                         </span>
@@ -28,15 +28,45 @@
         </div>
     </div>
 
-{{--        <div class="row">--}}
-{{--            <div class="src-area">--}}
-{{--                <form method="GET" action="{{route('app.foods.index')}}">--}}
-
-{{--                    <input class="src-input" value="1" type="id" placeholder="Type of search" name="id">--}}
-{{--                    <button  type="submit"><i class="ion-ios-search-strong"></i>ssdsdsd</button>--}}
-{{--                </form>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+    <div class="row">
+        <form method="GET" action="{{route('app.foods.index')}}">
+            <div class="col-md-12">
+                <div class="main-card mb-3 card">
+                    <div class="card-body"><h5 class="card-title">Inline</h5>
+                        <div class="position-relative form-group">
+                            <div>
+                                <div class="custom-checkbox custom-control custom-control-inline">
+                                    <select type="select" id="exampleCustomSelect" name="data" class="custom-select">
+                                        <option value="">Select Data</option>
+                                        <option>{{$column[4]}}</option>
+                                        <option>{{$column[5]}}</option>
+                                        <option>{{$column[6]}}</option>
+                                        <option>{{$column[7]}}</option>
+                                        <option>{{$column[8]}}</option>
+                                        <option>{{$column[9]}}</option>
+                                    </select>
+                                </div>
+                                <div class="custom-checkbox custom-control custom-control-inline">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-danger">From</button>
+                                    </div>
+                                    <input type="text" placeholder="Start" name="start" class="form-control">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-success">To</button>
+                                    </div>
+                                    <input type="text" placeholder="End" name="end" class="form-control">
+                                </div>
+                                <div class="custom-checkbox custom-control custom-control-inline">
+                                    <button class="btn btn-outline-success btn-lg btn-block">Filter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 
 
     <div class="row">
@@ -44,11 +74,11 @@
             <div class="main-card mb-6 card">
                 <div class="table-responsive">
                     <table id="datatable" class="align-middle mb-0 table table-borderless table-striped table-hover">
-{{--                    <table  class="align-middle mb-0 table table-borderless table-striped table-hover">--}}
                         <thead>
                         <tr>
                             <th class="text-center">ID</th>
                             <th>Name</th>
+                            <th>Image</th>
                             <th class="text-center">Food Group</th>
                             <th class="text-center">Calories</th>
                             <th class="text-center">Fat</th>
@@ -58,8 +88,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($foods->chunk(250) as $roww)
-                        @foreach($roww as $row)
+                        @foreach($foods as $row)
                             <tr>
                                 <td>
                                     <div class="widget-content p-0">
@@ -103,12 +132,11 @@
                                     </a>
                                 </td>
                             </tr>
-                        @endforeach
+
                         @endforeach
                         </tbody>
-
                     </table>
-{{--                    {{$foods->links()}}--}}
+                    {{$foods->links()}}
                 </div>
             </div>
         </div>
@@ -119,15 +147,13 @@
 @push('js')
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Datatable
-            $("#datatable").DataTable( {
-                "pagingType": "full_numbers"
-            } );
-        });
 
-    </script>
+    {{--    <script type="text/javascript">--}}
+    {{--        $(document).ready(function () {--}}
+    {{--            // Datatable--}}
+    {{--            $("#datatable").DataTable({});--}}
+    {{--        });--}}
+    {{--    </script>--}}
 
 
 @endpush

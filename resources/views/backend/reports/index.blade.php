@@ -244,7 +244,7 @@
                 <hr>
                 <div class="row contacts">
                     <div class="col invoice-to">
-                        <h2 class="to">Morning</h2>
+                        <h2 class="to">Breakfast</h2>
                     </div>
                     <div class="col invoice-details">
                         <div class="date">Time: {{$morning_time}}</div>

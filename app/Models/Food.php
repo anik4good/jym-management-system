@@ -20,11 +20,13 @@ class Food extends Model
     public static function getAllFoods()
     {
         return Cache::rememberForever('food.all', function() {
-            return self::latest('id')->paginate(10);
+            return self::latest('id')->paginate(1000);
         });
     }
 
-
+    public function getTableColumns() {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
 
     public static function flushCache()
     {
