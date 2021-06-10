@@ -39,12 +39,10 @@
                                 <div class="custom-checkbox custom-control custom-control-inline">
                                     <select type="select" id="exampleCustomSelect" name="data" class="custom-select">
                                         <option value="">Select Data</option>
-                                        <option>{{$column[4]}}</option>
-                                        <option>{{$column[5]}}</option>
-                                        <option>{{$column[6]}}</option>
-                                        <option>{{$column[7]}}</option>
-                                        <option>{{$column[8]}}</option>
-                                        <option>{{$column[9]}}</option>
+                                        <option>calories</option>
+                                        <option>fat</option>
+                                        <option>protein</option>
+                                        <option>carbohydrate</option>
                                     </select>
                                 </div>
                                 <div class="custom-checkbox custom-control custom-control-inline">
