@@ -28,27 +28,27 @@
         </div>
     </div>
 
-        <div class="row">
-            <div class="src-area">
-                <form method="GET" action="{{route('app.foods.index')}}">
+{{--        <div class="row">--}}
+{{--            <div class="src-area">--}}
+{{--                <form method="GET" action="{{route('app.foods.index')}}">--}}
 
-                    <input class="src-input" value="1" type="id" placeholder="Type of search" name="id">
-                    <button  type="submit"><i class="ion-ios-search-strong"></i>ssdsdsd</button>
-                </form>
-            </div>
-        </div>
+{{--                    <input class="src-input" value="1" type="id" placeholder="Type of search" name="id">--}}
+{{--                    <button  type="submit"><i class="ion-ios-search-strong"></i>ssdsdsd</button>--}}
+{{--                </form>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
 
     <div class="row">
         <div class="col-md-12">
             <div class="main-card mb-6 card">
                 <div class="table-responsive">
-{{--                    <table id="datatable" class="align-middle mb-0 table table-borderless table-striped table-hover">--}}
-                    <table  class="align-middle mb-0 table table-borderless table-striped table-hover">
+                    <table id="datatable" class="align-middle mb-0 table table-borderless table-striped table-hover">
+{{--                    <table  class="align-middle mb-0 table table-borderless table-striped table-hover">--}}
                         <thead>
                         <tr>
                             <th class="text-center">ID</th>
-                            <th>Nameww</th>
+                            <th>Name</th>
                             <th class="text-center">Food Group</th>
                             <th class="text-center">Calories</th>
                             <th class="text-center">Fat</th>
@@ -58,7 +58,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($foods as $row)
+                        @foreach($foods->chunk(250) as $roww)
+                        @foreach($roww as $row)
                             <tr>
                                 <td>
                                     <div class="widget-content p-0">
@@ -103,10 +104,11 @@
                                 </td>
                             </tr>
                         @endforeach
+                        @endforeach
                         </tbody>
 
                     </table>
-                    {{$foods->links()}}
+{{--                    {{$foods->links()}}--}}
                 </div>
             </div>
         </div>
@@ -128,37 +130,4 @@
     </script>
 
 
-
-
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $('#country').on('keyup',function() {
-                var query = $(this).val();
-                $.ajax({
-
-                    url:"{{ route('app.food.search') }}",
-
-                    type:"GET",
-
-                    data:{'country':query},
-
-                    success:function (data) {
-
-                        $('#country_list').html(data);
-                    }
-                })
-                // end of ajax call
-            });
-
-
-            $(document).on('click', 'li', function(){
-
-                var value = $(this).text();
-                $('#country').val(value);
-                $('#country_list').html("");
-            });
-        });
-    </script>
 @endpush

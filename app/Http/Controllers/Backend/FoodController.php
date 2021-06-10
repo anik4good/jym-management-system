@@ -18,28 +18,48 @@ use Yajra\DataTables\DataTables;
 class FoodController extends Controller
 {
 
-    public function index(Request $request)
+//    public function index(Request $request)
+//    {
+//        Gate::authorize('app.foods.index');
+//         //$foods = Food::getAllFoods();
+//      // $foods =   DB::table('food')->get();
+//     //   $foods = Food::paginate(10);
+//
+//
+//
+//        $foods = Food::where(function ($q) use ($request) {
+//            if ($request->id) {
+//                $q->where('name', 'LIKE', "%$request->name%");
+//            }
+//            })
+//
+//            ->paginate(10);
+//
+//
+//        return view('backend.foods.index', compact('foods','request'));
+//
+//
+//    }
+
+
+    public function index()
     {
         Gate::authorize('app.foods.index');
-         //$foods = Food::getAllFoods();
-      // $foods =   DB::table('food')->get();
-     //   $foods = Food::paginate(10);
+        //$foods = Food::getAllFoods();
+        $foods = Food::all();
+        // $foods =   DB::table('food')->get();
+        //   $foods = Food::paginate(10);
 
 
 
-        $foods = Food::where(function ($q) use ($request) {
-            if ($request->id) {
-                $q->where('name', 'LIKE', "%$request->name%");
-            }
-            })
-
-            ->paginate(10);
-
+   //      $foods =   DB::table('food')->latest('id')->limit(1000);
+$request=1;
 
         return view('backend.foods.index', compact('foods','request'));
 
 
     }
+
 
 
     public function getFoods(Request $request)
