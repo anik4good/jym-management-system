@@ -6,6 +6,7 @@ use App\Http\Requests\Profile\UpdatePasswordRequest;
 use App\Http\Requests\Profile\UpdateProfileRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Userprofile;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
@@ -53,6 +54,7 @@ class ProfileController extends Controller
                 'bodyfat' => $bodyfat,
                 'bmr' => $bmr,
                 'bsa' => $bsa,
+
             ]);
 
         }
@@ -74,6 +76,7 @@ return 'already there';
                 'bodyfat' => $bodyfat,
                 'bmr' => $bmr,
                 'bsa' => $bsa,
+                'created_at' => Carbon::now()
             ]);
         }
 

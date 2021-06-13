@@ -8,6 +8,7 @@ use App\Models\Page;
 use App\Models\Diet;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Userprofile;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

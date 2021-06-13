@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Models\Userprofile;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -84,7 +85,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
         Userprofile::create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'created_at' => Carbon::now()
         ]);
 
 return  $user;

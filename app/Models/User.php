@@ -119,7 +119,17 @@ class User extends Authenticatable implements HasMedia
 
     public function userprofile()
     {
-        return $this->hasOne(Userprofile::class, 'user_id', 'id');
+        return $this->hasOne(Userprofile::class, 'user_id', 'id')->latest();
     }
+
+    public function userprofile_all()
+    {
+        return $this->hasMany(Userprofile::class, 'user_id', 'id');
+    }
+//    public function userprofile()
+//    {
+//        return $this->morphOne(Userprofile::class, 'user_id', 'id')->latestOfMany();
+//    }
+
 
 }
