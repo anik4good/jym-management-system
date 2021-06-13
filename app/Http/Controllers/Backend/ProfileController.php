@@ -22,10 +22,60 @@ class ProfileController extends Controller
     public function update(UpdateProfileRequest $request)
     {
 
+
         // Get logged in user
         $user = Auth::user();
         $userprofile = Userprofile::where('user_id',Auth::id())->first();
+        //get data
+        $weight = $request->weight;
+        $height = $request->height;
+        $age = $request->age;
+        //bmi done
+        $bmi = bmi($weight,$height);
+        $bmi2 = bmi_weight($bmi);
+        // Body Fat (BMI method)
+        $bodyfat = body_fat($userprofile->age,$bmi);
+        //Ponderal Index in KG done
+        $pi = pindex($weight,$height);
+//        Basal Metabolic Rate (BMR)
+        $bmr = bmr($weight,$height,$userprofile->age);
+//        Body Surface Area:(Mosteller formula:)
+        $bsa = bsa($weight,$height,$userprofile->age);
+        if (empty($userprofile->bmi))
+        {
+            $userprofile->update([
+                'user_id' => $userprofile->user_id,
+                'weight' => $weight,
+                'height' => $height,
+                'age' => $age,
+                'bmi' => $bmi,
+                'ponderalindex' => $pi,
+                'bodyfat' => $bodyfat,
+                'bmr' => $bmr,
+                'bsa' => $bsa,
+            ]);
 
+        }
+
+        else if ($userprofile->weight==$weight && $userprofile->height==$height && $userprofile->age==$age)
+        {
+return 'already there';
+        }
+
+        else
+        {
+            $userprofile->insert([
+                'user_id' => $userprofile->user_id,
+                'weight' => $weight,
+                'height' => $height,
+                'age' => $age,
+                'bmi' => $bmi,
+                'ponderalindex' => $pi,
+                'bodyfat' => $bodyfat,
+                'bmr' => $bmr,
+                'bsa' => $bsa,
+            ]);
+        }
 
         // Update user info
         $user->update([
@@ -37,35 +87,7 @@ class ProfileController extends Controller
             $user->addMedia($request->avatar)->toMediaCollection('avatar');
         }
 
-        //get data
-        $weight = $request->weight;
-        $height = $request->height;
-        $age = $request->age;
 
-        //bmi done
-        $bmi = bmi($weight,$height);
-        $bmi2 = bmi_weight($bmi);
-
-        // Body Fat (BMI method)
-        $bodyfat = body_fat($userprofile->age,$bmi);
-        //Ponderal Index in KG done
-        $pi = pindex($weight,$height);
-//        Basal Metabolic Rate (BMR)
-        $bmr = bmr($weight,$height,$userprofile->age);
-//        Body Surface Area:(Mosteller formula:)
-        $bsa = bsa($weight,$height,$userprofile->age);
-
-        $userprofile->update([
-            'user_id' => $userprofile->user_id,
-            'weight' => $weight,
-            'height' => $height,
-            'age' => $age,
-            'bmi' => $bmi,
-            'ponderalindex' => $pi,
-            'bodyfat' => $bodyfat,
-            'bmr' => $bmr,
-            'bsa' => $bsa,
-        ]);
 
 
         // return with success msg
