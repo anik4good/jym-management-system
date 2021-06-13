@@ -56,6 +56,9 @@
                                     <input type="text" placeholder="End" name="end" class="form-control">
                                 </div>
                                 <div class="custom-checkbox custom-control custom-control-inline">
+                                    <input type="text" placeholder="Food name" name="name" class="form-control">
+                                </div>
+                                <div class="custom-checkbox custom-control custom-control-inline">
                                     <button class="btn btn-outline-success btn-lg btn-block">Filter
                                     </button>
                                 </div>
@@ -74,52 +77,43 @@
                     <table id="datatable" class="align-middle mb-0 table table-borderless table-striped table-hover">
                         <thead>
                         <tr>
-                            <th class="text-center">ID</th>
+                            <th class="">ID</th>
                             <th>Name</th>
-                            <th class="text-center">image</th>
-                            <th class="text-center">Food Group</th>
-                            <th class="text-center">Calories</th>
-                            <th class="text-center">Actions</th>
-                            <th class="text-center"></th>
-                            <th class="text-center"></th>
+                            {{--                            <th class="">image</th>--}}
+                            <th class="">Food Group</th>
+                            <th class="">Calories</th>
+                            <th class="">Fat</th>
+                            <th class="">Protein</th>
+                            <th class="">Carbs</th>
+                            <th class="">Sugar</th>
+                            <th class="">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($foods as $row)
                             <tr>
-                                <td>
-                                    <div class="widget-content p-0">
-                                        <div class="widget-content-wrapper">
-                                            <div class="widget-content-left mr-3">
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">{{ $row->id}}</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="text-center">
-                                    {{ Str::limit($row->name,10)}}
-                                </td>
-                                <td>
-                                    <div class="widget-content-left">
-                                        <img width="40" class="rounded-circle"
-                                             src="{{ $row->image }}">
-                                    </div>
-                                </td>
-                                <td class="text-center">
+                                <td>{{ $row->id }}</td>
+                                <td>{{ $row->name }}</td>
+                                {{--                                <td>--}}
+                                {{--                                    <div class="widget-content-left">--}}
+                                {{--                                        <img width="40" class="rounded-circle"--}}
+                                {{--                                             src="{{ $row->image }}">--}}
+                                {{--                                    </div>--}}
+                                {{--                                </td>--}}
+                                <td class="">
                                     <div class="badge badge-success">{{ $row->foodgroup }}</div>
                                 </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->calories }}</div>
-                                </td>
-                                <td class="text-center">
+                                <td class="">{{ $row->calories }}</td>
+                                <td class="">{{ $row->fat }}</td>
+                                <td class="">{{ $row->protein }}</td>
+                                <td class="">{{ $row->carbohydrate }}</td>
+                                <td class="">{{ $row->sugars }}</td>
+                                <td class="">
                                     <form action="{{ route('app.diets.add.food') }}" method="post"
                                           enctype="multipart/form-data">
                                         @csrf
                                         <input type="hidden" value="{{$row->id}}" name="food_id">
                                         <input type="hidden" value="{{$post_id}}" name="post_id">
-                                        {{--                                        <input type="hidden" value="Morning" name="check">--}}
                                         <button class="btn btn-secondary btn-sm"
                                                 type="submit" name="check" value="Morning"><i
                                                 class="fas fa-eye"></i>
@@ -140,7 +134,6 @@
                             </tr>
 
                         @endforeach
-                        {{--                        </form>--}}
                         </tbody>
                     </table>
                     {{$foods->links()}}
@@ -152,7 +145,7 @@
     <div class="row">
         <div class="main-card mb-3 card">
             <div class="no-gutters row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="pt-0 pb-0 card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
@@ -181,7 +174,7 @@
                                             </div>
                                             <div class="widget-content-right">
                                                 <div
-                                                    class="widget-numbers text-success">{{$morning_all['fat'] + $noon_all['fat'] + $night_all['fat']}}</div>
+                                                    class="widget-numbers text-success">{{$morning_all['fat'] + $noon_all['fat'] + $night_all['fat']}}%</div>
                                             </div>
                                         </div>
                                     </div>
@@ -190,7 +183,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="pt-0 pb-0 card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
@@ -198,11 +191,11 @@
                                     <div class="widget-content-outer">
                                         <div class="widget-content-wrapper">
                                             <div class="widget-content-left">
-                                                <div class="widget-heading">Followers</div>
-                                                <div class="widget-subheading">People Interested</div>
+                                                <div class="widget-heading">Total Protein</div>
+                                                <div class="widget-subheading">Normal</div>
                                             </div>
                                             <div class="widget-content-right">
-                                                <div class="widget-numbers text-danger">45,9%</div>
+                                                <div class="widget-numbers text-success">{{ $morning_all['protein'] + $noon_all['protein'] + $night_all['protein'] }}gm</div>
                                             </div>
                                         </div>
                                     </div>
@@ -213,11 +206,11 @@
                                     <div class="widget-content-outer">
                                         <div class="widget-content-wrapper">
                                             <div class="widget-content-left">
-                                                <div class="widget-heading">Products Sold</div>
-                                                <div class="widget-subheading">Total revenue streams</div>
+                                                <div class="widget-heading">Total Carbs</div>
+                                                <div class="widget-subheading">Normal</div>
                                             </div>
                                             <div class="widget-content-right">
-                                                <div class="widget-numbers text-warning">$3M</div>
+                                                <div   class="widget-numbers text-success">{{ $morning_all['carbohydrate'] + $noon_all['carbohydrate'] + $night_all['carbohydrate'] }}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -226,7 +219,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="pt-0 pb-0 card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
@@ -234,35 +227,36 @@
                                     <div class="widget-content-outer">
                                         <div class="widget-content-wrapper">
                                             <div class="widget-content-left">
-                                                <div class="widget-heading">Total Orders</div>
-                                                <div class="widget-subheading">Last year expenses</div>
+                                                <div class="widget-heading">Total Sugars</div>
+                                                <div class="widget-subheading">Normal</div>
                                             </div>
                                             <div class="widget-content-right">
-                                                <div class="widget-numbers text-success">1896</div>
+                                                <div   class="widget-numbers text-success">{{ $morning_all['sugars'] + $noon_all['sugars'] + $night_all['sugars'] }}</div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item">
-                                <div class="widget-content p-0">
-                                    <div class="widget-content-outer">
-                                        <div class="widget-content-wrapper">
-                                            <div class="widget-content-left">
-                                                <div class="widget-heading">Clients</div>
-                                                <div class="widget-subheading">Total Clients Profit</div>
-                                            </div>
-                                            <div class="widget-content-right">
-                                                <div class="widget-numbers text-primary">$12.6k</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+
                         </ul>
                     </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <li class="list-group-item">
+                        <div class="widget-content p-0">
+                            <div class="widget-content-wrapper">
+                                <a class="mb-2 mr-2 btn-transition btn btn-outline-primary btn-lg btn-block"
+                                   href="{{ route('app.diet.show.single',$post_id) }}">Generate Food
+                                </a>
+                            </div>
+                        </div>
+                    </li>
                 </div>
             </div>
+
+
         </div>
     </div>
 
@@ -270,18 +264,20 @@
     <div class="row">
         <div class="col-md-4">
             <div class="main-card mb-3 card">
-                <div class="card-body"><h5 class="card-title">Breakfast {{$morning_all['calories']}}</h5>
+                <div class="card-body"><h5 class="card-title">Breakfast</h5>
                     <form method="POST"
                           action="{{  route('app.diets.update.time',$post_id)  }}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('POST')
                         <input type="hidden" name="post_id" value="{{$post_id}}">
-                        <input type="hidden" name="period" value="morning">
+                        <input type="hidden" name="period" value="breakfast">
                         <input type="time" name="time" id="">
-                        <button type="submit" class="btn btn-success btn-sm">
-                            <i class="fas fa-ticket-alt"></i>
-                            <span></span>
+                        <button type="submit" class="btn btn-outline-success">
+                            <span class="btn-icon-wrapper pr-2 opacity-7">
+                            <i class="fas fa-plus-circle fa-w-20"></i>
+                        </span>
+                            {{ __('Add Time') }}
                         </button>
                     </form>
                     <table class="mb-0 table table-responsive">
@@ -293,6 +289,7 @@
                             <th>Fat</th>
                             <th>Protien</th>
                             <th>Carbohydrate</th>
+                            <th>Sugar</th>
                             <th>Time</th>
                             <th>Actions</th>
                         </tr>
@@ -304,60 +301,29 @@
                             @endphp
                             <tr>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="badge badge-info">{{ $row->id }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->id }} </span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ Str::limit($row->name) }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ Str::limit($row->name) }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->calories }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->calories }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->fat }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->fat }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->protein }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->protein }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->carbohydrate }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->carbohydrate }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $roww->time }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->sugars }}</span>
                                 </td>
+                                <td><span class="">{{ $roww->time }}</span></td>
                                 <td>
-                                    <a class="btn btn-secondary btn-sm"
-                                       href="{{ route('app.users.show',$row->id) }}"><i
-                                            class="fas fa-eye"></i>
-                                        <span></span>
-                                    </a>
+
                                     <button type="button" class="btn btn-danger btn-sm"
                                             onclick="deleteData({{ $row->id }})">
                                         <i class="fas fa-trash-alt"></i>
@@ -365,33 +331,60 @@
                                     </button>
                                     <form id="delete-form-{{ $row->id }}"
                                           action="{{ route('app.diets.destroy',$roww->id) }}" method="POST"
-                                          style="display: none;"
-                                    >
+                                          style="display: none;">
                                         @csrf()
                                         @method('DELETE')
                                     </form>
                                 </td>
                             </tr>
-                        </tbody>
+
                         @endforeach
+                        <tr>
+                            <td>
+                                <span class="badge badge-info">Total</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info">{{ count($morning) }} Foods</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$morning_all['calories'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$morning_all['fat'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$morning_all['protein'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$morning_all['carbohydrate'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$morning_all['sugars'] }}</span>
+                            </td>
+
+
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="main-card mb-3 card">
-                <div class="card-body"><h5 class="card-title">Lunch {{$noon_all['calories']}}</h5>
+                <div class="card-body"><h5 class="card-title">Lunch</h5>
                     <form method="POST"
                           action="{{  route('app.diets.update.time',$post_id)  }}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('POST')
                         <input type="hidden" name="post_id" value="{{$post_id}}">
-                        <input type="hidden" name="period" value="noon">
+                        <input type="hidden" name="period" value="lunch">
                         <input type="time" name="time" id="">
-                        <button type="submit" class="btn btn-success btn-sm">
-                            <i class="fas fa-ticket-alt"></i>
-                            <span></span>
+                        <button type="submit" class="btn btn-outline-success">
+                            <span class="btn-icon-wrapper pr-2 opacity-7">
+                            <i class="fas fa-plus-circle fa-w-20"></i>
+                        </span>
+                            {{ __('Add Time') }}
                         </button>
                     </form>
                     <table class="mb-0 table table-responsive">
@@ -403,6 +396,7 @@
                             <th>Fat</th>
                             <th>Protien</th>
                             <th>Carbohydrate</th>
+                            <th>Sugar</th>
                             <th>Time</th>
                             <th>Actions</th>
                         </tr>
@@ -414,60 +408,29 @@
                             @endphp
                             <tr>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="badge badge-info">{{ $row->id }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->id }} </span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->name }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ Str::limit($row->name) }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->calories }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->calories }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->fat }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->fat }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->protein }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->protein }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->carbohydrate }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->carbohydrate }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $roww->time }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->sugars }}</span>
                                 </td>
+                                <td><span class="">{{ $roww->time }}</span></td>
                                 <td>
-                                    <a class="btn btn-secondary btn-sm"
-                                       href="{{ route('app.users.show',$row->id) }}"><i
-                                            class="fas fa-eye"></i>
-                                        <span></span>
-                                    </a>
+
                                     <button type="button" class="btn btn-danger btn-sm"
                                             onclick="deleteData({{ $row->id }})">
                                         <i class="fas fa-trash-alt"></i>
@@ -481,26 +444,54 @@
                                     </form>
                                 </td>
                             </tr>
-                        </tbody>
+
                         @endforeach
+                        <tr>
+                            <td>
+                                <span class="badge badge-info">Total</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info">{{ count($noon) }} Foods</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$noon_all['calories'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$noon_all['fat'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$noon_all['protein'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$noon_all['carbohydrate'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$noon_all['sugars'] }}</span>
+                            </td>
+
+
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="main-card mb-3 card">
-                <div class="card-body"><h5 class="card-title">Dinner {{$night_all['calories']}}</h5>
+                <div class="card-body"><h5 class="card-title">Dinner</h5>
                     <form method="POST"
                           action="{{  route('app.diets.update.time',$post_id)  }}"
                           enctype="multipart/form-data">
                         @csrf
                         @method('POST')
                         <input type="hidden" name="post_id" value="{{$post_id}}">
+                        <input type="hidden" name="period" value="dinner">
                         <input type="time" name="time" id="">
-                        <input type="hidden" name="period" value="night">
-                        <button type="submit" class="btn btn-success btn-sm">
-                            <i class="fas fa-ticket-alt"></i>
-                            <span></span>
+                        <button type="submit" class="btn btn-outline-success">
+                            <span class="btn-icon-wrapper pr-2 opacity-7">
+                            <i class="fas fa-plus-circle fa-w-20"></i>
+                        </span>
+                            {{ __('Add Time') }}
                         </button>
                     </form>
                     <table class="mb-0 table table-responsive">
@@ -512,6 +503,7 @@
                             <th>Fat</th>
                             <th>Protien</th>
                             <th>Carbohydrate</th>
+                            <th>Sugar</th>
                             <th>Time</th>
                             <th>Actions</th>
                         </tr>
@@ -523,155 +515,76 @@
                             @endphp
                             <tr>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="badge badge-info">{{ $row->id }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->id }} </span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->name }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ Str::limit($row->name) }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->calories }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->calories }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->fat }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->fat }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->protein }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->protein }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $row->carbohydrate }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->carbohydrate }}</span>
                                 </td>
                                 <td>
-                                    @if ($row->id)
-                                        <span class="">{{ $roww->time }}</span>
-                                    @else
-                                        <div class="badge badge-danger">Inactive</div>
-                                    @endif
+                                    <span class="">{{ $row->sugars }}</span>
                                 </td>
+                                <td><span class="">{{ $roww->time }}</span></td>
                                 <td>
-                                    <a class="btn btn-secondary btn-sm"
-                                       href="{{ route('app.users.show',$row->id) }}"><i
-                                            class="fas fa-eye"></i>
-                                        <span></span>
-                                    </a>
+
                                     <button type="button" class="btn btn-danger btn-sm"
                                             onclick="deleteData({{ $row->id }})">
                                         <i class="fas fa-trash-alt"></i>
                                         <span></span>
                                     </button>
                                     <form id="delete-form-{{ $row->id }}"
-                                          action="{{ route('app.diets.destroy.night',$roww->id) }}" method="POST"
+                                          action="{{ route('app.diets.destroy.noon',$roww->id) }}" method="POST"
                                           style="display: none;">
                                         @csrf()
                                         @method('DELETE')
                                     </form>
                                 </td>
                             </tr>
-                        </tbody>
+
                         @endforeach
+                        <tr>
+                            <td>
+                                <span class="badge badge-info">Total</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info">{{ count($night) }} Foods</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$night_all['calories'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$night_all['fat'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$night_all['protein'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$night_all['carbohydrate'] }}</span>
+                            </td>
+                            <td>
+                                <span class="badge badge-info"> {{$night_all['sugars'] }}</span>
+                            </td>
+
+
+                        </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="main-card mb-12 card">
-                        <div class="card-header">Total Information</div>
-                        <div class="card-body">
-                            <div class="card-shadow-primary profile-responsive card-border mb-3 card">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-3">
-                                                    <div class="icon-wrapper m-0">
-                                                        <div class="progress-circle-wrapper">
-                                                            <div
-                                                                class="circle-progress d-inline-block circle-progress-success">
-                                                                <span
-                                                                    class="widget-heading widget-numbers-sm text-primary">Calories</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="widget-content-left">
-                                                    <div class="widget-heading">Calories Status</div>
-                                                    <div class="widget-subheading bold text-primary">Normal</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <div class="widget-numbers widget-numbers-sm text-primary">
-                                                        <span>{{$morning_all['calories'] + $noon_all['calories']}}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-3">
-                                                    <div class="icon-wrapper m-0">
-                                                        <div class="progress-circle-wrapper">
-                                                            <div
-                                                                class="circle-progress d-inline-block circle-progress-success">
-                                                                <span
-                                                                    class="widget-heading widget-numbers-sm text-primary">Fat</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="widget-content-left">
-                                                    <div class="widget-heading">Fat Status</div>
-                                                    <div class="widget-subheading bold text-primary">Normal</div>
-                                                </div>
-                                                <div class="widget-content-right">
-                                                    <div class="widget-numbers widget-numbers-sm text-primary">
-                                                        <span>{{$morning_all['fat']+$noon_all['fat']}}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <a class="mb-2 mr-2 btn-transition btn btn-outline-primary btn-lg btn-block"
-                                                   href="{{ route('app.diet.show.single',$post_id) }}">Generate Food
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
     </div>
 
 @endsection

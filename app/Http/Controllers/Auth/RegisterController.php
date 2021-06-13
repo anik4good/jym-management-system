@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Models\Role;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use App\Models\Userprofile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
@@ -30,13 +32,23 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
+   // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo;
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return string
      */
+
+
+    public function redirectTo()
+    {
+        if (empty(Auth::user()->userprofile->age)) {
+            return $this->redirectTo = '/app/profile';
+        } else {
+            return $this->redirectTo = '/app/dashboard';
+        }
+    }
     public function __construct()
     {
         $this->middleware('guest');
@@ -65,11 +77,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'role_id' => Role::where('slug','user')->first()->id,
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        Userprofile::create([
+            'user_id' => $user->id
+        ]);
+
+return  $user;
     }
 }

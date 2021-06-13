@@ -79,6 +79,46 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="weight" class="col-md-4 col-form-label text-md-right">{{ __('Weight') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="weight" type="number" class="form-control @error('weight') is-invalid @enderror" name="weight" value="{{Auth::user()->userprofile->weight}}" required autocomplete="weight" autofocus>
+
+                                @error('weight')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="height" class="col-md-4 col-form-label text-md-right">{{ __('Height') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="height" type="number" class="form-control @error('height') is-invalid @enderror" name="height" value="{{ Auth::user()->userprofile->height }}" required autocomplete="height" autofocus>
+
+                                @error('height')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="age" class="col-md-4 col-form-label text-md-right">{{ __('Age') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="number" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ Auth::user()->userprofile->age }}" required autocomplete="age" autofocus>
+
+                                @error('age')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

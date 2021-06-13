@@ -66,16 +66,22 @@ class DietController extends Controller
 
         $foods = $table->where(function ($q) use ($request) {
             if ($request->data) {
-                //  $q->where('$request->data', 'LIKE', "%$request->data%");
+
                 $q->whereBetween($request->data, [$request->start, $request->end])->orderby($request->data);
             }
+
+            if ($request->name) {
+
+                $q->where('name', 'LIKE', "%$request->name%");
+            }
+
             else {
                 //nothing
             }
         })->paginate(10);
 
 
-        $foods->withPath('?diet_id='.$post_id.'&data='.$request->data.'&start='.$request->start.'&end='.$request->end.'');
+        $foods->withPath('?diet_id='.$post_id.'&data='.$request->data.'&start='.$request->start.'&end='.$request->end.'&name='.$request->name.'');
 
         $column = $table->getTableColumns();
        // $foods = Food::paginate(10);
@@ -153,21 +159,21 @@ class DietController extends Controller
     public function updatemealtime(Request $request)
     {
         $time = date('h:i a ', strtotime($request->time));
-        if ($request->period == 'morning') {
+        if ($request->period == 'breakfast') {
             $data = Morning::where('post_id', $request->post_id)->get();
             foreach ($data as $row) {
                 $row->update([
                     'time' => $time,
                 ]);
             }
-        } else if ($request->period == 'noon') {
+        } else if ($request->period == 'lunch') {
             $data = Noon::where('post_id', $request->post_id)->get();
             foreach ($data as $row) {
                 $row->update([
                     'time' => $time,
                 ]);
             }
-        } else if ($request->period == 'night') {
+        } else if ($request->period == 'dinner') {
             $data = Night::where('post_id', $request->post_id)->get();
             foreach ($data as $row) {
                 $row->update([
@@ -178,7 +184,7 @@ class DietController extends Controller
 
 
         notify()->success('Time Successfully Added.', 'Added');
-        return redirect()->route('app.diet.generator.show.single', $request->post_id);
+        return redirect()->route('app.diet.generator.show.single','diet_id='.$request->post_id);
     }
 
 
