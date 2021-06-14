@@ -32,10 +32,6 @@ class UserController extends Controller
 
     public function store(StoreUserRequest $request)
     {
-
-
-
-
         $user = User::create([
             'role_id' => $request->role,
             'name' => $request->name,
@@ -43,9 +39,6 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'status' => $request->filled('status'),
         ]);
-
-
-
 
        //get data
        $weight = $request->weight;
@@ -55,7 +48,6 @@ class UserController extends Controller
        //bmi done
        $bmi = bmi($weight,$height);
        $bmi2 = bmi_weight($bmi);
-
        // Body Fat (BMI method)
        $bodyfat = body_fat($request->age,$bmi);
        //Ponderal Index in KG done
@@ -120,7 +112,6 @@ class UserController extends Controller
         if ($request->hasFile('avatar')) {
             $user->addMedia($request->avatar)->toMediaCollection('avatar');
         }
-
 
 
         //get data

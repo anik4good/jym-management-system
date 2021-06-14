@@ -146,9 +146,6 @@ if (!function_exists('bmi')) {
 
             $sugars = $sugars +  DB::table('food')
                     ->where('id', $row->food_id)->sum('sugars');
-
-
-
             $data['calories'] = $calories;
             $data['fat'] =$fat;
             $data['protein'] = $protein;

@@ -16,39 +16,41 @@ class ProfileController extends Controller
     public function index()
     {
         Gate::authorize('app.profile.update');
-        $userprofile = Userprofile::where('user_id',Auth::id())->first();
-        return view('backend.profile.index',compact('userprofile'));
+        $userprofile = Userprofile::where('user_id', Auth::id())->first();
+        return view('backend.profile.index', compact('userprofile'));
     }
 
     public function update(UpdateProfileRequest $request)
     {
 
-
         // Get logged in user
         $user = Auth::user();
-        $userprofile = Userprofile::where('user_id',Auth::id())->first();
+        $userprofile = Userprofile::where('user_id', Auth::id())->first();
+
         //get data
         $weight = $request->weight;
         $height = $request->height;
         $age = $request->age;
+        $gender = $request->gender;
+
         //bmi done
-        $bmi = bmi($weight,$height);
+        $bmi = bmi($weight, $height);
         $bmi2 = bmi_weight($bmi);
         // Body Fat (BMI method)
-        $bodyfat = body_fat($userprofile->age,$bmi);
+        $bodyfat = body_fat($userprofile->age, $bmi);
         //Ponderal Index in KG done
-        $pi = pindex($weight,$height);
+        $pi = pindex($weight, $height);
 //        Basal Metabolic Rate (BMR)
-        $bmr = bmr($weight,$height,$userprofile->age);
+        $bmr = bmr($weight, $height, $userprofile->age);
 //        Body Surface Area:(Mosteller formula:)
-        $bsa = bsa($weight,$height,$userprofile->age);
-        if (empty($userprofile->bmi))
-        {
+        $bsa = bsa($weight, $height);
+        if (empty($userprofile->bmi)) {
             $userprofile->update([
                 'user_id' => $userprofile->user_id,
                 'weight' => $weight,
                 'height' => $height,
                 'age' => $age,
+                'gender' => $gender,
                 'bmi' => $bmi,
                 'ponderalindex' => $pi,
                 'bodyfat' => $bodyfat,
@@ -58,19 +60,15 @@ class ProfileController extends Controller
             ]);
 
         }
-
-        else if ($userprofile->weight==$weight && $userprofile->height==$height && $userprofile->age==$age)
-        {
-return 'already there';
-        }
-
-        else
-        {
+        else if ($userprofile->weight == $weight && $userprofile->height == $height && $userprofile->age == $age) {
+            return 'already there';
+        } else {
             $userprofile->insert([
                 'user_id' => $userprofile->user_id,
                 'weight' => $weight,
                 'height' => $height,
                 'age' => $age,
+                'gender' => $gender,
                 'bmi' => $bmi,
                 'ponderalindex' => $pi,
                 'bodyfat' => $bodyfat,
@@ -89,9 +87,6 @@ return 'already there';
         if ($request->hasFile('avatar')) {
             $user->addMedia($request->avatar)->toMediaCollection('avatar');
         }
-
-
-
 
         // return with success msg
         notify()->success('Profile Successfully Updated.', 'Updated');
