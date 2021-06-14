@@ -38,7 +38,10 @@ class DashboardController extends Controller
 
         if (Auth::user()->role->slug == 'user') {
             $user = User::with('userprofile')->where('id', Auth::id())->first();
-            return view('backend.dashboard', compact('user', 'role'));
+            $user_all = Userprofile::where('user_id', Auth::id())->latest()->get();
+
+
+            return view('backend.dashboard', compact('user', 'role','user_all'));
         }
 
         return view('backend.dashboard', $data, compact('role', 'diets'));

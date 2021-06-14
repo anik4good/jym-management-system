@@ -23,10 +23,19 @@ class ProfileController extends Controller
     public function update(UpdateProfileRequest $request)
     {
 
+
         // Get logged in user
         $user = Auth::user();
         $userprofile = Userprofile::where('user_id', Auth::id())->first();
-
+        // Update user info
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+        // upload images
+        if ($request->hasFile('avatar')) {
+            $user->addMedia($request->avatar)->toMediaCollection('avatar');
+        }
         //get data
         $weight = $request->weight;
         $height = $request->height;
@@ -51,6 +60,15 @@ class ProfileController extends Controller
                 'height' => $height,
                 'age' => $age,
                 'gender' => $gender,
+                'necksize' => $request->necksize,
+                'dietrestrictions' => $request->dietrestrictions,
+                'waist' => $request->waist,
+                'bodyshape' => $request->bodyshape,
+                'lifestylehabit' => $request->lifestylehabit,
+                'bloodpresure' => $request->bloodpresure,
+                'bloodsugar' => $request->bloodsugar,
+                'foodhabit' => $request->foodhabit,
+                'targetfitness' => $request->targetfitness,
                 'bmi' => $bmi,
                 'ponderalindex' => $pi,
                 'bodyfat' => $bodyfat,
@@ -58,39 +76,45 @@ class ProfileController extends Controller
                 'bsa' => $bsa,
 
             ]);
-
-        }
-        else if ($userprofile->weight == $weight && $userprofile->height == $height && $userprofile->age == $age) {
-            return 'already there';
+            // return with success msg
+            notify()->success('Profile Successfully Updated.', 'Updated');
+            return redirect()->back();
+        } else if ($userprofile->weight == $weight && $userprofile->height == $height && $userprofile->age == $age) {
+            notify()->warning('Nothing is Update', 'Warning');
+            return redirect()->back();
         } else {
             $userprofile->insert([
                 'user_id' => $userprofile->user_id,
                 'weight' => $weight,
                 'height' => $height,
                 'age' => $age,
-                'gender' => $gender,
+                'gender' => $userprofile->gender,
+                'necksize' => $request->necksize,
+                'dietrestrictions' => $request->dietrestrictions,
+                'waist' => $request->waist,
+                'bodyshape' => $request->bodyshape,
+                'lifestylehabit' => $request->lifestylehabit,
+                'bloodpresure' => $request->bloodpresure,
+                'bloodsugar' => $request->bloodsugar,
+                'foodhabit' => $request->foodhabit,
+                'targetfitness' => $request->targetfitness,
                 'bmi' => $bmi,
                 'ponderalindex' => $pi,
                 'bodyfat' => $bodyfat,
                 'bmr' => $bmr,
                 'bsa' => $bsa,
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]);
+            // return with success msg
+            notify()->success('Profile Successfully inserted.', 'Insert');
+            return redirect()->back();
+
         }
 
-        // Update user info
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
-        // upload images
-        if ($request->hasFile('avatar')) {
-            $user->addMedia($request->avatar)->toMediaCollection('avatar');
-        }
 
-        // return with success msg
-        notify()->success('Profile Successfully Updated.', 'Updated');
-        return redirect()->back();
+
+
     }
 
     public function changePassword()

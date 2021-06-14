@@ -20,13 +20,13 @@ class CreateUserprofilesTable extends Migration
             $table->double('height')->nullable();
             $table->double('weight')->nullable();
             $table->string('age')->nullable();
-            $table->string('necksize')->nullable();
+            $table->double('necksize')->nullable();
             $table->string('dietrestrictions')->nullable();
-            $table->string('waist')->nullable();
+            $table->double('waist')->nullable();
             $table->string('bodyshape')->nullable();
             $table->string('lifestylehabit')->nullable();
-            $table->double('bloodpresure',15,2)->nullable();
-            $table->double('bloodsugar',15,2)->nullable();
+            $table->string('bloodpresure')->nullable();
+            $table->string('bloodsugar')->nullable();
             $table->string('foodhabit')->nullable();
             $table->string('targetfitness')->nullable();
 
