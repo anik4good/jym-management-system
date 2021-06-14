@@ -130,9 +130,9 @@
                                     <td class="">{{ $row->age }}</td>
                                     <td class="">{{ $row->created_at->diffforhumans() }}</td>
                                     <td class="">
-                                        <a class="btn btn-info btn-sm" href="{{ route('app.users.show',$row->id) }}"><i
+                                        <a class="btn btn-info btn-sm" href="{{ route('app.profile.index') }}"><i
                                                 class="fas fa-eye"></i>
-                                            <span>Details</span>
+                                            <span>Update</span>
                                         </a>
                                     </td>
                                 </tr>
