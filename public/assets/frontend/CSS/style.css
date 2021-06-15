@@ -5,3 +5,104 @@
     background: #013565;
     border: 1px solid #fff;
 }
+
+
+.social_icon .a{
+    text-decoration: none;
+}
+.social_icon img{
+    width: 30px;
+    margin-right: 8px;
+    border-radius: 50%;
+}
+.social_icon img:hover{
+    box-shadow: 5px 5px 3px #bab8b8;
+}
+.service_box{
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    border-radius: 15px;
+}
+.service_box_body{
+    padding: 10px;
+}
+.img1 img{
+    height: 200px;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    width: 100%;
+}
+.img2 img{
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-top: -35px;
+}
+#membership{
+    position: relative;
+    background-image: url('../img/3.jpg');
+    min-height: 480px;
+}
+.primary-overlay{
+    background: rgba(26, 33, 53, 0.7);
+    min-height: 450px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.button1{
+    display: inline-flex;
+    height: 35px;
+    padding: 0;
+    background: #FFA300;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+}
+.button1 a{
+    text-decoration: none;
+    color: #fff;
+}
+.button1:hover{
+    background: #ffae00;
+}
+.btn-text,
+.btn-icon{
+    display: inline-flex;
+    align-items: center;
+    padding: 0px 15px;
+    color: #013565;
+    height: 100%;
+}
+.btn-icon{
+    font-size: 10px;
+    background: #fff;
+    border-radius: 10px 0px 0px 10px;
+    
+}
+
+.box{
+    height: 280px;
+    width: 19rem;
+    background-color: #fff;
+    border-radius: 13px;
+}
+.left_part{
+    width: 50%;
+    border-radius: 10px 0px 0px 10px;
+}
+.right_part{
+    width: 50%;
+    border-radius: 0px 10px 10px 0px;
+}
