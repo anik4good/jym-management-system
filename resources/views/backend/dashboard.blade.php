@@ -55,7 +55,8 @@
                                 <div class="widget-heading">Current Height</div>
                             </div>
                             <div class="widget-content-right">
-                                <div class="widget-numbers text-success">{{ $user->userprofile->height }}</div>
+                                <div class="widget-numbers text-success">{{ $height['feet']}}"{{ $height['inches']}}inch|{{ $user->userprofile->height }}cm</div>
+
                             </div>
                         </div>
                     </div>
@@ -97,7 +98,7 @@
                                 <div class="widget-heading">Current BloodPressure</div>
                             </div>
                             <div class="widget-content-right">
-                                <div class="widget-numbers text-success">80-120</div>
+                                <div class="widget-numbers text-success">{{ $user->userprofile->bloodpresure }}</div>
                             </div>
                         </div>
                     </div>

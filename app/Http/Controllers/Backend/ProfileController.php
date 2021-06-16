@@ -16,12 +16,16 @@ class ProfileController extends Controller
     public function index()
     {
         Gate::authorize('app.profile.update');
-        $userprofile = Userprofile::where('user_id', Auth::id())->first();
-        return view('backend.profile.index', compact('userprofile'));
+        $userprofile = Userprofile::where('user_id', Auth::id())->latest()->first();
+
+        $height = cm_to_feet($userprofile->height);
+        return view('backend.profile.index', compact('userprofile','height'));
     }
 
     public function update(UpdateProfileRequest $request)
     {
+
+
 
 
         // Get logged in user
@@ -36,9 +40,12 @@ class ProfileController extends Controller
         if ($request->hasFile('avatar')) {
             $user->addMedia($request->avatar)->toMediaCollection('avatar');
         }
+
         //get data
         $weight = $request->weight;
-        $height = $request->height;
+        //convert feet to cm
+        $cm = 2.54*($request->feet*12+$request->inch);
+        $height = $cm;
         $age = $request->age;
         $gender = $request->gender;
 
@@ -78,7 +85,8 @@ class ProfileController extends Controller
             ]);
             // return with success msg
             notify()->success('Profile Successfully Updated.', 'Updated');
-            return redirect()->back();
+           // return redirect()->back();
+            return redirect()->route('app.profile.index');
         } else if ($userprofile->weight == $weight && $userprofile->height == $height && $userprofile->age == $age) {
             notify()->warning('Nothing is Update', 'Warning');
             return redirect()->back();
@@ -108,11 +116,9 @@ class ProfileController extends Controller
             ]);
             // return with success msg
             notify()->success('Profile Successfully inserted.', 'Insert');
-            return redirect()->back();
+            return redirect()->route('app.profile.index');
 
         }
-
-
 
 
     }

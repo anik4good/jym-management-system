@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="weight" class="col-md-4 col-form-label text-md-right">{{ __('Weight') }}</label>
+                            <label for="weight" class="col-md-4 col-form-label text-md-right">{{ __('Weight (kg)') }}</label>
                             <div class="col-md-6">
                                 <input id="weight" type="number"
                                        class="form-control @error('weight') is-invalid @enderror" name="weight"
@@ -100,17 +100,34 @@
                         </div>
                         <div class="form-group row">
                             <label for="height" class="col-md-4 col-form-label text-md-right">{{ __('Height') }}</label>
-                            <div class="col-md-6">
-                                <input id="height" type="number"
-                                       class="form-control @error('height') is-invalid @enderror" name="height"
-                                       value="{{ Auth::user()->userprofile->height }}" required autocomplete="height"
+                            <div class="col-md-3">
+                                <input id="feet" type="number"
+                                       class="form-control @error('feet') is-invalid @enderror" name="feet"
+                                       value="{{ $height['feet'] }}" required  placeholder="feet"
                                        autofocus>
+
                                 @error('height')
                                 <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
+
+                            <div class="col-md-3">
+                                <input id="inch" type="number"
+                                       class="form-control @error('height') is-invalid @enderror" name="inch"
+                                       value="{{ $height['inches'] }}" required  placeholder="inch"
+                                       autofocus>
+
+                                @error('inch')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+
+
+
                         </div>
                         <div class="form-group row">
                             <label for="age" class="col-md-4 col-form-label text-md-right">{{ __('Age') }}</label>

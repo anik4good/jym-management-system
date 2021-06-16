@@ -169,4 +169,27 @@ if (!function_exists('bmi')) {
         $end = Carbon::now()->subMonth()->startOfMonth()->endOfMonth()->endOfDay()->format('Y-m-d H:i:s');
         return User::whereBetween('created_at', [$start, $end])->count();
     }
+
+
+
+    function cm_to_feet($cm)
+    {
+
+        $data = [];
+// convert centimetres to inches
+        $inches = round($cm/2.54);
+
+// now find the number of feet...
+        $feet = floor($inches/12);
+
+// ..and then inches
+        $inches = ($inches%12);
+
+// you now have feet and inches, and can display it however you wish
+        $data['feet'] =$feet;
+        $data['inches'] =$inches;
+        $data['cm'] =$cm;
+
+        return $data;
+    }
 }
