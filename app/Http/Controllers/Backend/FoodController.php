@@ -27,11 +27,21 @@ class FoodController extends Controller
 
 
         $table = new Food();
+     //   return DB::table('food')->select('foodgroup')->distinct()->get();
 
         $foods = $table->where(function ($q) use ($request) {
             if ($request->data) {
                 //  $q->where('$request->data', 'LIKE', "%$request->data%");
                 $q->whereBetween($request->data, [$request->start, $request->end]);
+            }
+
+            if ($request->name) {
+
+                $q->where('name', 'LIKE', "%$request->name%");
+            }
+            if ($request->group) {
+
+                $q->where('foodgroup', 'LIKE', "%$request->group%");
             }
             else {
                 //nothing
@@ -39,7 +49,7 @@ class FoodController extends Controller
         })
             ->paginate(20);
 
-
+        $foods->withPath('?group='.$request->group.'&data='.$request->data.'&start='.$request->start.'&end='.$request->end.'&name='.$request->name.'');
         $column = $table->getTableColumns();
         return view('backend.foods.index', compact('foods', 'request', 'column'));
 

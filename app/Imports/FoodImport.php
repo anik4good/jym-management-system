@@ -25,6 +25,8 @@ class FoodImport implements ToModel , WithBatchInserts, WithStartRow
             'protein' => $row[4],
             'carbohydrate' => $row[5],
             'sugars' => $row[6],
+            'serving_weight' => $row[97],
+            'serving_size' => $row[98],
             'status' => 1,
         ]);
     }

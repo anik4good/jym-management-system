@@ -36,8 +36,27 @@
                         <div class="position-relative form-group">
                             <div>
                                 <div class="custom-checkbox custom-control custom-control-inline">
+                                    <select type="select" id="exampleCustomSelect" name="group" class="custom-select">
+                                        <option value="">Select Food Group</option>
+                                        <option>Sweets</option>
+                                        <option>Snacks</option>
+                                        <option>Grains and Pasta</option>
+                                        <option>Prepared Meals</option>
+                                        <option>Baked Foods</option>
+                                        <option>Restaurant Foods</option>
+                                        <option>Fats and Oils</option>
+                                        <option>Meats</option>
+                                        <option>Dairy and Egg Products</option>
+                                        <option>Baby Foods</option>
+                                        <option>Beverages</option>
+                                        <option>Vegetables</option>
+                                        <option>Beans and Lentils</option>
+                                    </select>
+                                </div>
+
+                                <div class="custom-checkbox custom-control custom-control-inline">
                                     <select type="select" id="exampleCustomSelect" name="data" class="custom-select">
-                                        <option value="">Select Data</option>
+                                        <option value="">Select Nutrition</option>
                                         <option>calories</option>
                                         <option>fat</option>
                                         <option>protein</option>
@@ -53,6 +72,9 @@
                                         <button class="btn btn-success">To</button>
                                     </div>
                                     <input type="text" placeholder="End" name="end" class="form-control">
+                                </div>
+                                <div class="custom-checkbox custom-control custom-control-inline">
+                                    <input type="text" placeholder="Food name" name="name" class="form-control">
                                 </div>
                                 <div class="custom-checkbox custom-control custom-control-inline">
                                     <button class="btn btn-outline-success btn-lg btn-block">Filter
@@ -74,15 +96,17 @@
                     <table id="datatable" class="align-middle mb-0 table table-borderless table-striped table-hover">
                         <thead>
                         <tr>
-                            <th class="text-center">ID</th>
+                            <th class="">ID</th>
                             <th>Name</th>
-                            <th>Image</th>
-                            <th class="text-center">Food Group</th>
-                            <th class="text-center">Calories</th>
-                            <th class="text-center">Fat</th>
-                            <th class="text-center">Protein</th>
-                            <th class="text-center">carbohydrate</th>
-                            <th class="text-center">Actions</th>
+                            <th class="">Food Group</th>
+                            <th class="">Calories</th>
+                            <th class="">Fat</th>
+                            <th class="">Protein</th>
+                            <th class="">carbohydrate</th>
+                            <th class="">Sugars</th>
+                            <th class="">Serving Weight(g)</th>
+                            <th class="">Serving Size</th>
+                            <th class="">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -99,34 +123,37 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="text-center">
+                                <td class="">
                                     {{ $row->name}}
                                 </td>
-                                <td>
-                                    <div class="widget-content-left">
-                                        <img width="40" class="rounded-circle"
-                                             src="{{ $row->image }}">
-                                    </div>
+
+                                <td class="">
+                                    {{ $row->foodgroup }}
                                 </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->foodgroup }}</div>
+                                <td class="">
+                                    {{ $row->calories }}
                                 </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->calories }}</div>
+                                <td class="">
+                                    {{ $row->fat }}
                                 </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->fat }}</div>
+                                <td class="">{{ $row->protein }}
                                 </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->protein }}</div>
+                                <td class="">
+                                  {{ $row->carbohydrate }}
                                 </td>
-                                <td class="text-center">
-                                    <div class="badge badge-success">{{ $row->carbohydrate }}</div>
+                                <td class="">
+                                    {{ $row->sugars }}
                                 </td>
-                                <td class="text-center">
+                                <td class="">
+                                    {{ $row->serving_weight }}
+                                </td>
+                                <td class="">
+                                    {{ $row->serving_size }}
+                                </td>
+                                <td class="">
                                     <a class="btn btn-secondary btn-sm" href="{{ route('app.users.show',$row->id) }}"><i
                                             class="fas fa-eye"></i>
-                                        <span>Add</span>
+                                        <span></span>
                                     </a>
                                 </td>
                             </tr>

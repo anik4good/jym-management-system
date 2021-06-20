@@ -23,6 +23,8 @@ class CreateFoodTable extends Migration
             $table->double('protein')->default(0.00);
             $table->double('carbohydrate')->default(0.00);
             $table->double('sugars')->default(0.00);
+            $table->double('serving_weight')->default(0.00);
+            $table->string('serving_size')->nullable()->default('none');
             $table->boolean('status')->default(0);
             $table->timestamps();
         });
