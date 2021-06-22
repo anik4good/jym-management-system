@@ -9,19 +9,27 @@
 
     <title>{{ setting('site_title', 'LaraStarter') }}</title>
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- google_font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- font_awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- Styles -->
-    <link href="{{ asset('css/frontend.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('css/frontend.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link href="{{ asset('assets/frontend/CSS/style.css') }}" rel="stylesheet">
 
     @stack('css')
 </head>
 <body>
-    <div id="app">
+
 {{--        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">--}}
 {{--            <div class="container">--}}
 {{--                <a class="navbar-brand" href="{{ url('/') }}">--}}
@@ -81,10 +89,10 @@
         <main class="py-4">
             @yield('content')
         </main>
-    </div>
+
     <!-- Scripts -->
-    <script src="{{ asset('js/frontend.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+{{--    <script src="{{ asset('js/frontend.js') }}"></script>--}}
+{{--    <script src="{{ asset('js/app.js') }}"></script>--}}
     @stack('js')
     @include('vendor.lara-izitoast.toast')
 </body>

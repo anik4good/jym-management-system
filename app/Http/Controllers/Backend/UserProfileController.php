@@ -22,6 +22,7 @@ class UserProfileController extends Controller
 
     public function store(Request $request)
     {
+        return $request;
         //get data
         $age = $request->age;
         $weight = $request->weight;
