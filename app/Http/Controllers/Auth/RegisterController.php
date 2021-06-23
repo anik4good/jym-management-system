@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Query;
 use App\Models\Role;
 use App\Models\User;
 use App\Http\Controllers\Controller;
@@ -45,7 +46,7 @@ class RegisterController extends Controller
     public function redirectTo()
     {
         if (empty(Auth::user()->userprofile->age)) {
-            return $this->redirectTo = '/app/profile';
+            return $this->redirectTo = '/app/dashboard';
         } else {
             return $this->redirectTo = '/app/dashboard';
         }
@@ -78,14 +79,34 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         $user =  User::create([
             'role_id' => Role::where('slug','user')->first()->id,
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        $query = Query::latest()->first();
         Userprofile::create([
             'user_id' => $user->id,
+            'weight' => $query->weight,
+            'height' => $query->height,
+            'age' =>$query->age,
+            'gender' =>$query->gender,
+            'necksize' => $query->necksize,
+            'dietrestrictions' => $query->dietrestrictions,
+            'waist' => $query->waist,
+            'bodyshape' =>$query->bodyshape,
+            'lifestylehabit' => $query->lifestylehabit,
+            'bloodpresure' => $query->bloodpresure,
+            'bloodsugar' => $query->bloodsugar,
+            'foodhabit' => $query->foodhabit,
+            'targetfitness' => $query->targetfitness,
+            'bmi' => $query->bmi,
+            'ponderalindex' => $query->ponderalindex,
+            'bodyfat' => $query->bodyfat,
+            'bmr' => $query->bmr,
+            'bsa' => $query->bsa,
             'created_at' => Carbon::now()
         ]);
 

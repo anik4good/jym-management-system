@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['as' => 'frontend.'], function () {
     Route::get('/', [FrontendController::class, 'index'])->name('home');
     Route::get('/form', [FrontendController::class, 'form'])->name('form');
+    Route::post('/form', [FrontendController::class, 'form_store'])->name('form.store');
 });
 
 

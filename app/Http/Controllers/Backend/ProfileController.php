@@ -7,6 +7,7 @@ use App\Http\Requests\Profile\UpdateProfileRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Userprofile;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +22,55 @@ class ProfileController extends Controller
         $height = cm_to_feet($userprofile->height);
         return view('backend.profile.index', compact('userprofile','height'));
     }
+
+
+
+
+    public function store(Request $request)
+    {
+        return $request;
+        //get data
+        $age = $request->age;
+        $weight = $request->weight;
+        $height = $request->height;
+        $waist = $request->waist;
+
+        //bmi done
+        $bmi = bmi($weight,$height);
+        $bmi2 = bmi_weight($bmi);
+        echo 'bmi: '.$bmi;
+        echo '<br>';
+        echo 'bmi status: '.$bmi2;
+        echo '<br>';
+
+        // Body Fat (BMI method)
+        $bodyfat = body_fat($age,$bmi);
+        echo ' bodyfat:'.$bodyfat;
+        echo '<br>';
+
+        //Ponderal Index in KG done
+        $pi = pindex($weight,$height);
+        echo ' Ponderal Index:'.$pi;
+        echo '<br>';
+
+//        Basal Metabolic Rate (BMR)
+        $bmr = bmr($weight,$height,$age);
+        echo ' BMR:'.$bmr.' Calories/day';
+        echo '<br>';
+
+//        Body Surface Area:(Mosteller formula:)
+        $bsa = bsa($weight,$height,$age);
+        echo ' BSA:'.$bsa.'m2';
+        echo '<br>';
+
+
+
+
+
+    }
+
+
+
 
     public function update(UpdateProfileRequest $request)
     {
