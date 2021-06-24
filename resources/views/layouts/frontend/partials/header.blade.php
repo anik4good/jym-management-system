@@ -3,11 +3,11 @@
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #fff;">
         <div class="container">
             <div class="logo">
-                <img src="{{asset('assets/frontend')}}/img/homepage/logo_3.jpg" alt="logo">
+                <img src="{{asset('assets/frontend')}}/img/homepage/logo_1.png" alt="logo">
                 <div class="logo_text">
-                    <h2 class="navbar-brand" href="#"><span
-                        ></span></h2>
-                    <!-- <p>YOUR FITNESS MENTOR</p> -->
+                    <h2 class="navbar-brand" href="#">AMI<span
+                        >FIT</span></h2>
+                    <p class="text">YOUR FITNESS MENTOR</p>
                 </div>
             </div>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"

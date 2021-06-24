@@ -12,7 +12,7 @@ p, label{
 }
 /* navbar_start */
 .logo img{
-  width: 70px;
+  width: 50px;
 }
 .logo .logo_text{
   display: inline-table;
@@ -32,7 +32,7 @@ p, label{
 .logo .logo_text p{
   margin-top: -8px;
   padding: 0;
-  font-size: 6px;
+  font-size: 8px;
   color: #101820FF;
 }
 #navbarNav ul li a{
