@@ -116,7 +116,7 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="radio_buttons2">
                             <label class="custom_radio2">
-                                <input type="radio" name="radio2" data-toggle="collapse" href="#collapseExample">
+                                <input type="radio" name="ageteen" data-toggle="collapse" href="#collapseExample">
                                 <span class="radio_btn2">
                   <div class="radio_img2">
                     <img src="{{asset('assets/frontend')}}/img/form/1.jpg" alt="TEEN'S">
@@ -129,10 +129,10 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="radio_buttons2">
                             <label class="custom_radio2">
-                                <input type="radio" data-toggle="collapse" href="#collapseExample">
+                                <input type="radio" data-toggle="collapse" href="#collapseExample" name="20">
                                 <span class="radio_btn2">
                   <div class="radio_img2">
-                    <img src="{{asset('assets/frontend')}}/img/form/2.jpg" alt="20'S">
+                    <img src="{{asset('assets/frontend')}}/img/form/2.jpg" alt="20'S" >
                   </div>
                   <h5>20'S</h5>
                 </span>
@@ -142,10 +142,10 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="radio_buttons2">
                             <label class="custom_radio2">
-                                <input type="radio" data-toggle="collapse" href="#collapseExample">
+                                <input type="radio" data-toggle="collapse" href="#collapseExample" name="30">
                                 <span class="radio_btn2">
                   <div class="radio_img2">
-                    <img src="{{asset('assets/frontend')}}/img/form/3.jpg" alt="30'S">
+                    <img src="{{asset('assets/frontend')}}/img/form/3.jpg" alt="30'S" >
                   </div>
                   <h5>30'S</h5>
                 </span>
@@ -853,16 +853,7 @@
         }
     </script>
 
-
-
-
-
-
-
-
-
-
-
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>

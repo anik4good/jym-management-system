@@ -3,9 +3,12 @@
     <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #fff;">
         <div class="container">
             <div class="logo">
-                <img src="{{asset('assets/frontend')}}/img/homepage/logo.png" alt="logo" height="">
-                <h2 class="navbar-brand" href="#">AMI<span
-                    >FIT</span></h2>
+                <img src="{{asset('assets/frontend')}}/img/homepage/logo_3.jpg" alt="logo">
+                <div class="logo_text">
+                    <h2 class="navbar-brand" href="#"><span
+                        ></span></h2>
+                    <!-- <p>YOUR FITNESS MENTOR</p> -->
+                </div>
             </div>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarNav">
@@ -14,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" style="text-decoration: underline; color: #FFA300;" href="{{route('frontend.home')}}">Home</a>
+                        <a class="nav-link active" style="text-decoration: underline; color: #FFA300;" href="#">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="#">About me</a>
@@ -35,8 +38,7 @@
                         <a class="nav-link text-dark" href="#">Payment</a>
                     </li>
                 </ul>
-                <button href="form.html" class="btn btn-outline-warning" style="border-radius: 10px;"><a href="{{route('frontend.form')}}">SignUp</a>
-                </button>
+                <button href="form.html" class="btn btn-outline-warning" style="border-radius: 10px;"><a href="#">Sign Up</a></button>
             </div>
         </div>
     </nav>

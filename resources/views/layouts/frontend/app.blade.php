@@ -94,6 +94,6 @@
 {{--    <script src="{{ asset('js/frontend.js') }}"></script>--}}
 {{--    <script src="{{ asset('js/app.js') }}"></script>--}}
     @stack('js')
-    @include('vendor.lara-izitoast.toast')
+{{--    @include('vendor.lara-izitoast.toast')--}}
 </body>
 </html>

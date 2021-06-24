@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-12">
                     <div class="left_part2 mt-5" style="width: 100%;">
-                        <img src="img/homepage/logo.png" alt="logo">
+                        <img src="{{asset('assets/frontend')}}/img/homepage/logo_2.png" alt="logo">
                         <p>Fitness and wellbaing is the reason of
                            happiness. In regard to using gym work experience to help with my college course I was able to do se.
                         </p>
@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="mid_part2">
-                        <div class="text" style="float: right; margin-top: 9rem;">
+                        <div class="text" style=" margin-top: 9rem;">
                             <h4>Contact Now</h4>
                             <div class="contact_info">
                                 <div class="email mt-3">
