@@ -86,7 +86,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        $query = Query::latest()->first();
+        $query = Query::where('email',$data['email'])->first();
         Userprofile::create([
             'user_id' => $user->id,
             'weight' => $query->weight,

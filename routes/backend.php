@@ -71,7 +71,7 @@ Route::delete('backups', [BackupController::class, 'clean'])->name('backups.clea
 // Profile
 Route::get('profile/', [ProfileController::class, 'index'])->name('profile.index');
 Route::post('profile/', [ProfileController::class, 'update'])->name('profile.update');
-Route::post('profile/', [ProfileController::class, 'store'])->name('profile.store');
+Route::post('profile/store', [ProfileController::class, 'store'])->name('profile.store');
 
 // Security
 Route::get('profile/security', [ProfileController::class, 'changePassword'])->name('profile.password.change');

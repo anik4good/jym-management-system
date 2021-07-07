@@ -15,6 +15,7 @@ class CreateQueriesTable extends Migration
     {
         Schema::create('queries', function (Blueprint $table) {
             $table->id();
+            $table->string('email')->unique();
             $table->string('gender')->nullable();
             $table->double('height')->nullable();
             $table->double('weight')->nullable();

@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" style="text-decoration: underline; color: #FFA300;" href="#">Home</a>
+                        <a class="nav-link active" style="text-decoration: underline; color: #FFA300;" href="{{route('frontend.home')}}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" href="#">About me</a>
@@ -38,9 +38,57 @@
                         <a class="nav-link text-dark" href="#">Payment</a>
                     </li>
                 </ul>
-                <button href="form.html" class="btn btn-outline-warning" style="border-radius: 10px;"><a href="#">Sign Up</a></button>
+                @guest
+                    <button  class="btn btn-outline-warning" style="border-radius: 10px;"><a href="{{route('login')}}">Log in</a></button>
+                        &nbsp
+                    <button  class="btn btn-outline-warning" style="border-radius: 10px;"><a href="{{route('frontend.form')}}">Sign Up</a></button>
+                @else
+                    <div class="app-header-right">
+                        <div class="header-btn-lg pr-0">
+                            <div class="widget-content p-0">
+                                <div class="widget-content-wrapper">
+                                    <div class="widget-content-left">
+                                        <div class="btn-group">
+                                            <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                               class="p-0 btn">
+                                                <img width="42" class="rounded-circle" src="{{ Auth::user()->getFirstMediaUrl('avatar') != null ? Auth::user()->getFirstMediaUrl('avatar') : config('app.placeholder').'160' }}"
+                                                     alt="">
+                                                <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                            </a>
+                                            <div tabindex="-1" role="menu" aria-hidden="true"
+                                                 class="dropdown-menu dropdown-menu-right">
+                                                <a tabindex="0" class="dropdown-item" href="{{ route('app.dashboard') }}">Profile</a>
+{{--                                                <a tabindex="0" class="dropdown-item" href="{{ route('app.profile.index') }}">Profile</a>--}}
+                                                <a tabindex="0" class="dropdown-item" href="{{ route('app.profile.password.change') }}">Change Password</a>
+                                                <div tabindex="-1" class="dropdown-divider"></div>
+                                                <button type="button" tabindex="0" class="dropdown-item" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">{{ __('Logout') }}</button>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-content-left  ml-3 header-user-info">
+                                        <div class="widget-heading">
+{{--                                            {{ Auth::user()->name }}--}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+{{--                        <button class="btn btn-outline-warning" style="border-radius: 10px;"><a href="{{route('app.dashboard')}}">Dashboard</a></button>--}}
+                @endguest
+
+
             </div>
+
         </div>
+
     </nav>
+
+
 </div>
+
 <!-- navbar_end -->

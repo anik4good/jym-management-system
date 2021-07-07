@@ -1,8 +1,10 @@
 <div class="app-header header-shadow">
     <div class="app-header__logo">
-        {{--<div class="logo-src"></div>--}}
+        <div class="logo-src">
+{{--            <img src=" {{ Storage::url(setting('site_logo')) }}" alt="" >--}}
+        </div>
         <div class="navbar-brand">
-            {{ setting('site_title','LaraStarter') }}
+{{--            {{ setting('site_title','LaraStarter') }}--}}
         </div>
         <div class="header__pane ml-auto">
             <div>
@@ -45,7 +47,7 @@
             </div>
             <ul class="header-menu nav">
                 <li class="dropdown nav-item">
-                    <a href="{{ route('frontend.home') }}" class="nav-link">
+                    <a href="{{ route('frontend.home') }}" class="nav-link" target="_blank">
                         <i class="nav-link-icon pe-7s-shuffle"></i>
                         Visit Site
                     </a>

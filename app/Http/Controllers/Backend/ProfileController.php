@@ -76,8 +76,6 @@ class ProfileController extends Controller
     {
 
 
-
-
         // Get logged in user
         $user = Auth::user();
         $userprofile = Userprofile::where('user_id', Auth::id())->first();

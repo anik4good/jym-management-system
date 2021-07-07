@@ -1,9 +1,11 @@
 @extends('layouts.frontend.app')
+@section('title','Your Fitness Mentor')
 
 @push('css')
 
 @endpush
-<body>
+
+@section('content')
 <!-- navbar_start -->
 @include('layouts.frontend.partials.header')
 <!-- navbar_end -->
@@ -39,12 +41,12 @@
 <!-- membership_section_start -->
 <section id="membership">
     <div class="row">
-        <div class="col-md-5 col-sm-12" style="background-color: #FFA300;">
+        <div class="membership_w col-md-5 col-sm-12" style="background-color: #FFA300;">
             <div class="img d-flex">
                 <img class="img1 img-fluid d-none d-xl-block" src="{{asset('assets/frontend')}}/img/homepage/bg.png"
                      alt="img">
                 <div class="text1 pl-3">
-                    <h2 class="mt-5">MEMBERSHIP STARTS FROM <span>$45.5</span> PER MONTH.</h2>
+                    <h2 class="mt-5">MEMBERSHIP STARTS FROM <span>$45</span> PER MONTH.</h2>
                     <p class="lead text-light mr-3">Lorem ipsum dolor sit
                                                     amet consectetur adipisicing elit. Impedit corporis architecto inventore libero? Nisi architecto veritatis
                                                     fuga beatae vero minus explicabo.</p>
@@ -54,7 +56,7 @@
                 </div>
             </div>
         </div>
-        <div class="calculate col-md-7">
+        <div class="membership_w calculate col-md-7 col-sm-12">
             <div class="overlay">
                 <h4 class="text-light mt-5 ml-3">FREE FITNESS ASSESSMENT.
                 </h4>
@@ -99,7 +101,7 @@
                 </div>
 
                 <div class="button1" type="button"
-                     style="box-shadow: 10px 10px 30px #273045; float: right; margin: 20px 120px 10px 0px;">
+                     style="box-shadow: 10px 10px 30px #273045; float: right; margin: 20px 100px 10px 0px;">
                     <a href="#" class="btn-text">Calculate Now</a>
                     <span class="btn-icon">
               <i class="fa fa-arrow-right"></i>
@@ -110,6 +112,7 @@
     </div>
 </section>
 <!-- membership_section_end -->
+
 <!-- about_section_start -->
 <section id="about" style="margin: 65px 0 65px 0;">
     <div class="container">
@@ -125,11 +128,12 @@
                 <h5 class="mt-2" style="color: #013565;">JOIN IN MY SOCIAL LINK</h5>
 
                 <div class="social_icon">
-
-                    <a href="#"><img src="{{asset('assets/frontend')}}/img/homepage/s_icon/fb.png" alt="fb"></a>
-                    <a href="#"><img src="{{asset('assets/frontend')}}/img/homepage/s_icon/insta.png" alt="fb"></a>
-                    <a href="#"><img src="{{asset('assets/frontend')}}/img/homepage/s_icon/twitter.png" alt="twitter"></a>
-
+                    <div class="fb">
+                        <a href="https://www.facebook.com/shovonic/" target="_blank"><img src="{{asset('assets/frontend')}}/img/homepage/s_icon/fb.png" alt="fb"></a>
+                    </div>
+                    <div class="insta">
+                        <a href="https://www.instagram.com/Asm.shovon/" target="_blank"><img src="{{asset('assets/frontend')}}/img/homepage/s_icon/insta.png" alt="fb"></a>
+                    </div>
                 </div>
 
             </div>
@@ -152,8 +156,8 @@
             <div class="col-12">
                 <div class="info-authors mb-3">
                     <h2 class="" style="color: #013565;">OUR <span style="color: #FFA300;">SERVICES</span></h2>
-                    <p class="lead" style="font-size: 16px;">I provide online & offline consultation, personal training, and
-                                                             corporate group seassions</p>
+                    <p class="lead" style="font-size: 16px; color: #273045;">I provide online & offline consultation, personal training, and
+                                                                             corporate group seassions</p>
                 </div>
             </div>
         </div>
@@ -298,8 +302,7 @@
 </section>
 <!-- service_section_end -->
 
-
-<!-- fitner_membership_section_start -->
+<!-- fitness_membership_section_start -->
 <section id="fitner_membership" style="margin: 65px 0 65px 0;">
     <div class="primary-overlay">
         <div class="container">
@@ -307,7 +310,7 @@
                 <div class="fm_t col-12 text-center">
                     <h2 class="mt-5">FITNESS MEMBER<span>SHIP PACKAGES</span></h2>
                     <p class="lead text-light">I am currently accepting both personal and group
-                                               contracts. Besic Health and Fitness assessment. </p>
+                                               contracts.</p>
                 </div>
             </div>
             <!-- first_box -->
@@ -318,7 +321,7 @@
                         <div class="left_part" style="border-right: 1px solid#f3f2f2;">
                             <h5 class="mt-4 pl-3" style="color: #013565; ">Classic Membership</h5>
                             <h5 class="mt-4 pl-3 pt-3" style="color: #013565; border-top: 1px solid#f3f2f2;">Basic plan</h5>
-                            <h3 class="mt-4 pl-3 pt-3" style="color: #FFA300; border-top: 1px solid#f3f2f2;">$40/Mo</h3>
+                            <h3 class="mt-4 pl-3 pt-3" style="color: #FFA300; border-top: 1px solid#f3f2f2; font-style: italic;">$45/Mo</h3>
                             <p class=" pl-3" style="color: #726f6f; font-size: 12px;">Plus tax's & fcos</p>
                         </div>
 
@@ -363,7 +366,7 @@
                                 <p style="color: #606060;">Lifestyle modification suggestions</p>
                               </div>
                             </div> -->
-                            <div class="button1" type="button" style="box-shadow: 2px 2px 5px #bab8b8; margin: 100px 9px;">
+                            <div class="button1" type="button" style="box-shadow: 2px 2px 5px #bab8b8; margin: 100px 10px;">
                                 <a href="#" class="btn-text">Get Started</a>
                                 <span class="btn-icon">
                     <i class="fa fa-arrow-right"></i>
@@ -382,8 +385,8 @@
                             <h5 class="mt-4 pl-3" style="color: #013565; color: #fff;">Silver Membership</h5>
                             <h5 class="mt-4 pl-3 pt-3" style="color: #013565; color: #fff; border-top: 1px solid#525252;">Better
                                                                                                                           Value</h5>
-                            <h3 class="mt-4 pl-3 pt-3" style="color: #FFA300; border-top: 1px solid#525252;">$60/Mo</h3>
-                            <p class=" pl-3" style="color: #726f6f; font-size: 12px;">Plus tax's & fcos</p>
+                            <h3 class="mt-4 pl-3 pt-3" style="color: #FFA300; border-top: 1px solid#525252; font-style: italic;">$60/Mo</h3>
+                            <p class=" pl-3" style="color: #fff; font-size: 12px;">Plus tax's & fcos</p>
                         </div>
 
                         <!-- box_right_side -->
@@ -427,8 +430,11 @@
                                 <p style="color: #fff;">Lifestyle modification suggestions</p>
                               </div>
                             </div> -->
-                            <div type="button" style="margin: 100px 20px;">
-                                <a href="#" class="btn btn-outline-warning">Get Started</a>
+                            <div class="button1" type="button" style="box-shadow: 2px 2px 5px #263453; margin: 100px 10px;">
+                                <a href="#" class="btn-text">Get Started</a>
+                                <span class="btn-icon">
+                    <i class="fa fa-arrow-right"></i>
+                  </span>
                             </div>
                         </div>
                     </div>
@@ -442,7 +448,7 @@
                         <div class="left_part" style="border-right: 1px solid#f3f2f2;">
                             <h5 class="mt-4 pl-3" style="color: #013565; ">Premium Membership</h5>
                             <h5 class="mt-4 pl-3 pt-3" style="color: #013565; border-top: 1px solid#f3f2f2;">Best plan</h5>
-                            <h3 class="mt-4 pl-3 pt-3" style="color: #FFA300; border-top: 1px solid#f3f2f2;">$80/Mo</h3>
+                            <h3 class="mt-4 pl-3 pt-3" style="color: #FFA300; border-top: 1px solid#f3f2f2; font-style: italic;">$80/Mo</h3>
                             <p class=" pl-3" style="color: #726f6f; font-size: 12px;">Plus tax's & fcos</p>
                         </div>
 
@@ -487,8 +493,11 @@
                                     <p style="color: #606060;">Lifestyle modification suggestions</p>
                                 </div>
                             </div>
-                            <div type="button" style="margin: 30px 20px;">
-                                <a href="#" class="btn btn-outline-warning">Get Started</a>
+                            <div class="button1" type="button" style="box-shadow: 2px 2px 5px #bab8b8; margin: 30px 10px;">
+                                <a href="#" class="btn-text">Get Started</a>
+                                <span class="btn-icon">
+                    <i class="fa fa-arrow-right"></i>
+                  </span>
                             </div>
                         </div>
                     </div>
@@ -497,17 +506,33 @@
         </div>
     </div>
 </section>
-<!-- fitner_membership_section_end -->
+<!-- fitness_membership_section_end -->
 <!-- client_portfolio_start -->
 <section id="clint_portfolio" style="margin: 65px 0 65px 0;">
     <div class="container">
         <div class="portfolio_text row">
             <div class="col-12 text-center">
                 <h2>CLIENT <span>PORTFOLIO</span></h2>
-                <p>In regard using gym work experience to help with my collage course I was able to
-                   do so, I would attend and participate in spinning classes, aerobics classes.</p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="flag">
+                    <img src="{{asset('assets/frontend')}}/img/homepage/flag/bd.png" alt="bd">
+                    <img src="{{asset('assets/frontend')}}/img/homepage/flag/canada.png" alt="canada">
+                    <img src="{{asset('assets/frontend')}}/img/homepage/flag/usa.png" alt="USA">
+                    <img src="{{asset('assets/frontend')}}/img/homepage/flag/malaysia.png" alt="malaysia">
+                    <img src="{{asset('assets/frontend')}}/img/homepage/flag/UK.png" alt="UK">
+                    <img src="{{asset('assets/frontend')}}/img/homepage/flag/uganda.jpg" alt="uganda">
+                    <img src="{{asset('assets/frontend')}}/img/homepage/flag/Brazil.png" alt="Brazil">
+                    <img src="{{asset('assets/frontend')}}/img/homepage/flag/iran.jpg" alt="Iran">
+                    <div class="flag_text">
+                        <p class="lead">And we are expanding more</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row" style="width: 90%; margin: auto;">
             <div class="col-xl-4 col-lg-12 col-md-12">
                 <div class="portfolio_box d-flex py-3">
@@ -566,22 +591,31 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xl-4 col-lg-12 col-md-12">
+                <div class="portfolio_box d-flex py-3">
+                    <img src="{{asset('assets/frontend')}}/img/homepage/15.jpg" alt="img">
+                    <div class="portfolio_body">
+                        <h4>Rajin Azhar</h4>
+                        <p>Professional social companion</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-    </div>
-    <div class="col-12 text-center">
-        <div class="button1 xx" style="box-shadow: 2px 2px 5px #bab8b8;"
-             xx type="button">
-            <a href="#" class="btn-text">View All</a>
-            <span class="btn-icon">
+        <div class="col-12 text-center">
+            <div class="button1 xx" style="box-shadow: 2px 2px 5px #bab8b8;"
+                 xx type="button">
+                <a href="#" class="btn-text">View All</a>
+                <span class="btn-icon">
           <i class="fa fa-arrow-right"></i>
         </span>
+            </div>
         </div>
     </div>
 </section>
 <!-- client_portfolio_end -->
-<!-- about_me_start -->
-<section id="about_me" style="margin: 65px 0 65px 0;">
+<!-- testimonial_start -->
+<section id="testimonial" style="margin: 65px 0 65px 0;">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -665,10 +699,18 @@
 
     </div>
 </section>
-<!-- about_me_end -->
+<!-- testimonial_end -->
+
+
+
+
 <!-- footer_section_start -->
 @include('layouts.frontend.partials.footer')
 <!-- footer_section_end -->
+
+@endsection
+
+
 @push('js')
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

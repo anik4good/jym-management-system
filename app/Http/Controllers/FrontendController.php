@@ -31,7 +31,7 @@ class FrontendController extends Controller
     public function form_store(Request $request)
     {
 
-
+        $email =  $request->email;
         //get data
         $weight = $request->weight;
         //convert feet to cm
@@ -55,6 +55,7 @@ class FrontendController extends Controller
         $query = new Query();
 
         $query->insert([
+            'email' => $email,
             'weight' => $weight,
             'height' => $height,
             'age' => $age,
@@ -79,7 +80,8 @@ class FrontendController extends Controller
 
         // return with success msg
         notify()->success('Profile Successfully inserted.', 'Insert');
-        return redirect()->route('register');
+        return view('auth.register',compact('email'));
+    //    return redirect()->route('register',compact('email'));
 
     }
 

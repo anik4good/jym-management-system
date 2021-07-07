@@ -1,9 +1,10 @@
 @extends('layouts.frontend.app')
+@section('title','Inquery')
 
 @push('css')
 
 @endpush
-<body>
+
 <!-- navbar_start -->
 @include('layouts.frontend.partials.header')
 <!-- navbar_end -->
@@ -79,6 +80,7 @@
                         <input style="width: 30%;" type="range" min="1" max="10" value="7" class="slider" id="inches"
                                name="inches">
                     </div>
+                    <br>
                     <h5 class="text-center">Height: <span style="color: #FFA300; font-weight: bold;"
                                                           id="feet_output"></span> Feet <span
                             style="color: #FFA300; font-weight: bold;" id="inches_output"></span> Inch</h5>
@@ -96,6 +98,7 @@
                         <input style="width: 30%;" type="range" min="1" max="100" value="50" class="slider" id="weight"
                                name="weight">
                     </div>
+                    <br>
                     <h5 class="text-center"><span style="color: #FFA300; font-weight: bold;" id="weight_output"></span>
                         KG</h5>
                 </div>
@@ -116,7 +119,7 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="radio_buttons2">
                             <label class="custom_radio2">
-                                <input type="radio" name="ageteen" data-toggle="collapse" href="#collapseExample">
+                                <input type="radio" name="radio2" data-toggle="collapse" href="#collapseExample">
                                 <span class="radio_btn2">
                   <div class="radio_img2">
                     <img src="{{asset('assets/frontend')}}/img/form/1.jpg" alt="TEEN'S">
@@ -129,10 +132,10 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="radio_buttons2">
                             <label class="custom_radio2">
-                                <input type="radio" data-toggle="collapse" href="#collapseExample" name="20">
+                                <input type="radio" name="radio2" data-toggle="collapse" href="#collapseExample">
                                 <span class="radio_btn2">
                   <div class="radio_img2">
-                    <img src="{{asset('assets/frontend')}}/img/form/2.jpg" alt="20'S" >
+                    <img src="{{asset('assets/frontend')}}/img/form/2.jpg" alt="20'S">
                   </div>
                   <h5>20'S</h5>
                 </span>
@@ -142,10 +145,10 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="radio_buttons2">
                             <label class="custom_radio2">
-                                <input type="radio" data-toggle="collapse" href="#collapseExample" name="30">
+                                <input type="radio" name="radio2" data-toggle="collapse" href="#collapseExample">
                                 <span class="radio_btn2">
                   <div class="radio_img2">
-                    <img src="{{asset('assets/frontend')}}/img/form/3.jpg" alt="30'S" >
+                      <img src="{{asset('assets/frontend')}}/img/form/3.jpg" alt="30'S">
                   </div>
                   <h5>30'S</h5>
                 </span>
@@ -153,14 +156,15 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row text-center">
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="radio_buttons2">
                             <label class="custom_radio2">
-                                <input type="radio" data-toggle="collapse" href="#collapseExample">
+                                <input type="radio" name="radio2" data-toggle="collapse" href="#collapseExample">
                                 <span class="radio_btn2">
                   <div class="radio_img2">
-                    <img src="{{asset('assets/frontend')}}/img/form/4.jpg" alt="40'S">
+                         <img src="{{asset('assets/frontend')}}/img/form/4.jpg" alt="40'S">
                   </div>
                   <h5>40'S</h5>
                 </span>
@@ -170,10 +174,10 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="radio_buttons2">
                             <label class="custom_radio2">
-                                <input type="radio" data-toggle="collapse" href="#collapseExample">
+                                <input type="radio" name="radio2" data-toggle="collapse" href="#collapseExample">
                                 <span class="radio_btn2">
                   <div class="radio_img2">
-                    <img src="{{asset('assets/frontend')}}/img/form/5.jpg" alt="50'S">
+                     <img src="{{asset('assets/frontend')}}/img/form/5.jpg" alt="50'S">
                   </div>
                   <h5>50'S</h5>
                 </span>
@@ -183,10 +187,10 @@
                     <div class="col-lg-4 col-md-12 col-sm-12">
                         <div class="radio_buttons2">
                             <label class="custom_radio2">
-                                <input type="radio" data-toggle="collapse" href="#collapseExample">
+                                <input type="radio" name="radio2" data-toggle="collapse" href="#collapseExample">
                                 <span class="radio_btn2">
                   <div class="radio_img2">
-                    <img src="{{asset('assets/frontend')}}/img/form/6.jpg" alt="60'S">
+                   <img src="{{asset('assets/frontend')}}/img/form/6.jpg" alt="60'S">
                   </div>
                   <h5>60'S</h5>
                 </span>
@@ -197,9 +201,10 @@
             </div>
             <div class="collapse" id="collapseExample">
                 <div class="card card-body">
-                    <input type="number" name="age" class="form-control" placeholder="Please Enter Your Age">
+                    <input type="number" name="age" class="form-control" placeholder="Please Enter Your Age" required>
                 </div>
             </div>
+            <br>
         </div>
     </section>
     <!-- age_range_section_end -->
@@ -231,6 +236,7 @@
                         <input style="width: 65%;" type="range" min="1" max="50" value="7" class="slider" id="necksize"
                                name="necksize">
                     </div>
+                    <br>
                     <h5 class="text-center"><span id="neck_size_output"
                                                   style="color: #FFA300; font-weight: bold;"></span> Inches</h5>
                 </div>
@@ -251,7 +257,6 @@
         </div>
     </section>
     <!-- Neck_size_end -->
-
     <!-- dietary_restriction_section_start -->
     <section id="dietary_restriction">
         <div class="container">
@@ -320,7 +325,6 @@
         </div>
     </section>
     <!-- dietary_restriction_section_end -->
-
     <!-- waist_size_start -->
     <section id="waist_size">
         <div class="container">
@@ -369,7 +373,6 @@
         </div>
     </section>
     <!-- waist_size_end -->
-
     <!-- body_shape_section_start -->
     <section id="body_shape">
         <div class="container">
@@ -434,7 +437,6 @@
         </div>
     </section>
     <!-- body_shape_section_end -->
-
     <!-- habits_section_start -->
     <section id="habits">
         <div class="container">
@@ -489,8 +491,6 @@
         </div>
     </section>
     <!-- habits_section_end -->
-
-
     <!-- medical_condition_start -->
     <section id="habits">
         <div class="container">
@@ -498,7 +498,6 @@
                 <div class="col-12 text-center" style="margin-top: 2rem;">
                     <h2 style="color: #003981;">CURRENT MEDICAL <span style="color: #FFA300;">CONDITION</span>
                     </h2>
-
                 </div>
             </div>
             <div class="col-12 text-center" style="margin-top: 2rem;">
@@ -548,8 +547,7 @@
                     </div>
                 </div>
             </div>
-
-{{--bloodsugar--}}
+            {{--bloodsugar--}}
             <div class="col-12 text-center" style="margin-top: 2rem;">
                 <h2 style="color: #003981;">BloodSugar
                 </h2>
@@ -599,104 +597,10 @@
             </div>
         </div>
     </section>
-    <!-- medical_condition_end -->
 
 
-    <!-- food_habit_section_start -->
-    <!-- <section id="food_habit">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center" style="margin-top: 2rem;">
-            <h2 style="color: #FFA300;">WHAT IS YOUR <span style="color: #003981;">FOOD HABIT</span></h2>
-          </div>
-        </div>
-        <div class="food_habit py-5">
-        <div class="row">
-          <div class="col-lg-4 col-md-12 col-sm-12">
-              <div class="radio_buttons13">
-                <label class="custom_radio13">
-                  <input type="radio" name="fastfood">
-                  <span class="radio_btn13">
-                    <div class="radio_img13">
-                      <img src="img/form/fastfood.jpg" alt="fastfood">
-                    </div>
-                    <h5>Fastfood</h5>
-                  </span>
-                </label>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-12 col-sm-12">
-              <div class="radio_buttons13">
-                <label class="custom_radio13">
-                  <input type="radio" name="sweet">
-                  <span class="radio_btn13">
-                    <div class="radio_img13">
-                      <img src="img/form/sweet.jpg" alt="sweet">
-                    </div>
-                    <h5>Sweet</h5>
-                  </span>
-                </label>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-12 col-sm-12">
-              <div class="radio_buttons13">
-                <label class="custom_radio13">
-                  <input type="radio" name="liquid">
-                  <span class="radio_btn13">
-                    <div class="radio_img13">
-                      <img src="img/form/liquid.jpg" alt="liquid">
-                    </div>
-                    <h5>Liquid</h5>
-                  </span>
-                </label>
-              </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-12 col-sm-12">
-              <div class="radio_buttons13">
-                <label class="custom_radio13">
-                  <input type="radio" name="meet">
-                  <span class="radio_btn13">
-                    <div class="radio_img13">
-                      <img src="img/form/meet.jpg" alt="meet">
-                    </div>
-                    <h5>Meet</h5>
-                  </span>
-                </label>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-12 col-sm-12">
-              <div class="radio_buttons13">
-                <label class="custom_radio13">
-                  <input type="radio" name="fruits">
-                  <span class="radio_btn13">
-                    <div class="radio_img13">
-                      <img src="img/form/fruits.jpg" alt="fruits">
-                    </div>
-                    <h5>Fruits</h5>
-                  </span>
-                </label>
-              </div>
-          </div>
-          <div class="col-lg-4 col-md-12 col-sm-12">
-              <div class="radio_buttons13">
-                <label class="custom_radio13">
-                  <input type="radio" name="vagitarian">
-                  <span class="radio_btn13">
-                    <div class="radio_img13">
-                      <img src="img/form/vagitarian.jpg" alt="vagitarian">
-                    </div>
-                    <h5>Vagitarian</h5>
-                  </span>
-                </label>
-              </div>
-          </div>
-        </div>
-      </div>
-      </div>
-    </section> -->
-    <!-- food_habit_section_end -->
+
+
     <!-- food_allergy_section_start -->
     <section id="food_allergy">
         <div class="container">
@@ -739,7 +643,7 @@
                                 <input type="radio" name="foodhabit" value="Fish">
                                 <span class="radio_btn14">
                 <div class="radio_img14">
-                  <img src="{{asset('assets/frontend')}}/img/form/fish.jpg" alt="Fish">
+                       <img src="{{asset('assets/frontend')}}/img/form/fish.jpg" alt="Fish">
                 </div>
                 <h5>Fish</h5>
               </span>
@@ -754,7 +658,7 @@
                                 <input type="radio" name="foodhabit" value="Eggs">
                                 <span class="radio_btn14">
                 <div class="radio_img14">
-                  <img src="{{asset('assets/frontend')}}/img/form/eggs.jpg" alt="eggs">
+               <img src="{{asset('assets/frontend')}}/img/form/eggs.jpg" alt="eggs">
                 </div>
                 <h5>Eggs</h5>
               </span>
@@ -780,18 +684,40 @@
                                 <input type="radio" name="foodhabit" value="Eggplants">
                                 <span class="radio_btn14">
                 <div class="radio_img14">
-                  <img src="{{asset('assets/frontend')}}/img/form/eggplants.jpg" alt="eggplants">
+                 <img src="{{asset('assets/frontend')}}/img/form/eggplants.jpg" alt="eggplants">
                 </div>
                 <h5>Eggplants</h5>
               </span>
                             </label>
                         </div>
                     </div>
+                    <br>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="radio_buttons14">
+                            <label class="custom_radio14">
+                                <input type="radio" name="foodhabit" value="None">
+                                <span class="radio_btn14">
+                <div class="radio_img14">
                 </div>
+                <h5 style="margin-top: 100px;">None</h5>
+              </span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-body">
+                <input type="email" name="email" class="form-control" placeholder="Please Enter Your Email" required>
             </div>
         </div>
     </section>
+    <br>
     <!-- food_allergy_section_end -->
+
+
+
+
+
     <section id="button">
         <div class="container">
             <div class="row">
@@ -853,7 +779,7 @@
         }
     </script>
 
-    
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>

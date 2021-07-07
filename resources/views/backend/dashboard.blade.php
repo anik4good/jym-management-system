@@ -55,7 +55,7 @@
                                 <div class="widget-heading">Current Height</div>
                             </div>
                             <div class="widget-content-right">
-                                <div class="widget-numbers text-success">{{ $height['feet']}}"{{ $height['inches']}}inch|{{ $user->userprofile->height }}cm</div>
+                                <div class="widget-numbers text-success">{{ $height['feet']}}.{{ $height['inches']}}ft|{{ $user->userprofile->height }}cm</div>
 
                             </div>
                         </div>

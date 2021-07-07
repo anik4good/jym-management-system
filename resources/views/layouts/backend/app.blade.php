@@ -11,8 +11,20 @@
 
     <link rel="icon"  href="{{ setting('site_favicon') != null ? Storage::disk('public')->url(setting('site_favicon')) : '' }}"/>
     <!-- Styles -->
+
     <link href="{{ asset('css/backend.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .app-header__logo .logo-src
+        {
+            background-image:url("{{Storage::url(setting('site_logo'))}}");
+            background-repeat: no-repeat;
+            height: 48px;
+            width:164px
+        }
+
+    </style>
+
     @stack('css')
 </head>
 <body>

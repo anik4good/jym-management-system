@@ -15,8 +15,8 @@ class SettingSeeder extends Seeder
     public function run()
     {
         // General Settings
-        Setting::updateOrCreate(['name' => 'site_title','value' => 'Ami Fit']);
-        Setting::updateOrCreate(['name' => 'site_description','value' => 'A laravel starter kit for web artisans.']);
+        Setting::updateOrCreate(['name' => 'site_title','value' => 'AmiFit']);
+        Setting::updateOrCreate(['name' => 'site_description','value' => 'Your Fitness Mentor']);
         Setting::updateOrCreate(['name' => 'site_address','value' => 'Dhaka,Bangladesh']);
         // Logo Settings
         Setting::updateOrCreate(['name' => 'site_logo','value' => null]);
@@ -29,7 +29,7 @@ class SettingSeeder extends Seeder
         Setting::updateOrCreate(['name' => 'mail_password','value' => '']);
         Setting::updateOrCreate(['name' => 'mail_encryption','value' => 'TLS']);
         Setting::updateOrCreate(['name' => 'mail_from_address','value' => '']);
-        Setting::updateOrCreate(['name' => 'mail_from_name','value' => 'LaraStarter']);
+        Setting::updateOrCreate(['name' => 'mail_from_name','value' => 'AmiFit']);
 
         // Socialite Settings
         Setting::updateOrCreate(['name' => 'facebook_client_id','value' => null]);
